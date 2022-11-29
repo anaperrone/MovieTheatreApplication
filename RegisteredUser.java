@@ -18,7 +18,7 @@ public class RegisteredUser extends OrdinaryUser{
     private LoginServer instance;
 
 
-    public RegisteredUser(String username, String password, String email, Date expiry, 
+    public RegisteredUser(String username, String password, String email, MyDate expiry, 
                             String name, int cvv, String cardNumber, String streetName, 
                             int no, String city, String country, String postal){
 

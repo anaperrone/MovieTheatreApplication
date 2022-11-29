@@ -19,7 +19,7 @@ public class OrdinaryUser {
         email = e;
     }
 
-    public void addCard(int cvv, String cardNumber, Date expiry, String name){
+    public void addCard(int cvv, String cardNumber, MyDate expiry, String name){
         Card c = new Card(expiry, cardNumber, cvv, name);
         card = c;
     }

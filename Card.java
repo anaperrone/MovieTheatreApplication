@@ -10,14 +10,14 @@
 
 public class Card {
     private Date expiry;
-    private int num;
-    private int cv;
+    private String cardNumber; //int? can it hold 16 digits?
+    private int cvv;
     private String name;
 
-    public Card(Date e, int n, int c, String name) {
+    public Card(Date e, String n, int c, String name) {
         this.expiry = e;
-        this.num = n;
-        this.cv = c;
+        this.cardNumber = n;
+        this.cvv = c;
         this.name = name;
     }
 
@@ -27,5 +27,9 @@ public class Card {
 
     public boolean doPayment() {
         return true;
+    }
+
+    public String getCardNumber(){
+        return cardNumber;
     }
 }

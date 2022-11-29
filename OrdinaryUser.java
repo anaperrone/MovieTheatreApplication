@@ -9,5 +9,18 @@
 */
 
 public class OrdinaryUser {
-    
+    private String email;
+    private Card card;
+
+
+    public OrdinaryUser(){}
+
+    public void addEmail(String e){
+        email = e;
+    }
+
+    public void addCard(int cvv, String cardNumber, Date expiry, String name){
+        Card c = new Card(expiry, cardNumber, cvv, name);
+        card = c;
+    }
 }

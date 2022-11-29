@@ -9,5 +9,15 @@
 */
 
 public class Location {
-    
+    private String theatreName;
+    private Address address;
+
+    public Location(String loc) {
+        theatreName = loc;
+        //Database does query to return address of the location and sets the address depending on that
+    }
+
+    public Location getLocation() {
+        return this;
+    }
 }

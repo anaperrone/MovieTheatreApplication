@@ -9,12 +9,12 @@
 */
 
 public class Card {
-    private Date expiry;
+    private MyDate expiry;
     private String cardNumber; //int? can it hold 16 digits?
     private int cvv;
     private String name;
 
-    public Card(Date e, String n, int c, String name) {
+    public Card(MyDate e, String n, int c, String name) {
         this.expiry = e;
         this.cardNumber = n;
         this.cvv = c;

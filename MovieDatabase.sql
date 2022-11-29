@@ -1,0 +1,74 @@
+DROP DATABASE IF EXISTS `MovieDatabase`;
+CREATE DATABASE `MovieDatabase` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `MovieDatabase`;
+
+DROP TABLE IF EXISTS SEATS;
+CREATE TABLE SEATS
+(
+	rowNum 		CHAR,
+    seatNum		INT,
+    available 	BOOLEAN
+);
+
+DROP TABLE IF EXISTS MOVIE;
+CREATE TABLE MOVIE
+(
+	duration 	INT, 
+    title		VARCHAR(100),
+    releaseDate	DATE
+);
+
+DROP TABLE IF EXISTS CARD;
+CREATE TABLE CARD
+(
+	expiry 		DATE,
+    num			VARCHAR(16),
+    cv			INT,
+    holderName	VARCHAR(25)
+);
+
+DROP TABLE IF EXISTS USER;
+CREATE TABLE USER 
+(
+	email 		VARCHAR(50),
+    cardNum 	VARCHAR(16),
+    
+    FOREIGN KEY (cardNum) REFERENCES CARD(num)
+);
+
+DROP TABLE IF EXISTS REGISTERED_USER;
+CREATE TABLE REGISTERED_USER
+(
+	email		VARCHAR(50),
+    address 	VARCHAR(100),
+    
+    FOREIGN KEY (email)	REFERENCES USER(email)
+);
+
+DROP TABLE IF EXISTS LOCATION;
+CREATE TABLE LOCATION 
+(
+	theaterName	VARCHAR(100),
+    address 	VARCHAR(100)
+);
+
+DROP TABLE IF EXISTS SHOWING;
+CREATE TABLE SHOWING 
+(
+	movDate 	DATE,
+    movTime 	TIME,
+    title 		VARCHAR(100),
+    loc			VARCHAR(100),
+    
+    FOREIGN KEY (title) REFERENCES MOVIE(title),
+    FOREIGN KEY (loc) REFERENCES LOCATION(theaterName)
+);
+
+DROP TABLE IF EXISTS LOGIN;
+CREATE TABLE LOGIN 
+(
+	username 	VARCHAR(50),
+    pass		VARCHAR(25),
+    
+    FOREIGN KEY (username) REFERENCES REGISTERED_USER(email)
+);

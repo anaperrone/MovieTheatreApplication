@@ -32,7 +32,7 @@ public class Connection {
     }
 
     //method to check if the username exists in the database
-    private boolean findUsername(String username){
+    private boolean addUsername(String username, String password){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT username FROM LOGIN;";
@@ -42,10 +42,15 @@ public class Connection {
                 String user = results.getString("username");
                 if(user == username){
                     results.close();
-                    return true;
+                    return true; //username exists, need to choose another
                 }
             }
-
+            
+            String addQuery = "INSERT INTO LOGIN(username, pass) VALUES(?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setString(1, username);
+            state.setString(2, password);
+            state.execute();
             results.close();
             return false;
         }
@@ -73,6 +78,19 @@ public class Connection {
 
             results.close();
             return false;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void removeUser(String username){
+        try{
+            Statement s = this.connect.createStatement();
+            String query = "DELETE FROM LOGIN WHERE username = ?;";
+            PreparedStatement state = this.connect.prepareStatement(query);
+            state.setString(1, username);
+            state.execute();
         }
         catch(SQLException e){
             e.printStackTrace();

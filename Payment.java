@@ -9,15 +9,22 @@
 */
 
 public class Payment {
+    static int num;
     private Seats seats;
     private Ticket ticket;
-    private MovieController cont;
+    private MoviesController cont;
     private Email email;
+    private Card card;
     
 
-    public Payment()
+    public Payment(MoviesController movCont, Card card)
     {
-
+        cont = movCont;
+        this.card = card 
+        seat = new Seat()
+        ticket = new Ticket(num, int aud, seats, cont.getMovie(), cont.getShow(), cont.getLocation)
+        
+        num++;
     }
 
     public void makeReciept()
@@ -52,7 +59,7 @@ public class Payment {
 
     public getShowing()
     {
-
+        return cont.getShowing().getShowing();
     }
 
     public getLocation()

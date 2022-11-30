@@ -64,7 +64,7 @@ public class Connection {
 
             while(results.next()){
                 String user = results.getString("username");
-                String pass = results.getString("password");
+                String pass = results.getString("pass");
                 if(user == username && pass == password){
                     results.close();
                     return true;

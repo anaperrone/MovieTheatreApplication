@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS LOGIN;
 CREATE TABLE LOGIN 
 (
 	username 	VARCHAR(50),
-    pass		VARCHAR(25),
+    pass	VARCHAR(25),
     
     FOREIGN KEY (username) REFERENCES REGISTERED_USER(email)
 );

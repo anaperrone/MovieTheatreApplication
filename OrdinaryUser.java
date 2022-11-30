@@ -7,10 +7,12 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+import java.util.*;
 
 public class OrdinaryUser {
     private String email;
     private Card card;
+    private LoginServer instance;
 
 
     public OrdinaryUser(){}
@@ -19,7 +21,7 @@ public class OrdinaryUser {
         email = e;
     }
 
-    public void addCard(int cvv, String cardNumber, MyDate expiry, String name){
+    public void addCard(int cvv, String cardNumber, Date expiry, String name){
         Card c = new Card(expiry, cardNumber, cvv, name);
         card = c;
     }

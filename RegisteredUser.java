@@ -10,10 +10,7 @@
 import java.util.ArrayList;
 
 public class RegisteredUser extends OrdinaryUser{
-    private String username;
-    private String password;
     private ArrayList<Card> cards;
-    private String email;
     private Address address;
     private LoginServer instance;
 
@@ -22,8 +19,6 @@ public class RegisteredUser extends OrdinaryUser{
                             String name, int cvv, String cardNumber, String streetName, 
                             int no, String city, String country, String postal){
 
-        username = username; 
-        password = password;
         Card card = new Card(expiry, cardNumber, cvv, name);
         Address add = new Address(streetName, no, city, country, postal);
         address = add;

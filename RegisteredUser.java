@@ -18,7 +18,7 @@ public class RegisteredUser extends OrdinaryUser{
     public RegisteredUser(String username, String password, String email, MyDate expiry, 
                             String name, int cvv, String cardNumber, String streetName, 
                             int no, String city, String country, String postal){
-
+        instance = getOnlyInstance();
         Card card = new Card(expiry, cardNumber, cvv, name);
         Address add = new Address(streetName, no, city, country, postal);
         address = add;

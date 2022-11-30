@@ -18,15 +18,69 @@ public class Connection {
         initializeConnection();
     }
 
+    /*
+	* This method initializes the driver connection to the database using 
+	* the username 'ensf' and password '480'.
+	*/
     private void initializeConnection(){
         try{
             this.connect = DriverManager.getConnection("jdbc:mysql://localhost/MovieDatabase", "ensf", "480");
         }
         catch(SQLException e){
-            System.out.println("ERROR: could not connect to database");
+            System.out.println("ERROR: Could not connect to database");
         }
     }
 
+    //method to check if the username exists in the database
+    private boolean findUsername(String username){
+        try{
+            Statement s = this.connect.createStatement();
+            String query = "SELECT username FROM LOGIN;";
+            ResultSet results = s.executeQuery(query);
+
+            while(results.next()){
+                String user = results.getString("username");
+                if(user == username){
+                    results.close();
+                    return true;
+                }
+            }
+
+            results.close();
+            return false;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    //method to check if the username and password exist in the database
+    //if so, the user will be able to login
+    private boolean grantAccess(String username, String password){
+        try{
+            Statement s = this.connect.createStatement();
+            String query = "SELECT * FROM LOGIN;";
+            ResultSet results = s.executeQuery(query);
+
+            while(results.next()){
+                String user = results.getString("username");
+                String pass = results.getString("password");
+                if(user == username && pass == password){
+                    results.close();
+                    return true;
+                }
+            }
+
+            results.close();
+            return false;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    //close database connection
     public void close(){
         try{
             this.connect.close();

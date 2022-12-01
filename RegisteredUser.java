@@ -10,20 +10,15 @@
 import java.util.ArrayList;
 
 public class RegisteredUser extends OrdinaryUser{
-    private String username;
-    private String password;
     private ArrayList<Card> cards;
-    private String email;
     private Address address;
     private LoginServer instance;
 
 
-    public RegisteredUser(String username, String password, String email, Date expiry, 
+    public RegisteredUser(String username, String password, String email, MyDate expiry, 
                             String name, int cvv, String cardNumber, String streetName, 
                             int no, String city, String country, String postal){
-
-        username = username; 
-        password = password;
+        instance = getOnlyInstance();
         Card card = new Card(expiry, cardNumber, cvv, name);
         Address add = new Address(streetName, no, city, country, postal);
         address = add;

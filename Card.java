@@ -8,21 +8,35 @@
 *
 */
 
+import java.util.regex.*;
+
 public class Card {
-    private Date expiry;
+    private MyDate expiry;
     private String cardNumber; //int? can it hold 16 digits?
     private int cvv;
     private String name;
+    private String CARD_REGEX = "[0-9]{16}";
+    private Pattern CARD_PATTERN = Pattern.compile(CARD_REGEX);
 
-    public Card(Date e, String n, int c, String name) {
+    public Card(MyDate e, String n, int c, String name) {
         this.expiry = e;
         this.cardNumber = n;
         this.cvv = c;
         this.name = name;
     }
 
-    public void verifyCard(int c) {
-
+    public boolean verifyCard(int cvv, String cardNumber) {
+        
+        if(cvv <= 999 || cvv >= 100) {
+            return true;
+        }
+        
+        Matcher cardMatcher = CARD_PATTERN.matcher(cardNumber);
+        if(cardMatcher.find()) {
+            return true;
+        }
+        
+        return false;
     }
 
     public boolean doPayment() {

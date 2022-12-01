@@ -16,12 +16,16 @@ public class Address {
     private String postalCode;
 
     public Address(String name, int num, String city, String country, String postal) {
-        
+        this.streetName = name; 
+        this.number = num;
+        this.city = city;
+        this.country = country;
+        this.postalCode = postal;
     }
 
     public Address getAddress() {
-        Address address = new Address(streetName, number, city, country, postalCode);
-        return address;
+        //Address address = new Address(streetName, number, city, country, postalCode);
+        return this;
     }
 
     public void setAddress(String name, int num, String city, String country, String postal) {

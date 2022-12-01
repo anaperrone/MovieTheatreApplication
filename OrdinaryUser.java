@@ -7,20 +7,20 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+import java.util.*;
 
-public class OrdinaryUser {
+abstract class OrdinaryUser { //should this be abstract? no objects of it.
     private String email;
     private Card card;
-
 
     public OrdinaryUser(){}
 
     public void addEmail(String e){
-        email = e;
+        this.email = e;
     }
 
-    public void addCard(int cvv, String cardNumber, Date expiry, String name){
+    public void addCard(int cvv, String cardNumber, MyDate expiry, String name){
         Card c = new Card(expiry, cardNumber, cvv, name);
-        card = c;
+        this.card = c;
     }
 }

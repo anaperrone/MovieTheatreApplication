@@ -25,14 +25,18 @@ public class Card {
         this.name = name;
     }
 
-    public void verifyCard(int cvv, String cardNumber) {
-        if(cvv > 3 || cvv < 3) {
-            //invalid card
+    public boolean verifyCard(int cvv, String cardNumber) {
+        
+        if(cvv <= 999 || cvv >= 100) {
+            return true;
         }
+        
         Matcher cardMatcher = CARD_PATTERN.matcher(cardNumber);
         if(cardMatcher.find()) {
-            //valid card number
+            return true;
         }
+        
+        return false;
     }
 
     public boolean doPayment() {

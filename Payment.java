@@ -20,9 +20,9 @@ public class Payment {
     public Payment(MoviesController movCont, Card card)
     {
         cont = movCont;
-        this.card = card 
-        seat = new Seat()
-        ticket = new Ticket(num, int aud, seats, cont.getMovie(), cont.getShow(), cont.getLocation)
+        this.card = card;
+        seats = new Seats();
+        ticket = new Ticket(num, aud, seats, cont.getMovie(), cont.getShow(), cont.getLocation)
         
         num++;
     }

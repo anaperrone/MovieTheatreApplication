@@ -2,31 +2,11 @@ DROP DATABASE IF EXISTS `MovieDatabase`;
 CREATE DATABASE `MovieDatabase` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `MovieDatabase`;
 
-DROP TABLE IF EXISTS SEATS;
-CREATE TABLE SEATS
-(
-    rowNum 		CHAR,
-    seatNum		INT,
-    available 	BOOLEAN,
-    
-    PRIMARY KEY (rowNum, seatNum)
-);
-
-DROP TABLE IF EXISTS MOVIE;
-CREATE TABLE MOVIE
-(
-	duration 		INT, 
-    title			VARCHAR(100),
-    releaseDate		DATE,
-    
-    PRIMARY KEY (title)
-);
-
 DROP TABLE IF EXISTS ADDRESS;
 CREATE TABLE ADDRESS
 (
-    streetName	VARCHAR(25),
     num			INT,
+    streetName	VARCHAR(25),
     city 		VARCHAR(25),
     country		VARCHAR(25),
     postalCode	VARCHAR(6),
@@ -69,30 +49,54 @@ DROP TABLE IF EXISTS LOCATION;
 CREATE TABLE LOCATION 
 (
 	theaterName	VARCHAR(100),
-    streetName 	VARCHAR(25),
     buildNum 	INT,
-    
+    streetName 	VARCHAR(25),
+
     PRIMARY KEY (theaterName),
     FOREIGN KEY (buildNum, streetName) REFERENCES ADDRESS(num, streetName)
+);
+
+DROP TABLE IF EXISTS MOVIE;
+CREATE TABLE MOVIE
+(
+	duration 		INT, 
+    title			VARCHAR(100),
+    releaseDate		DATE,
+    
+    PRIMARY KEY (title)
 );
 
 DROP TABLE IF EXISTS SHOWING;
 CREATE TABLE SHOWING 
 (
-	movDate 	DATE,
+	title 		VARCHAR(100),
+    movDate 	DATE,
     movTime 	TIME,
-    title 		VARCHAR(100),
+    roomNum		INT,
     loc			VARCHAR(100),
     
+    PRIMARY KEY (loc, roomNum, movDate, movTime),
     FOREIGN KEY (title) REFERENCES MOVIE(title),
     FOREIGN KEY (loc) REFERENCES LOCATION(theaterName)
+);
+
+DROP TABLE IF EXISTS SEATS;
+CREATE TABLE SEATS
+(
+    theaterName 	VARCHAR(100),
+    roomNum			INT,
+    d				DATE,
+    t				TIME,
+    seatNum			INT,	
+    
+    FOREIGN KEY (theaterName, roomNum, d, t) REFERENCES SHOWING(loc, roomNum, movDate, movTime)
 );
 
 DROP TABLE IF EXISTS LOGIN;
 CREATE TABLE LOGIN 
 (
 	username 	VARCHAR(50),
-    pass	VARCHAR(25),
+    pass		VARCHAR(25),
     
     FOREIGN KEY (username) REFERENCES REGISTERED_USER(email)
 );

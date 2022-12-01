@@ -97,6 +97,27 @@ public class Connection {
         }
     }
 
+    private boolean bookSeat(int seatNumber, String movie, String theatre){
+        try{
+            Statement s = this.connect.createStatement();
+            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ?;";
+            
+            
+            String addQuery = "INSERT INTO SEATS(theatreName, roomNum, seatNum) VALUES(?, ?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setString(1, theatreName);
+            state.setString(2, password);
+            state.execute();
+            results.close();
+            return false;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     //close database connection
     public void close(){

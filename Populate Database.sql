@@ -39,6 +39,6 @@ VALUES 	('Black Panther', '2022-12-08', '7:15', 8, 'Golden Jubilee');
 SELECT * FROM SHOWING;
 
 INSERT INTO SEATS 
-VALUES ('Pink Panther', 3, '2022-12-01', '1:15', 7, FALSE);
+VALUES ('Pink Panther', 3, '2022-12-01', '1:15', 7);
 
 SELECT * FROM SEATS;

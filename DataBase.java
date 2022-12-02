@@ -109,29 +109,54 @@ public class DataBase {
         }
     }
 
-        private void bookSeat(int seatNumber, String movie, String theatre, String date, Time time){
-            try{
-                Statement s = this.connect.createStatement();
-                String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
-                ResultSet results = s.executeQuery(query);
-                int room = results.getInt("roomNum");
-                
-                String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?);";
-                PreparedStatement state = this.connect.prepareStatement(addQuery);
-                state.setString(1, theatre);
-                state.setInt(2, room);
-                state.setString(3, date);
-                state.setTime(4, time);
-                state.setInt(5, seatNumber);
-                state.execute();
-                results.close();
-                return;
-            }
-            catch(SQLException e){
-                e.printStackTrace();
-            }
+    private void bookSeat(int seatNumber, String movie, String theatre, String date, Time time){
+        try{
+            Statement s = this.connect.createStatement();
+            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
+            ResultSet results = s.executeQuery(query);
+            int room = results.getInt("roomNum");
+            
+            String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setString(1, theatre);
+            state.setInt(2, room);
+            state.setString(3, date);
+            state.setTime(4, time);
+            state.setInt(5, seatNumber);
+            state.execute();
+            results.close();
+            return;
         }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
+    private Time[] getMovTimes(string title, String theatreName, Date date)
+    {
+        try{
+            Statement s = this.connect.createStatement();
+            String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title" = title;
+            ResultSet results = s.executeQuery(query);
+            ArrayList<LocalTime> showtime;
+                while(results.next())
+                {
+                    Time time = results.getTime("movTime");
+
+                } 
+
+            results.close();
+            return true;
+                
+            }
+
+            results.close();
+            return results;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     //close database connection
     public void close(){

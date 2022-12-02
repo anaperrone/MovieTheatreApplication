@@ -18,8 +18,7 @@ public class Showing {
         String title = movie.getTitle();
         String theatreName = loc.getTheatreName();
         DataBase d = new Database();
-        d.getMovTimes(title, theatreName, date);
-        String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title" = title;
+        showTimes = d.getMovTimes(title, theatreName, date);
     }
 
     public ArrayList<LocalTime> getShowTimes()

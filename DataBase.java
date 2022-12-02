@@ -9,12 +9,13 @@
 */
 import java.sql.*;
 import java.util.*;
+import java.time.*;
 
 
-public class Connection {
+public class DataBase {
     private Connection connect;
 
-    public Connection(){
+    public DataBase(){
         initializeConnection();
     }
 
@@ -42,7 +43,7 @@ public class Connection {
                 String user = results.getString("username");
                 if(user == username){
                     results.close();
-                    return true; //username exists, need to choose another
+                    return false; //username exists, need to choose another
                 }
             }
             
@@ -52,11 +53,12 @@ public class Connection {
             state.setString(2, password);
             state.execute();
             results.close();
-            return false;
+            return true;
         }
         catch(SQLException e){
             e.printStackTrace();
         }
+        return false;
     }
 
     //method to check if the username and password exist in the database
@@ -82,6 +84,7 @@ public class Connection {
         catch(SQLException e){
             e.printStackTrace();
         }
+        return false;
     }
 
     private void removeUser(String username){
@@ -97,18 +100,18 @@ public class Connection {
         }
     }
 
-        private void bookSeat(int seatNumber, String movie, String theatre, Date date, Time time){
+        private void bookSeat(int seatNumber, String movie, String theatre, String date, Time time){
             try{
                 Statement s = this.connect.createStatement();
                 String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
                 ResultSet results = s.executeQuery(query);
-                int room = results.getInt('roomNum');
+                int room = results.getInt("roomNum");
                 
                 String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?);";
                 PreparedStatement state = this.connect.prepareStatement(addQuery);
-                state.setString(1, theatreName);
-                state.setString(2, room);
-                state.setDate(3, date);
+                state.setString(1, theatre);
+                state.setInt(2, room);
+                state.setString(3, date);
                 state.setTime(4, time);
                 state.setInt(5, seatNumber);
                 state.execute();
@@ -119,6 +122,8 @@ public class Connection {
                 e.printStackTrace();
             }
         }
+
+        private void signup()
 
 
 
@@ -132,5 +137,20 @@ public class Connection {
             e.printStackTrace();
         }
     }
+
+    
+    public static void main(String[] args){
+        DataBase d = new DataBase();
+
+        boolean added = d.addUsername("sobia", "ensf");
+
+        if(added){
+            System.out.println("Successful");
+        }
+        else{
+            System.out.println("Failed");
+        }
+    }
 }
+
 

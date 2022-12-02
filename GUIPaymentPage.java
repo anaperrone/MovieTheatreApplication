@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class PaymentPage extends JPanel implements ActionListener {
+public class GUIPaymentPage extends JPanel implements ActionListener {
     CardLayout maincl;
     JPanel mainPanel;
     private JPanel panel;
@@ -28,7 +28,7 @@ public class PaymentPage extends JPanel implements ActionListener {
     private JButton pay;
 
 
-    public PaymentPage(CardLayout cl, JPanel pan) {
+    public GUIPaymentPage(CardLayout cl, JPanel pan) {
         maincl = cl;
         mainPanel = pan;
         panel = new JPanel();

@@ -22,7 +22,7 @@ public class Payment {
         cont = movCont;
         this.card = card;
         seats = new Seats();
-        ticket = new Ticket(num, aud, seats, cont.getMovie(), cont.getShow(), cont.getLocation)
+        ticket = new Ticket(num, aud, seats, cont.getMovie(), cont.getShow(), cont.getLocation);
         
         num++;
     }

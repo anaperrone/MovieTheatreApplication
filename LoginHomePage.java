@@ -3,18 +3,18 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class LoginHomePage  extends JPanel implements ActionListener{
-    private JFrame f;
+    private CardLayout maincl;
+    private JPanel mainPanel;
     private JPanel panel;
     private JButton loginButton;
     private JButton guestButton;
     private JButton regButton;
     private JLabel text;
 
-    public LoginHomePage(JFrame frame){
-        f = frame;
+    public LoginHomePage(CardLayout cl, JPanel pan){
+        maincl = cl;
+        mainPanel = pan;
         panel = new JPanel();
-        frame.add(panel, BorderLayout.CENTER);
-
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -50,14 +50,13 @@ public class LoginHomePage  extends JPanel implements ActionListener{
     }
 
     public JPanel getPanel() {
-        return this.panel;
+        return panel;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton) {
-            panel.setVisible(false);
-            Login login = new Login(f, panel);
+            maincl.show(mainPanel, "2");
            
         }
 
@@ -70,5 +69,17 @@ public class LoginHomePage  extends JPanel implements ActionListener{
             System.out.println("Hello");
             panel.setVisible(false);
         }
+    }
+
+    public JButton getloginButton() {
+        return this.loginButton;
+    }
+
+    public JButton getGuestButton() {
+        return this.guestButton;
+    }
+
+    public JButton getRegButton() {
+        return this.regButton;
     }
 }

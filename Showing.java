@@ -12,9 +12,19 @@ import java.util.*;
 public class Showing {
     private ArrayList<LocalTime> showTimes;
 
-    public Showing(Movie movie, MyDate date, Location loc) {
+    public Showing(Movie movie, Date date, Location loc) {
         //Query where movie.title, date, and location is sent 
         //It would return an array list of show times that showTimes is then set to and sent back to display
+        String title = movie.getTitle();
+        String theatreName = loc.getTheatreName();
+        DataBase d = new Database();
+        d.getMovTimes(title, theatreName, date);
+        String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title" = title;
+    }
+
+    public ArrayList<LocalTime> getShowTimes()
+    {
+        return showTimes;
     }
 
     public Showing(LocalTime time) {

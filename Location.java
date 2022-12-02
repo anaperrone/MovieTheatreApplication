@@ -20,4 +20,9 @@ public class Location {
     public Location getLocation() {
         return this;
     }
+
+    public String getTheatreName()
+    {
+        return theatreName;
+    }
 }

@@ -27,5 +27,10 @@ public class Movie {
         return this;
     }
 
+    public String getTitle()
+    {
+        return title;
+    }
+
 }
 

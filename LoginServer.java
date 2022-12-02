@@ -13,10 +13,12 @@ public class LoginServer {
     private static LoginServer onlyInstance;
     private ArrayList<String> usernameList;
     private ArrayList<String> passwordList;
+    private DataBase database;
 
     private LoginServer(){
         usernameList = new ArrayList<String>();
         passwordList = new ArrayList<String>();
+        database = new DataBase();
     }
 
     public static LoginServer getOnlyInstance(){
@@ -30,25 +32,23 @@ public class LoginServer {
         onlyInstance = only;
     }
 
-    public boolean add(String username, String password){
-        if(!usernameList.contains(username)){
+    public boolean checkUsername(String username, String password){
+        boolean available =  database.validateUsername(username, password);
+        if(available){
             usernameList.add(username);
             passwordList.add(password);
-            return true;
         }
-        else{
-            return false;
-            //connect to the gui here, maybe prompt to select another username
-        }
+        return available;
     }
 
-    public void setUsername(int index, String newUsername){
-        usernameList.set(index, newUsername);
-    }
 
-    public void removeUsername(int index){
-        usernameList.remove(index);
-        
+    public void removeUsername(String username){
+        //remove the username from the local list
+        usernameList.remove(username);
+
+        //call the databse remove method for Login table and Registered User
+        database.removeUser(username);
+
     }
 
 }

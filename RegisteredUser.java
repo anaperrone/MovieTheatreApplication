@@ -7,27 +7,40 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
-import java.util.ArrayList;
+import java.util.*;
+import java.time.*;
 
 public class RegisteredUser extends OrdinaryUser{
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards; 
     private Address address;
     private LoginServer instance;
+    private String username;
+    private String password;
+    private String name;
 
 
-    public RegisteredUser(String username, String password, MyDate expiry, 
-                            String name, int cvv, String cardNumber, String streetName, 
-                            int no, String city, String country, String postal){
+    public RegisteredUser(){
         instance = LoginServer.getOnlyInstance();
-        instance.add(username, password);
+    }
+
+    public boolean checkUsername(String username, String password){
+        return instance.checkUsername(username, password);
+    }
+
+
+    public void setUser(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
+    public void setCard(Date expiry, String cardNumber, int cvv, String name){
         Card card = new Card(expiry, cardNumber, cvv, name);
-        Address add = new Address(streetName, no, city, country, postal);
-        address = add;
         cards.add(card);
     }
 
-    public RegisteredUser(String username, String password){
-        
+    public void setAddress(String street, int number, String city, String country, String postal){
+        Address add = new Address(street, number, city, country, postal);
+        this.address = add;
     }
 
     public void remove(Card card){

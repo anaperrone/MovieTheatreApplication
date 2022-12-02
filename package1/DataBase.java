@@ -7,6 +7,9 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+
+package package1;
+
 import java.sql.*;
 import java.util.*;
 import java.time.*;
@@ -33,7 +36,7 @@ public class DataBase {
     }
 
     //method to check if the username exists in the database
-    private boolean addUsername(String username, String password){
+    public boolean addUsername(String username, String password){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT username FROM LOGIN;";
@@ -63,7 +66,7 @@ public class DataBase {
 
     //method to check if the username and password exist in the database
     //if so, the user will be able to login
-    private boolean grantAccess(String username, String password){
+    public boolean grantAccess(String username, String password){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT * FROM LOGIN;";
@@ -72,7 +75,7 @@ public class DataBase {
             while(results.next()){
                 String user = results.getString("username");
                 String pass = results.getString("pass");
-                if(user == username && pass == password){
+                if(user.compareTo(username) == 0 && pass.compareTo(password) == 0){
                     results.close();
                     return true;
                 }
@@ -123,7 +126,10 @@ public class DataBase {
             }
         }
 
-        private void signup()
+        // private void registerUser(String username, ){
+
+        // }
+
 
 
 
@@ -137,20 +143,7 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-
-    
-    public static void main(String[] args){
-        DataBase d = new DataBase();
-
-        boolean added = d.addUsername("sobia", "ensf");
-
-        if(added){
-            System.out.println("Successful");
-        }
-        else{
-            System.out.println("Failed");
-        }
-    }
 }
+
 
 

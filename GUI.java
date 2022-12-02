@@ -34,7 +34,7 @@ public class GUI extends JFrame {
         frame.add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(300,300);    
+        frame.setResizable(true);
         frame.setVisible(true);
 
     }

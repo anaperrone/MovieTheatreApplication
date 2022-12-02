@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Login extends JPanel implements ActionListener {
+public class GUILogin extends JPanel implements ActionListener {
     CardLayout maincl;
     JPanel mainPanel;
     private JPanel panel;
@@ -14,7 +14,7 @@ public class Login extends JPanel implements ActionListener {
     private JButton back;
     private JButton enter;
 
-    public Login(CardLayout cl, JPanel pan) {
+    public GUILogin(CardLayout cl, JPanel pan) {
         maincl = cl;
         mainPanel = pan;
         panel = new JPanel();
@@ -54,7 +54,7 @@ public class Login extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == back) {
-            maincl.show(mainPanel, "1");
+            maincl.show(mainPanel, "home");
         }
 
         if(e.getSource() == enter) {

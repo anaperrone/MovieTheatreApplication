@@ -87,8 +87,7 @@ CREATE TABLE SEATS
     roomNum			INT,
     d				DATE,
     t				TIME,
-    seatNum			INT,
-    available 		BOOLEAN,	
+    seatNum			INT,	
     
     FOREIGN KEY (theaterName, roomNum, d, t) REFERENCES SHOWING(loc, roomNum, movDate, movTime)
 );

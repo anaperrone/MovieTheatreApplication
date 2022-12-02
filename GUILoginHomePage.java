@@ -56,7 +56,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton) {
-            maincl.show(mainPanel, "2");
+            maincl.show(mainPanel, "login");
            
         }
 

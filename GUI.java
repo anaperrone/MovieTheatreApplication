@@ -5,7 +5,7 @@ public class GUI extends JFrame {
     JPanel mainPanel;
     GUILoginHomePage loginPage;
     GUILogin login;
-    PaymentPage payPage;
+    GUIPaymentPage payPage;
     GUISignUp signup;
     //Guest g;
     CardLayout cl = new CardLayout();
@@ -18,7 +18,7 @@ public class GUI extends JFrame {
         loginPage = new GUILoginHomePage(cl, mainPanel);
         login = new GUILogin(cl, mainPanel);
         signup = new GUISignUp(cl, mainPanel);
-        payPage = new PaymentPage(cl, mainPanel);
+        payPage = new GUIPaymentPage(cl, mainPanel);
         
         mainPanel.add(loginPage.getPanel(), "home");
         mainPanel.add(login.getPanel(), "login");

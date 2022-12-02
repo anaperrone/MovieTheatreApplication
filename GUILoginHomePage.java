@@ -61,7 +61,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
         }
 
         if(e.getSource() == guestButton) {
-            maincl.show(mainPanel, "payment");
+            maincl.show(mainPanel, "movie");
         }
 
         if(e.getSource() == regButton) {

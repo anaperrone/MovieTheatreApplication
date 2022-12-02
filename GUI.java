@@ -3,10 +3,10 @@ import java.awt.*;
 public class GUI extends JFrame {
     JFrame frame;
     JPanel mainPanel;
-    LoginHomePage loginPage;
+    GUILoginHomePage loginPage;
+    GUILogin login;
     PaymentPage payPage;
-    Login login;
-    //SignUp su;
+    GUISignUp signup;
     //Guest g;
     CardLayout cl = new CardLayout();
 
@@ -15,17 +15,18 @@ public class GUI extends JFrame {
         mainPanel = new JPanel();
         mainPanel.setLayout(cl);
 
-        loginPage = new LoginHomePage(cl, mainPanel);
-        login = new Login(cl, mainPanel);
-
+        loginPage = new GUILoginHomePage(cl, mainPanel);
+        login = new GUILogin(cl, mainPanel);
+        signup = new GUISignUp(cl, mainPanel);
         payPage = new PaymentPage(cl, mainPanel);
         
-        mainPanel.add(loginPage.getPanel(), "1");
-        mainPanel.add(login.getPanel(), "2");
+        mainPanel.add(loginPage.getPanel(), "home");
+        mainPanel.add(login.getPanel(), "login");
+        mainPanel.add(signup.getPanel(), "signup");
 
         mainPanel.add(payPage.getPanel(), "payment");
 
-        cl.show(mainPanel, "1");
+        cl.show(mainPanel, "home");
 
         //su = new Signup();
         //g = new Guest();

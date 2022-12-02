@@ -29,7 +29,7 @@ CREATE TABLE REGISTERED_USER
     buildNum 	INT,
     streetName	VARCHAR(25),
     
-    FOREIGN KEY (email)	REFERENCES ORDINARY_USER(email),
+    PRIMARY KEY (email),
     FOREIGN KEY (buildNum, streetName) REFERENCES ADDRESS(num, streetName)
 );
 
@@ -97,6 +97,5 @@ CREATE TABLE LOGIN
 (
 	username 	VARCHAR(50),
     pass		VARCHAR(25),
-    
-    FOREIGN KEY (username) REFERENCES REGISTERED_USER(email)
+    primary key (username)
 );

@@ -15,14 +15,19 @@ public class RegisteredUser extends OrdinaryUser{
     private LoginServer instance;
 
 
-    public RegisteredUser(String username, String password, String email, MyDate expiry, 
+    public RegisteredUser(String username, String password, MyDate expiry, 
                             String name, int cvv, String cardNumber, String streetName, 
                             int no, String city, String country, String postal){
-        instance = getOnlyInstance();
+        instance = LoginServer.getOnlyInstance();
+        instance.add(username, password);
         Card card = new Card(expiry, cardNumber, cvv, name);
         Address add = new Address(streetName, no, city, country, postal);
         address = add;
         cards.add(card);
+    }
+
+    public RegisteredUser(String username, String password){
+        
     }
 
     public void remove(Card card){

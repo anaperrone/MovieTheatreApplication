@@ -30,12 +30,14 @@ public class LoginServer {
         onlyInstance = only;
     }
 
-    public void add(String username, String password){
+    public boolean add(String username, String password){
         if(!usernameList.contains(username)){
             usernameList.add(username);
             passwordList.add(password);
+            return true;
         }
         else{
+            return false;
             //connect to the gui here, maybe prompt to select another username
         }
     }
@@ -46,6 +48,7 @@ public class LoginServer {
 
     public void removeUsername(int index){
         usernameList.remove(index);
+        
     }
 
 }

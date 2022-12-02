@@ -85,7 +85,7 @@ public class GUIPaymentPage extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == back) {
-            maincl.show(mainPanel, "1");
+            maincl.show(mainPanel, "home");
         }
 
         // if(e.getSource() == pay) {

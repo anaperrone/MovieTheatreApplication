@@ -33,50 +33,62 @@ public class GUIPaymentPage extends JPanel implements ActionListener {
         mainPanel = pan;
         panel = new JPanel();
 
-        panel.setLayout(null);
+        panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
+        GridBagConstraints gbc = new GridBagConstraints();
 
         name = new JLabel("Enter Card Holder Name: ");
-        name.setBounds(10, 20, 80, 25);
-        panel.add(name);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10,0,10,0);
+        panel.add(name, gbc);
 
         nameField = new JTextField(20);
-        nameField.setBounds(100, 20, 165, 25);
-        panel.add(nameField);
+        gbc.gridx = 6;
+        gbc.gridy = 2;
+        panel.add(nameField, gbc);
 
         CC = new JLabel("Enter Card Number: ");
-        CC.setBounds(10, 50, 80, 25);
-        panel.add(CC);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panel.add(CC, gbc);
 
         CCField = new JTextField(20);
-        CCField .setBounds(100, 50, 165, 25);
-        panel.add(CCField);
+        gbc.gridx = 6;
+        gbc.gridy = 4;
+        panel.add(CCField, gbc);
 
         expiry = new JLabel("Enter Expiry Date: ");
-        expiry.setBounds(10, 80, 80, 25);
-        panel.add(expiry);
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        panel.add(expiry, gbc);
 
         expiryField = new JTextField(20);
-        expiryField.setBounds(100, 80, 165, 25);
-        panel.add(expiryField);
+        gbc.gridx = 6;
+        gbc.gridy = 6;
+        panel.add(expiryField, gbc);
 
         CVV = new JLabel("Enter CVV: ");
-        CVV.setBounds(10, 80, 80, 25);
-        panel.add(CVV);
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        panel.add(CVV, gbc);
 
         CVVField = new JTextField(20);
-        CVVField.setBounds(100, 110, 165, 25);
-        panel.add(CVVField);
+        gbc.gridx = 6;
+        gbc.gridy = 8;
+        panel.add(CVVField, gbc);
 
         back = new JButton("<--");
-        back.setBounds(50,140,80,25);
+        gbc.gridx = 0;
+        gbc.gridy = 10;
         back.addActionListener(this);
-        panel.add(back);
+        panel.add(back, gbc);
 
         pay = new JButton("Proceed with Payment");
-        pay.setBounds(160, 140, 150, 25);
+        gbc.gridx = 6;
+        gbc.gridy = 10;
         pay.addActionListener(this);
-        panel.add(pay);
+        panel.add(pay, gbc);
 
         panel.setVisible(true);
 

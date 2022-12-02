@@ -7,6 +7,9 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+
+package package1;
+
 import java.sql.*;
 import java.util.*;
 import java.time.*;
@@ -25,7 +28,7 @@ public class DataBase {
 	*/
     private void initializeConnection(){
         try{
-            this.connect = DriverManager.getConnection("jdbc:mysql://localhost/MovieDatabase", "ensf", "480");
+            this.connect = DriverManager.getConnection("jdbc:mysql://localhost/MovieDatabase", "ENSF", "480");
         }
         catch(SQLException e){
             System.out.println("ERROR: Could not connect to database");
@@ -33,7 +36,7 @@ public class DataBase {
     }
 
     //method to check if the username exists in the database
-    private boolean addUsername(String username, String password){
+    public boolean addUsername(String username, String password){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT username FROM LOGIN;";
@@ -123,7 +126,6 @@ public class DataBase {
             }
         }
 
-        private void signup()
 
 
 
@@ -137,20 +139,7 @@ public class DataBase {
             e.printStackTrace();
         }
     }
-
-    
-    public static void main(String[] args){
-        DataBase d = new DataBase();
-
-        boolean added = d.addUsername("sobia", "ensf");
-
-        if(added){
-            System.out.println("Successful");
-        }
-        else{
-            System.out.println("Failed");
-        }
-    }
 }
+
 
 

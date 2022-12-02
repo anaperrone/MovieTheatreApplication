@@ -28,7 +28,7 @@ public class DataBase {
 	*/
     private void initializeConnection(){
         try{
-            this.connect = DriverManager.getConnection("jdbc:mysql://localhost/MovieDatabase", "ENSF", "480");
+            this.connect = DriverManager.getConnection("jdbc:mysql://localhost/MovieDatabase", "ensf", "480");
         }
         catch(SQLException e){
             System.out.println("ERROR: Could not connect to database");
@@ -66,7 +66,7 @@ public class DataBase {
 
     //method to check if the username and password exist in the database
     //if so, the user will be able to login
-    private boolean grantAccess(String username, String password){
+    public boolean grantAccess(String username, String password){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT * FROM LOGIN;";
@@ -75,7 +75,7 @@ public class DataBase {
             while(results.next()){
                 String user = results.getString("username");
                 String pass = results.getString("pass");
-                if(user == username && pass == password){
+                if(user.compareTo(username) == 0 && pass.compareTo(password) == 0){
                     results.close();
                     return true;
                 }
@@ -125,6 +125,10 @@ public class DataBase {
                 e.printStackTrace();
             }
         }
+
+        // private void registerUser(String username, ){
+
+        // }
 
 
 

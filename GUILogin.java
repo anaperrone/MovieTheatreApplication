@@ -19,34 +19,54 @@ public class GUILogin extends JPanel implements ActionListener {
         mainPanel = pan;
         panel = new JPanel();
         
-        panel.setLayout(null);
+        panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
+        GridBagConstraints gbc = new GridBagConstraints();
+
 
         username = new JLabel("Username: ");
-        username.setBounds(10,20,80,25);
-        panel.add(username);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10,0,10,0);
+
+        panel.add(username, gbc);
 
         usernameField = new JTextField(30);
-        usernameField.setBounds(100,20,165,25);
-        panel.add(usernameField);
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10,0,10,0);
+        //usernameField.setBounds(100,20,165,25);
+        panel.add(usernameField, gbc);
 
-        password = new JLabel("Password");
-        password.setBounds(10,50,80,25);
-        panel.add(password);
+        password = new JLabel("Password:");
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.insets = new Insets(10,0,10,0);
+        //password.setBounds(10,50,80,25);
+        panel.add(password, gbc);
 
-        passwordField = new JPasswordField();
-        passwordField.setBounds(100,50,165,25);
-        panel.add(passwordField);
+        passwordField = new JPasswordField(30);
+        gbc.gridx = 2;
+        gbc.gridy = 4;
+        gbc.insets = new Insets(10,0,10,0);
+        //passwordField.setBounds(100,50,165,25);
+        panel.add(passwordField, gbc);
 
         back = new JButton("<--");
-        back.setBounds(50,80,80,25);
+        gbc.gridx = 2;
+        gbc.gridy = 8;
+        gbc.insets = new Insets(10,5,10,5);
+        //back.setBounds(50,80,80,25);
         back.addActionListener(this);
-        panel.add(back);
+        panel.add(back, gbc);
 
         enter = new JButton("Enter");
-        enter.setBounds(160,80,80,25);
+        gbc.gridx = 2;
+        gbc.gridy = 11;
+        gbc.insets = new Insets(10,5,10,5);
+        //enter.setBounds(160,80,80,25);
         enter.addActionListener(this);
-        panel.add(enter);
+        panel.add(enter, gbc);
 
 
         panel.setVisible(true);

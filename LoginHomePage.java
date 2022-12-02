@@ -61,8 +61,7 @@ public class LoginHomePage  extends JPanel implements ActionListener{
         }
 
         if(e.getSource() == guestButton) {
-            System.out.println("Hello");
-            panel.setVisible(false);
+            maincl.show(mainPanel, "payment");
         }
 
         if(e.getSource() == regButton) {

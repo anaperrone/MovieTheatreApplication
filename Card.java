@@ -9,16 +9,17 @@
 */
 
 import java.util.regex.*;
+import java.util.Date;
 
 public class Card {
-    private MyDate expiry;
+    private Date expiry;
     private String cardNumber; //int? can it hold 16 digits?
     private int cvv;
     private String name;
     private String CARD_REGEX = "[0-9]{16}";
     private Pattern CARD_PATTERN = Pattern.compile(CARD_REGEX);
 
-    public Card(MyDate e, String n, int c, String name) {
+    public Card(Date e, String n, int c, String name) {
         this.expiry = e;
         this.cardNumber = n;
         this.cvv = c;

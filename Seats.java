@@ -9,5 +9,10 @@
 */
 
 public class Seats {
-    
+    /*
+     * Date now = new Date();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String mysqlDateString = formatter.format(now);
+     */
 }

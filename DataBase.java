@@ -8,7 +8,7 @@
 *
 */
 
-package package1;
+
 
 import java.sql.*;
 import java.util.*;
@@ -36,7 +36,7 @@ public class DataBase {
     }
 
     //method to check if the username exists in the database
-    public boolean addUsername(String username, String password){
+    public boolean validateUsername(String username, String password){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT username FROM LOGIN;";
@@ -44,7 +44,7 @@ public class DataBase {
 
             while(results.next()){
                 String user = results.getString("username");
-                if(user == username){
+                if(user.compareTo(username) == 0){
                     results.close();
                     return false; //username exists, need to choose another
                 }
@@ -90,13 +90,19 @@ public class DataBase {
         return false;
     }
 
-    private void removeUser(String username){
+    public void removeUser(String username){
         try{
             Statement s = this.connect.createStatement();
             String query = "DELETE FROM LOGIN WHERE username = ?;";
             PreparedStatement state = this.connect.prepareStatement(query);
             state.setString(1, username);
             state.execute();
+
+            Statement st = this.connect.createStatement();
+            String remove = "DELETE FROM REGISTERED_USER WHERE username = ?";
+            PreparedStatement statement = this.connect.prepareStatement(remove);
+            statement.setString(1, username);
+            statement.execute();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -125,13 +131,6 @@ public class DataBase {
                 e.printStackTrace();
             }
         }
-
-        // private void registerUser(String username, ){
-
-        // }
-
-
-
 
 
     //close database connection

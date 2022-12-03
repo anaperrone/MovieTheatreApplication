@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUILoginHomePage  extends JPanel implements ActionListener{
+public class LoginHomePage  extends JPanel implements ActionListener{
     private CardLayout maincl;
     private JPanel mainPanel;
     private JPanel panel;
@@ -11,7 +11,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
     private JButton regButton;
     private JLabel text;
 
-    public GUILoginHomePage(CardLayout cl, JPanel pan){
+    public LoginHomePage(CardLayout cl, JPanel pan){
         maincl = cl;
         mainPanel = pan;
         panel = new JPanel();
@@ -66,6 +66,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
 
         if(e.getSource() == regButton) {
             maincl.show(mainPanel, "signup");
+           
         }
     }
 

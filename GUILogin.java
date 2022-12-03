@@ -53,11 +53,7 @@ public class GUILogin extends JPanel implements ActionListener {
         panel.add(passwordField, gbc);
 
         back = new JButton("<--");
-<<<<<<< Updated upstream
         gbc.gridx = 2;
-=======
-        gbc.gridx = 1;
->>>>>>> Stashed changes
         gbc.gridy = 8;
         gbc.insets = new Insets(10,5,10,5);
         //back.setBounds(50,80,80,25);
@@ -66,11 +62,7 @@ public class GUILogin extends JPanel implements ActionListener {
 
         enter = new JButton("Enter");
         gbc.gridx = 2;
-<<<<<<< Updated upstream
         gbc.gridy = 11;
-=======
-        gbc.gridy = 8;
->>>>>>> Stashed changes
         gbc.insets = new Insets(10,5,10,5);
         //enter.setBounds(160,80,80,25);
         enter.addActionListener(this);

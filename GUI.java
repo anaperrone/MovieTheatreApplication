@@ -7,10 +7,7 @@ public class GUI extends JFrame {
     GUILogin login;
     GUIPaymentPage payPage;
     GUISignUp signup;
-<<<<<<< Updated upstream
     GUIMovie moviePage;
-=======
->>>>>>> Stashed changes
     //Guest g;
     CardLayout cl = new CardLayout();
 
@@ -23,20 +20,14 @@ public class GUI extends JFrame {
         login = new GUILogin(cl, mainPanel);
         signup = new GUISignUp(cl, mainPanel);
         payPage = new GUIPaymentPage(cl, mainPanel);
-<<<<<<< Updated upstream
         moviePage = new GUIMovie(cl, mainPanel);
-=======
->>>>>>> Stashed changes
         
         mainPanel.add(loginPage.getPanel(), "home");
         mainPanel.add(login.getPanel(), "login");
         mainPanel.add(signup.getPanel(), "signup");
 
-<<<<<<< Updated upstream
         mainPanel.add(moviePage.getPanel(), "movie");
 
-=======
->>>>>>> Stashed changes
         mainPanel.add(payPage.getPanel(), "payment");
 
         cl.show(mainPanel, "home");

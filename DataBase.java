@@ -264,29 +264,35 @@ public class DataBase {
         return null;
     }
 
-    // public ArrayList<int> getSeats(String movie, String theatre, LocalDate date, Time time){
-    //     try{
-    //         String query = "SELECT seatNum FROM SEATS JOIN ON ";
-    //         PreparedStatement state = this.connect.prepareStatement(query);
-    //         state.setString(1, theatre);
-    //         ResultSet results = state.executeQuery(query);
+    public ArrayList<Integer> getSeats(String movie, String theatre, LocalDate date, LocalTime time){
+        try{
+            java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+            java.sql.Time sqlTime = java.sql.Time.valueOf(time);
+            String query = "SELECT seatNum FROM SEATS JOIN ON title = ? AND theatreName = ? AND d = ? AND t = ?";
+            PreparedStatement state = this.connect.prepareStatement(query);
+            state.setString(1, movie);
+            state.setString(1, theatre);
+            state.setDate(3, sqlDate);
+            state.setTime(4, sqlTime);
+            ResultSet results = state.executeQuery(query);
 
-           
-    //         String loc = results.getString("theatreName");
-    //         int num = results.getInt("buildNum");
-    //         String street = results.getString("streetName");
-    //         String query2 = "SELECT * FROM ADDRESS WHERE num = ? AND streetName = ?";
-    //         String fullAddress = loc + num + street ;
+            ArrayList<Integer> seats = new ArrayList<Integer>();
+            while(results.next())
+                {
+                    int seat = results.getInt("seatNum");
+                    seats.add(seat);
 
-    //         results.close();
-    //         return fullAddress;
+                } 
+
+            results.close();
+            return seats;
                 
-    //     }
-    //     catch(SQLException e){
-    //         e.printStackTrace();
-    //     }
-    //     return null;
-    // }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 

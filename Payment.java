@@ -15,6 +15,7 @@ public class Payment {
     private MoviesController cont;
     private Email email;
     private Card card;
+    private Location location;
     
 
     public Payment(MoviesController movCont, Card card)
@@ -57,14 +58,9 @@ public class Payment {
         return cont.getMovie().getTitle();
     }
 
-    public getShowing()
+    public Location getLocation()
     {
-        return cont.getShowing().getShowing();
-    }
-
-    public getLocation()
-    {
-
+        return location.getLocation();
     }
 
     public boolean refundPayment()

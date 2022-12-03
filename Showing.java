@@ -17,7 +17,7 @@ public class Showing {
         //It would return an array list of show times that showTimes is then set to and sent back to display
         String title = movie.getTitle();
         String theatreName = loc.getTheatreName();
-        DataBase d = new Database();
+        DataBase d = new DataBase();
         showTimes = d.getMovTimes(title, theatreName, date);
     }
 

@@ -132,30 +132,33 @@ public class DataBase {
         }
     }
 
-    private Time[] getMovTimes(string title, String theatreName, Date date)
+    public ArrayList<LocalTime> getMovTimes(String title, String theatreName, java.util.Date date)
     {
-        try{
+        ArrayList<LocalTime> showtime = new ArrayList<LocalTime>();
+
+        try
+        {
             Statement s = this.connect.createStatement();
-            String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title" = title;
+            String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title = " + title;
             ResultSet results = s.executeQuery(query);
-            ArrayList<LocalTime> showtime;
-                while(results.next())
-                {
-                    Time time = results.getTime("movTime");
 
-                } 
+            while(results.next())
+            {
+                LocalTime time = results.getObject("movTime", LocalTime.class);
+                showtime.add(time);
+            } 
 
             results.close();
-            return true;
+            return showtime;
                 
-            }
-
-            results.close();
-            return results;
         }
-        catch(SQLException e){
+
+        catch(SQLException e)
+        {
             e.printStackTrace();
         }
+        
+        return showtime;
     }
 
     //close database connection

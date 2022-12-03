@@ -65,8 +65,18 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
         }
 
         if(e.getSource() == regButton) {
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:GUILoginHomePage.java
             System.out.println("Hello");
             panel.setVisible(false);
+========
+            maincl.show(mainPanel, "signup");
+           
+>>>>>>>> Stashed changes:LoginHomePage.java
+=======
+            maincl.show(mainPanel, "signup");
+           
+>>>>>>> Stashed changes
         }
     }
 

@@ -61,11 +61,19 @@ public class LoginHomePage  extends JPanel implements ActionListener{
         }
 
         if(e.getSource() == guestButton) {
+<<<<<<< Updated upstream:LoginHomePage.java
             maincl.show(mainPanel, "login");
+=======
+            maincl.show(mainPanel, "movie");
+>>>>>>> Stashed changes:GUILoginHomePage.java
         }
 
         if(e.getSource() == regButton) {
             maincl.show(mainPanel, "signup");
+<<<<<<< Updated upstream:LoginHomePage.java
+=======
+           
+>>>>>>> Stashed changes:GUILoginHomePage.java
         }
     }
 

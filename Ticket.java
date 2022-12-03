@@ -9,5 +9,29 @@
 */
 
 public class Ticket {
-    
+    private int ticketNum;
+    private int auditorium;
+    private Seats seat;
+    private Movie movie;
+    private Location location;
+
+    public Ticket(int ticket, int aud, Seats seat, Movie mov, Location loc) {
+        this.ticketNum = ticket;
+        this.auditorium = aud;
+        this.seat = seat;
+        this.movie = mov;
+        this.location = loc;
+    }
+
+    public Ticket getTicket() {
+        return this;
+    }
+
+    public void setTicket(int ticket, int aud, Seats seat, Movie mov, Location loc) {
+        this.ticketNum = ticket;
+        this.auditorium = aud;
+        this.seat = seat;
+        this.movie = mov;
+        this.location = loc;
+    }
 }

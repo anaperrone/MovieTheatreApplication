@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /*
 * Payment.java
 *
@@ -10,11 +12,13 @@
 
 public class Payment {
     static int num;
+    private int aud;
     private Seats seats;
     private Ticket ticket;
     private MoviesController cont;
     private Email email;
     private Card card;
+    private Location location;
     
 
     public Payment(MoviesController movCont, Card card)
@@ -22,7 +26,7 @@ public class Payment {
         cont = movCont;
         this.card = card;
         seats = new Seats();
-        ticket = new Ticket(num, aud, seats, cont.getMovie(), cont.getShow(), cont.getLocation);
+        ticket = new Ticket(num, aud, seats, cont.getMovie(), cont.getLocation());
         
         num++;
     }
@@ -49,7 +53,7 @@ public class Payment {
 
     public LocalDate getDate()
     {
-        return cont.getDate().getDate();
+        return cont.getDate();
     }
 
     public String getMovie()
@@ -57,24 +61,20 @@ public class Payment {
         return cont.getMovie().getTitle();
     }
 
-    public getShowing()
+    public Location getLocation()
     {
-        return cont.getShowing().getShowing();
+        return location.getLocation();
     }
 
-    public getLocation()
-    {
-
-    }
-
-    public boolean refundPayment()
-    {
+    public boolean refundPayment() {
         //refund payment
 
-        if ()   //If refund successfull return True 
-            return true;
-        else 
-            return false;
+        // if ()   //If refund successfull return True 
+        //     return true;
+        // else 
+        //     return false;
+
+        return true;
     }
     
 }

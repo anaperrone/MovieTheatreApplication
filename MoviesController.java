@@ -8,7 +8,8 @@
 *
 */
 
-import java.time.*; 
+import java.time.*;
+import java.util.ArrayList; 
 
 public class MoviesController {
     private Movie movie;
@@ -21,7 +22,7 @@ public class MoviesController {
     //Showing takes all 3 parameters and would ideally call the database to match them with a showing that matches the query
     public MoviesController(String title, LocalDate date, String loc) {
         movie = new Movie(title);
-        this.date = new MyDate(date);
+        this.date = date;
         location = new Location(loc);
         newShowTimes();
     }
@@ -39,7 +40,7 @@ public class MoviesController {
     }
 
     public void setDate(LocalDate date) {
-        this.date = new MyDate(date);
+        this.date = date;
         newShowTimes();
     }
 
@@ -60,7 +61,7 @@ public class MoviesController {
         return this.movie; 
     }
 
-    public MyDate getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 

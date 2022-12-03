@@ -8,9 +8,9 @@
 *
 */
 
-import java.util.*;
-// import javax.mail.*;
-// import javax.mail.internet.*;
+import java.util.Properties;
+import javax.mail.Session;
+import javax.mail.internet.*;
 // import javax.activation.*;
 
 public class Email {
@@ -23,20 +23,20 @@ public class Email {
     }
 
     public void sendEmail(String to) {
-        // // Recipient's email ID needs to be mentioned.
-        // this.to = to;
+        // Recipient's email ID needs to be mentioned.
+        this.to = to;
 
-        // // Assuming you are sending email from localhost
-        // String host = "localhost";
+        // Assuming you are sending email from localhost
+        String host = "localhost";
 
-        // // Get system properties
-        // Properties properties = System.getProperties();
+        // Get system properties
+        Properties properties = System.getProperties();
 
-        // // Setup mail server
-        // properties.setProperty("mail.smtp.host", host);
+        // Setup mail server
+        properties.setProperty("mail.smtp.host", host);
 
-        // // Get the default Session object.
-        // Session session = Session.getDefaultInstance(properties);
+        // Get the default Session object.
+        Session session = Session.getDefaultInstance(properties);
 
         // try {
         //     // Create a default MimeMessage object.

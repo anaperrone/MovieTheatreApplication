@@ -139,7 +139,7 @@ public class DataBase {
         try
         {
             Statement s = this.connect.createStatement();
-            String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title = " + title;
+            String query = "SELECT movTime FROM SHOWING WHERE loc = " + theatreName + " AND movDate = " + date + " AND title = " + title + ";";
             ResultSet results = s.executeQuery(query);
 
             while(results.next())

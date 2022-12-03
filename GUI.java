@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-public class GUI extends JFrame {
+public abstract class GUI {
     JFrame frame;
     JPanel mainPanel;
     GUILoginHomePage loginPage;
@@ -43,14 +43,5 @@ public class GUI extends JFrame {
         frame.setResizable(true);
         frame.setVisible(true);
 
-    }
-
-    public static void main(String args[]){        
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                GUI gui = new GUI();
-            }
-        });
     }
 }

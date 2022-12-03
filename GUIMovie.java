@@ -14,6 +14,7 @@ public class GUIMovie extends JFrame implements ActionListener {
     String[] dates = {"July 18", "March 4", "Dec 2"};
     String[] theatres = {"Signal Hill", "Chinook", "Rio"};
     private JButton back;
+    private JButton seat;
 
     public GUIMovie(CardLayout cl, JPanel pan) {
         mainPanel = pan;
@@ -46,6 +47,12 @@ public class GUIMovie extends JFrame implements ActionListener {
         back.addActionListener(this);
         panel.add(back, gbc);
 
+        seat = new JButton("Show Seats");
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        seat.addActionListener(this);
+        panel.add(seat, gbc);
+
     }
 
     @Override
@@ -54,9 +61,9 @@ public class GUIMovie extends JFrame implements ActionListener {
             maincl.show(mainPanel, "home");
         }
 
-        // // if(e.getSource() == pay) {
-        // //    maincl.show(mainPanel, "");
-        // // }
+        if(e.getSource() == seat) {
+           maincl.show(mainPanel, "seats");
+        }
     }
 
     public JPanel getPanel() {

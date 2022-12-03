@@ -8,7 +8,7 @@ public class GUI extends JFrame {
     GUIPaymentPage payPage;
     GUISignUp signup;
     GUIMovie moviePage;
-    //Guest g;
+    GUISeats seats;
     CardLayout cl = new CardLayout();
 
     public GUI() {
@@ -19,6 +19,7 @@ public class GUI extends JFrame {
         loginPage = new GUILoginHomePage(cl, mainPanel);
         login = new GUILogin(cl, mainPanel);
         signup = new GUISignUp(cl, mainPanel);
+        seats = new GUISeats(cl, mainPanel);
         payPage = new GUIPaymentPage(cl, mainPanel);
         moviePage = new GUIMovie(cl, mainPanel);
         
@@ -27,6 +28,7 @@ public class GUI extends JFrame {
         mainPanel.add(signup.getPanel(), "signup");
 
         mainPanel.add(moviePage.getPanel(), "movie");
+        mainPanel.add(seats.getPanel(), "seats");
 
         mainPanel.add(payPage.getPanel(), "payment");
 

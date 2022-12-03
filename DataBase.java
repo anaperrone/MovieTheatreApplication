@@ -102,21 +102,24 @@ public class DataBase {
      * public method to remove a user from the database
      * the username will be removed from both the LOGIN table and the REGISTERED_USER table
      */
-    public void removeUser(String username){
+    public boolean removeUser(String username){
         try{
             String query = "DELETE FROM LOGIN WHERE username = ?;";
             PreparedStatement state = this.connect.prepareStatement(query);
             state.setString(1, username);
             state.execute();
 
-            String remove = "DELETE FROM REGISTERED_USER WHERE username = ?";
+            String remove = "DELETE FROM REGISTERED_USER WHERE email = ?;";
             PreparedStatement statement = this.connect.prepareStatement(remove);
             statement.setString(1, username);
             statement.execute();
+            return true;
         }
+    
         catch(SQLException e){
             e.printStackTrace();
         }
+        return false;
     }
 
     public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, Time time){
@@ -149,22 +152,20 @@ public class DataBase {
     public ArrayList<LocalTime> getMovTimes(String title, String theatreName, LocalDate date)
     {
         try{
-            String query = "SELECT movTime FROM SHOWING WHERE loc = ? AND movDate = ?  AND title = ?";
-            PreparedStatement state = this.connect.prepareStatement(query);
             java.sql.Date newDate = java.sql.Date.valueOf(date);
-            state.setString(1, theatreName);
-            state.setDate(2, newDate);
-            state.setString(3, title);
-            ResultSet results = state.executeQuery(query);
+
+            Statement s = this.connect.createStatement();
+            String query = "SELECT movTime FROM SHOWING WHERE loc = '" + theatreName + "' AND movDate = '" + newDate + "' AND title = '" + title + "';";
+            ResultSet results = s.executeQuery(query);
 
             //loop through all of the results and get the showtimes, add them to an arraylist of times
             ArrayList<LocalTime> showtimes = new ArrayList<LocalTime>();
-                while(results.next())
-                {
-                    LocalTime time = results.getObject("movTime", LocalTime.class);
-                    showtimes.add(time);
+            while(results.next())
+            {
+                LocalTime time = results.getObject("movTime", LocalTime.class);
+                showtimes.add(time);
 
-                } 
+            } 
 
             results.close();
             return showtimes;
@@ -268,21 +269,39 @@ public class DataBase {
         try{
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
-            String query = "SELECT seatNum FROM SEATS JOIN ON title = ? AND theatreName = ? AND d = ? AND t = ?";
-            PreparedStatement state = this.connect.prepareStatement(query);
-            state.setString(1, movie);
-            state.setString(1, theatre);
-            state.setDate(3, sqlDate);
-            state.setTime(4, sqlTime);
-            ResultSet results = state.executeQuery(query);
+            
+            Statement s = this.connect.createStatement();
+            String query = "SELECT roomNum FROM SHOWING WHERE loc = '" + theatre + "' AND movDate = '" + sqlDate + "' AND movTime = '" + sqlTime + "' AND title = '" + movie + "';";
+            // System.out.println(query);
+            ResultSet results = s.executeQuery(query);
+            
+            ArrayList<Integer> roomNum = new ArrayList<Integer>();
+            int room = 0; 
+            while(results.next())
+            {
+                room = results.getInt("roomNum");
+                roomNum.add(room);
+
+            } 
+
+            // System.out.println(room);
+            
+            query = "SELECT seatNum FROM SEATS WHERE roomNum = " + room + " AND theaterName = '"+ theatre + "' AND d = '" + sqlDate + "' AND t = '" + sqlTime + "';";
+            // System.out.println(query);
+            // state = this.connect.prepareStatement(query);
+            // state.setInt(1, room);
+            // state.setString(2, theatre);
+            // state.setDate(3, sqlDate);
+            // state.setTime(4, sqlTime);
+            results = s.executeQuery(query);
 
             ArrayList<Integer> seats = new ArrayList<Integer>();
             while(results.next())
-                {
-                    int seat = results.getInt("seatNum");
-                    seats.add(seat);
+            {
+                int seat = results.getInt("seatNum");
+                seats.add(seat);
 
-                } 
+            } 
 
             results.close();
             return seats;

@@ -1,5 +1,3 @@
-import java.time.LocalTime;
-
 /*
 * MoviesController.java
 *
@@ -10,12 +8,13 @@ import java.time.LocalTime;
 *
 */
 
-import java.time.*;   
+import java.time.*; 
+
 public class MoviesController {
     private Movie movie;
-    private MyDate date;
+    private LocalDate date;
     private Location location;
-    private Showing show;
+    private ArrayList<LocalTime> showTimes;
 
     //If title string is set to "AllMovies" then movie will conduct something different
     //If loc string is set to "AllLocations" then location will conduct something different
@@ -24,31 +23,38 @@ public class MoviesController {
         movie = new Movie(title);
         this.date = new MyDate(date);
         location = new Location(loc);
-        show = new Showing(movie, this.date, location);
+        newShowTimes();
+    }
+
+    public void newShowTimes()
+    {
+        DataBase d = new DataBase();
+        showTimes = d.getMovTimes(movie.getTitle(), location.getTheatreName(), date);
+        d.close();
     }
 
     public void setMovie(String title) {
         movie = new Movie(title); //Entirely new query is asked for 
-        setShow();
+        newShowTimes();
     }
 
     public void setDate(LocalDate date) {
         this.date = new MyDate(date);
-        setShow();
+        newShowTimes();
     }
 
     public void setLocation(String loc) {
         location = new Location(loc);
-        setShow();
+        newShowTimes();
     }
 
-    public void setShow(LocalTime showing) { //When a user selects a showing
-        show = new Showing(showing);
-    }
+    // public void setShow(LocalTime showing) { //When a user selects a showing
+    //     show = new Showing(showing);
+    // }
 
-    public void setShow() { //When a user changes the movie, date, or location it has to be reflected in showing
-        show = new Showing(movie, date, location);
-    }
+    // public void setShow() { //When a user changes the movie, date, or location it has to be reflected in showing
+    //     show = new Showing(movie, date, location);
+    // }
 
     public Movie getMovie() {
         return this.movie; 
@@ -62,8 +68,13 @@ public class MoviesController {
         return this.location;
     }
 
-    public Showing getShow() {
-        return this.show;
+    // public Showing getShow() {
+    //     return this.show;
+    // }
+
+    public ArrayList<LocalTime> getShowTimes()
+    {
+        return this.showTimes;
     }
 
 }

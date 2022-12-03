@@ -7,17 +7,20 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+
+//Not using this anymore 
+
 import java.time.*;
 import java.util.*;
 public class Showing {
     private ArrayList<LocalTime> showTimes;
 
-    public Showing(Movie movie, Date date, Location loc) {
+    public Showing(Movie movie, LocalDate date, Location loc) {
         //Query where movie.title, date, and location is sent 
         //It would return an array list of show times that showTimes is then set to and sent back to display
         String title = movie.getTitle();
         String theatreName = loc.getTheatreName();
-        DataBase d = new Database();
+        DataBase d = new DataBase();
         showTimes = d.getMovTimes(title, theatreName, date);
     }
 

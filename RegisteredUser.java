@@ -17,23 +17,43 @@ public class RegisteredUser extends OrdinaryUser{
     private String username;
     private String password;
     private String name;
-
+    private DataBase d;
 
     public RegisteredUser(){
+        super();
+        cards = new ArrayList<Card>();
         instance = LoginServer.getOnlyInstance();
+        d = new DataBase();
     }
 
     public boolean checkUsername(String username, String password){
         return instance.checkUsername(username, password);
     }
 
+    public boolean grantAccess()
+    {
+        return d.grantAccess(username, password);
+    }
+
+    public void setAll(String username, String password, LocalDate expiry, String cardNumber, int cvv, String name, String street, int number, String city, String country, String postal)
+    {
+        setUser(username, password);
+        setCard(expiry, cardNumber, cvv, name);
+        setAddress(street, number, city, country, postal);
+
+        d.addAddress(street, number, city, country);
+        d.addRegisteredUser(username, password, number, street);
+        d.addCard(username, expiry, cardNumber, cvv, name);
+        
+    }
 
     public void setUser(String username, String password){
         this.username = username;
         this.password = password;
+
     }
 
-    public void setCard(Date expiry, String cardNumber, int cvv, String name){
+    public void setCard(LocalDate expiry, String cardNumber, int cvv, String name){
         Card card = new Card(expiry, cardNumber, cvv, name);
         cards.add(card);
     }

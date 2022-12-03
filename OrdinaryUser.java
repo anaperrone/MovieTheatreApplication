@@ -8,6 +8,7 @@
 *
 */
 import java.util.*;
+import java.time.*;
 
 abstract class OrdinaryUser { //should this be abstract? no objects of it.
     private String email;
@@ -19,7 +20,7 @@ abstract class OrdinaryUser { //should this be abstract? no objects of it.
         this.email = e;
     }
 
-    public void addCard(int cvv, String cardNumber, Date expiry, String name){
+    public void addCard(int cvv, String cardNumber, LocalDate expiry, String name){
         Card c = new Card(expiry, cardNumber, cvv, name);
         this.card = c;
     }

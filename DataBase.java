@@ -122,6 +122,21 @@ public class DataBase {
         return false;
     }
 
+    public void addRegisteredUser(String username, String password, int number, String streetname)
+    {
+        
+    }
+
+    public void addCard(String username, LocalDate expiry, String cardNumber, int cvv, String name)
+    {
+
+    }
+
+    public void addAddress(String street, int num, String city, String Country)
+    {
+
+    }
+
     public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, Time time){
         try{
             Statement s = this.connect.createStatement();
@@ -252,7 +267,7 @@ public class DataBase {
             String loc = results.getString("theatreName");
             int num = results.getInt("buildNum");
             String street = results.getString("streetName");
-            String query2 = "SELECT * FROM ADDRESS WHERE num = ? AND streetName = ?";
+            String query2 = "SELECT * FROM ADDRESS WHERE num = '" + num + "' AND streetName = '" + street + "';";
             String fullAddress = loc + num + street ;
 
             results.close();

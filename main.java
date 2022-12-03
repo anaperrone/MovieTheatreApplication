@@ -6,7 +6,7 @@ public class main
 {
     public static void main(String[] args) throws Exception
     {
-        DataBase d = new DataBase();
+        // DataBase d = new DataBase();
 
         // boolean added = d.validateUsername("sobia", "password");
         // System.out.println(added);
@@ -17,7 +17,13 @@ public class main
         // boolean added4 = d.validateUsername("ana", "password");
         // System.out.println(added4);
 
-        // boolean removed = d.removeUser("sobia");
+        // boolean removed = d.removeUser("ana");
+        // System.out.println(removed);
+
+        // removed = d.removeUser("tina");
+        // System.out.println(removed);
+
+        // removed = d.removeUser("maitry");
         // System.out.println(removed);
 
         // boolean granted = d.grantAccess("sobia", "password");
@@ -26,17 +32,26 @@ public class main
         // boolean granted2 = d.grantAccess("sobia", "wrong");
         // System.out.println(granted2);
 
-        LocalDate localdate = LocalDate.of(2022, 12, 01);
-        LocalTime localtime = LocalTime.of(1, 15);
+        // LocalDate localdate = LocalDate.of(2022, 12, 01);
+        // LocalTime localtime = LocalTime.of(1, 15);
         // System.out.println(localdate);
         // ArrayList<LocalTime> showtimes = d.getMovTimes("Black Panther", "Pink Panther", localdate);
         // System.out.println(showtimes);
 
-        ArrayList<Integer> seats = d.getSeats("Black Panther", "Pink Panther", localdate, localtime);
-        System.out.println(seats);
+        // ArrayList<Integer> seats = d.getSeats("Black Panther", "Pink Panther", localdate, localtime);
+        // System.out.println(seats);
 
-        seats = d.getSeats("Black Panther", "Golden Jubilee", localdate, localtime);
-        System.out.println(seats);
+        // seats = d.getSeats("Black Panther", "Golden Jubilee", localdate, localtime);
+        // System.out.println(seats);
 
+        RegisteredUser r = new RegisteredUser();
+        Boolean check = r.checkUsername("ana", "password");
+        System.out.println(check);
+
+        r.setUser("ana", "password");
+        LocalDate localdate = LocalDate.of(2022, 12, 02);
+        r.setCard(localdate, "1234567890000000", 123, "ana");
+        r.setAddress("Covepark Rise", 64, "Calgary", "Canada", "T3R0W2");
+    
     }
 }

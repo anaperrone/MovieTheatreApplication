@@ -113,6 +113,8 @@ public class DataBase {
             PreparedStatement statement = this.connect.prepareStatement(remove);
             statement.setString(1, username);
             statement.execute();
+
+            //String address = "DELETE FROM ADDRESS WHERE num = '" + 
             return true;
         }
     
@@ -124,17 +126,65 @@ public class DataBase {
 
     public void addRegisteredUser(String username, String password, int number, String streetname)
     {
-        
+        try
+        {
+            LocalDate today = LocalDate.now();
+            java.sql.Date td = java.sql.Date.valueOf(today);
+            String addQuery = "INSERT INTO REGISTERED_USER VALUES(?, ?, ?, ?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setString(1, username);
+            state.setString(2, password);
+            state.setInt(3, number);
+            state.setString(4, streetname);
+            state.setDate(5, td);
+            state.execute();
+        }
+
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void addCard(String username, LocalDate expiry, String cardNumber, int cvv, String name)
     {
+        try
+        {
+            java.sql.Date exp = java.sql.Date.valueOf(expiry);
+            String addQuery = "INSERT INTO CARD VALUES(?, ?, ?, ?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setString(1, username);
+            state.setDate(2, exp);
+            state.setString(3, cardNumber);
+            state.setInt(4, cvv);
+            state.setString(5, name);
+            state.execute();
+        }
 
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
-    public void addAddress(String street, int num, String city, String Country)
+    public void addAddress(String street, int num, String city, String country, String postalCode)
     {
+        try
+        {
+            String addQuery = "INSERT INTO ADDRESS VALUES(?, ?, ?, ?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setInt(1, num);
+            state.setString(2, street);
+            state.setString(3, city);
+            state.setString(4, country);
+            state.setString(5, postalCode);
+            state.execute();
+        }
 
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, Time time){

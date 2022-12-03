@@ -23,7 +23,6 @@ public class RegisteredUser extends OrdinaryUser{
         super();
         cards = new ArrayList<Card>();
         instance = LoginServer.getOnlyInstance();
-        d = new DataBase();
     }
 
     public boolean checkUsername(String username, String password){
@@ -40,10 +39,12 @@ public class RegisteredUser extends OrdinaryUser{
         setUser(username, password);
         setCard(expiry, cardNumber, cvv, name);
         setAddress(street, number, city, country, postal);
-
-        d.addAddress(street, number, city, country);
+        
+        d = new DataBase();
+        d.addAddress(street, number, city, country, postal);
         d.addRegisteredUser(username, password, number, street);
         d.addCard(username, expiry, cardNumber, cvv, name);
+        d.close();
         
     }
 

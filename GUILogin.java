@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class GUILogin extends JPanel implements ActionListener {
+public class GUILogin extends JPanel {
     CardLayout maincl;
     JPanel mainPanel;
     private JPanel panel;
@@ -57,7 +57,7 @@ public class GUILogin extends JPanel implements ActionListener {
         gbc.gridy = 8;
         gbc.insets = new Insets(10,5,10,5);
         //back.setBounds(50,80,80,25);
-        back.addActionListener(this);
+        //back.addActionListener(this);
         panel.add(back, gbc);
 
         enter = new JButton("Enter");
@@ -65,25 +65,36 @@ public class GUILogin extends JPanel implements ActionListener {
         gbc.gridy = 11;
         gbc.insets = new Insets(10,5,10,5);
         //enter.setBounds(160,80,80,25);
-        enter.addActionListener(this);
+        //enter.addActionListener(this);
         panel.add(enter, gbc);
 
 
         panel.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == back) {
-            maincl.show(mainPanel, "home");
-        }
+    // public void actionPerformed(ActionEvent e) {
+    //     if(e.getSource() == back) {
+    //         maincl.show(mainPanel, "home");
+    //     }
 
-        if(e.getSource() == enter) {
-            maincl.show(mainPanel, "movie");
-        }
-    }
+    //     // if(e.getSource() == enter) {
+    //     //     maincl.show(mainPanel, "movie");
+    //     // }
+    // }
 
     public JPanel getPanel() {
         return panel;
     }
 
+    public JButton getEnter() {
+        return this.enter;
+    }
+
+    public String getUserText() {
+        return this.usernameField.getText();
+    }
+
+    public String getPasswordText() {
+        return String.valueOf(passwordField.getPassword());
+    }
 }

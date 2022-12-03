@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUILoginHomePage  extends JPanel implements ActionListener{
+public class GUILoginHomePage extends JPanel {
     private CardLayout maincl;
     private JPanel mainPanel;
     private JPanel panel;
@@ -11,9 +11,9 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
     private JButton regButton;
     private JLabel text;
 
-    public GUILoginHomePage(CardLayout cl, JPanel pan){
-        maincl = cl;
-        mainPanel = pan;
+    public GUILoginHomePage(){
+        //maincl = cl;
+        //mainPanel = pan;
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
@@ -24,7 +24,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
         panel.add(text);
 
         loginButton = new JButton("Login");
-        loginButton.addActionListener(this);
+        //loginButton.addActionListener(this);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,0,10,0);
@@ -33,7 +33,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
         panel.add(loginButton, gbc);
 
         guestButton = new JButton("Continue as Guest");
-        guestButton.addActionListener(this);
+        //guestButton.addActionListener(this);
         gbc.gridx = 0;
         gbc.gridy = 4;
         guestButton.setBackground(Color.PINK);
@@ -41,7 +41,7 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
         panel.add(guestButton, gbc);
 
         regButton = new JButton("Register");
-        regButton.addActionListener(this);
+        //regButton.addActionListener(this);
         gbc.gridx = 0;
         gbc.gridy = 6;
         regButton.setBackground(Color.PINK);
@@ -53,21 +53,21 @@ public class GUILoginHomePage  extends JPanel implements ActionListener{
         return panel;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton) {
-            maincl.show(mainPanel, "login");
+    // @Override
+    // public void actionPerformed(ActionEvent e) {
+    //     if(e.getSource() == loginButton) {
+    //         maincl.show(mainPanel, "login");
            
-        }
+    //     }
 
-        if(e.getSource() == guestButton) {
-            maincl.show(mainPanel, "movie");
-        }
+    //     if(e.getSource() == guestButton) {
+    //         maincl.show(mainPanel, "movie");
+    //     }
 
-        if(e.getSource() == regButton) {
-            maincl.show(mainPanel, "signup");
-        }
-    }
+    //     if(e.getSource() == regButton) {
+    //         maincl.show(mainPanel, "signup");
+    //     }
+    // }
 
     public JButton getloginButton() {
         return this.loginButton;

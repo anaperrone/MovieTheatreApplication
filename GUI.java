@@ -1,28 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
-public abstract class GUI {
-    JFrame frame;
-    JPanel mainPanel;
-    GUILoginHomePage loginPage;
-    GUILogin login;
-    GUIPaymentPage payPage;
-    GUISignUp signup;
-    GUIMovie moviePage;
-    GUISeats seats;
-    CardLayout cl = new CardLayout();
+
+public class GUI {
+    protected JFrame frame;
+    public JPanel mainPanel;
+    protected GUILoginHomePage loginPage;
+    protected GUILogin login;
+    protected GUIPaymentPage payPage;
+    protected GUISignUp signup;
+    protected GUIMovie moviePage;
+    protected GUISeats seats;
+    public CardLayout maincl = new CardLayout();
 
     public GUI() {
         frame = new JFrame("Cine-Ma-Ma");
         mainPanel = new JPanel();
-        mainPanel.setLayout(cl);
+        mainPanel.setLayout(maincl);
 
-        loginPage = new GUILoginHomePage(cl, mainPanel);
-        login = new GUILogin(cl, mainPanel);
-        signup = new GUISignUp(cl, mainPanel);
-        seats = new GUISeats(cl, mainPanel);
-        payPage = new GUIPaymentPage(cl, mainPanel);
-        moviePage = new GUIMovie(cl, mainPanel);
-        
+        loginPage = new GUILoginHomePage();
+        login = new GUILogin(maincl, mainPanel);
+        signup = new GUISignUp(maincl, mainPanel);
+        seats = new GUISeats(maincl, mainPanel);
+        payPage = new GUIPaymentPage(maincl, mainPanel);
+        moviePage = new GUIMovie(maincl, mainPanel);
+
+
         mainPanel.add(loginPage.getPanel(), "home");
         mainPanel.add(login.getPanel(), "login");
         mainPanel.add(signup.getPanel(), "signup");
@@ -32,10 +34,8 @@ public abstract class GUI {
 
         mainPanel.add(payPage.getPanel(), "payment");
 
-        cl.show(mainPanel, "home");
+        maincl.show(mainPanel, "home");
 
-        //su = new Signup();
-        //g = new Guest();
 
         frame.add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,5 +43,13 @@ public abstract class GUI {
         frame.setResizable(true);
         frame.setVisible(true);
 
+    }
+
+    public GUILoginHomePage getGuiLoginHomePage() {
+        return this.loginPage;
+    }
+
+    public GUILogin getLogin() {
+        return this.login;
     }
 }

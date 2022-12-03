@@ -78,7 +78,7 @@ public class GUILogin extends JPanel implements ActionListener {
         }
 
         if(e.getSource() == enter) {
-           
+            maincl.show(mainPanel, "movie");
         }
     }
 

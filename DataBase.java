@@ -1,5 +1,5 @@
 /*
-* Connection.java
+* DataBase.java
 *
 * ENSF 480 Term Project
 * Fall 2022
@@ -38,18 +38,22 @@ public class DataBase {
     //method to check if the username exists in the database
     public boolean validateUsername(String username, String password){
         try{
+            //select statement to retrieve all the usernames from the LOGIN table
             Statement s = this.connect.createStatement();
             String query = "SELECT username FROM LOGIN;";
             ResultSet results = s.executeQuery(query);
 
+            //loop through each of the results retrieved from the table
             while(results.next()){
                 String user = results.getString("username");
+                //check to see if the username found in the table matches the new requested one
                 if(user.compareTo(username) == 0){
                     results.close();
                     return false; //username exists, need to choose another
                 }
             }
             
+            //if the username requested does not already exist in the table, add it in along with the password
             String addQuery = "INSERT INTO LOGIN(username, pass) VALUES(?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, username);
@@ -72,15 +76,19 @@ public class DataBase {
             String query = "SELECT * FROM LOGIN;";
             ResultSet results = s.executeQuery(query);
 
+            //loop through each result retrieved
             while(results.next()){
                 String user = results.getString("username");
                 String pass = results.getString("pass");
+                //compare the username and password request to what is in the table
+                //if they match, return true, meaning they can successfuly log in 
                 if(user.compareTo(username) == 0 && pass.compareTo(password) == 0){
                     results.close();
                     return true;
                 }
             }
 
+            //no match found, cannot log in with the given username and password
             results.close();
             return false;
         }
@@ -90,15 +98,17 @@ public class DataBase {
         return false;
     }
 
+    /*
+     * public method to remove a user from the database
+     * the username will be removed from both the LOGIN table and the REGISTERED_USER table
+     */
     public void removeUser(String username){
         try{
-            Statement s = this.connect.createStatement();
             String query = "DELETE FROM LOGIN WHERE username = ?;";
             PreparedStatement state = this.connect.prepareStatement(query);
             state.setString(1, username);
             state.execute();
 
-            Statement st = this.connect.createStatement();
             String remove = "DELETE FROM REGISTERED_USER WHERE username = ?";
             PreparedStatement statement = this.connect.prepareStatement(remove);
             statement.setString(1, username);
@@ -109,18 +119,18 @@ public class DataBase {
         }
     }
 
-    private void bookSeat(int seatNumber, String movie, String theatre, String date, Time time){
+    public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, Time time){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
             ResultSet results = s.executeQuery(query);
             int room = results.getInt("roomNum");
-            
+            java.sql.Date newDate = java.sql.Date.valueOf(date);
             String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, theatre);
             state.setInt(2, room);
-            state.setString(3, date);
+            state.setDate(3, newDate);
             state.setTime(4, time);
             state.setInt(5, seatNumber);
             state.execute();
@@ -132,35 +142,153 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to retrieve the times for a specific movie at a certain theatre on a certain date
+     * returns an arraylist of times in which the movie is playing
+     */
     public ArrayList<LocalTime> getMovTimes(String title, String theatreName, LocalDate date)
     {
-        ArrayList<LocalTime> showtime = new ArrayList<LocalTime>();
-        java.sql.Date myDate = java.sql.Date.valueOf(date);
+        try{
+            String query = "SELECT movTime FROM SHOWING WHERE loc = ? AND movDate = ?  AND title = ?";
+            PreparedStatement state = this.connect.prepareStatement(query);
+            java.sql.Date newDate = java.sql.Date.valueOf(date);
+            state.setString(1, theatreName);
+            state.setDate(2, newDate);
+            state.setString(3, title);
+            ResultSet results = state.executeQuery(query);
 
-        try
-        {
-            Statement s = this.connect.createStatement();
-            String query = "SELECT movTime FROM SHOWING WHERE loc = '" + theatreName + "' AND movDate = '" + myDate + "' AND title = '" + title + "';";
-            ResultSet results = s.executeQuery(query);
+            //loop through all of the results and get the showtimes, add them to an arraylist of times
+            ArrayList<LocalTime> showtimes = new ArrayList<LocalTime>();
+                while(results.next())
+                {
+                    LocalTime time = results.getObject("movTime", LocalTime.class);
+                    showtimes.add(time);
 
-            while(results.next())
-            {
-                LocalTime time = results.getObject("movTime", LocalTime.class);
-                showtime.add(time);
-            } 
+                } 
 
             results.close();
-            return showtime;
+            return showtimes;
                 
         }
-
-        catch(SQLException e)
-        {
+        catch(SQLException e){
             e.printStackTrace();
         }
-        
-        return showtime;
+        return null;
     }
+
+    /*
+     * public method to get all the movies playing on a certain date
+     * returns an arraylist of all the movie titles
+     */
+    public ArrayList<String> getMovies(LocalDate date)
+    {
+        try{
+            String query = "SELECT title FROM SHOWING WHERE movDate = ? ";
+            PreparedStatement state = this.connect.prepareStatement(query);
+            java.sql.Date newDate = java.sql.Date.valueOf(date);
+            state.setDate(1, newDate);
+            ResultSet results = state.executeQuery(query);
+
+            //loop through all the results and retrieve the titles of the movies 
+            ArrayList<String> titles = new ArrayList<String>();
+                while(results.next())
+                {
+                    String title = results.getString("title");
+                    titles.add(title);
+
+                } 
+
+            results.close();
+            return titles;
+                
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+
+    /*
+     * public metho to retrieve the threatre name for all theatres in the database
+     */
+    public ArrayList<String> getLocations(){
+        try{
+            String query = "SELECT theatreName FROM SHOWING";
+            PreparedStatement state = this.connect.prepareStatement(query);
+            ResultSet results = state.executeQuery(query);
+
+            //loop through all the results and get the names of all the theatres
+            ArrayList<String> locations = new ArrayList<String>();
+                while(results.next())
+                {
+                    String loc = results.getString("theatreName");
+                    locations.add(loc);
+
+                } 
+
+            results.close();
+            return locations;
+                
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /*
+     * public method which returns the full address for a selected theatre
+     */
+    public String getTheatreAddress(String theatre){
+        try{
+            String query = "SELECT * FROM SHOWING WHERE theatreName = ?";
+            PreparedStatement state = this.connect.prepareStatement(query);
+            state.setString(1, theatre);
+            ResultSet results = state.executeQuery(query);
+
+           
+            String loc = results.getString("theatreName");
+            int num = results.getInt("buildNum");
+            String street = results.getString("streetName");
+            String query2 = "SELECT * FROM ADDRESS WHERE num = ? AND streetName = ?";
+            String fullAddress = loc + num + street ;
+
+            results.close();
+            return fullAddress;
+                
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // public ArrayList<int> getSeats(String movie, String theatre, LocalDate date, Time time){
+    //     try{
+    //         String query = "SELECT seatNum FROM SEATS JOIN ON ";
+    //         PreparedStatement state = this.connect.prepareStatement(query);
+    //         state.setString(1, theatre);
+    //         ResultSet results = state.executeQuery(query);
+
+           
+    //         String loc = results.getString("theatreName");
+    //         int num = results.getInt("buildNum");
+    //         String street = results.getString("streetName");
+    //         String query2 = "SELECT * FROM ADDRESS WHERE num = ? AND streetName = ?";
+    //         String fullAddress = loc + num + street ;
+
+    //         results.close();
+    //         return fullAddress;
+                
+    //     }
+    //     catch(SQLException e){
+    //         e.printStackTrace();
+    //     }
+    //     return null;
+    // }
+
+
 
     //close database connection
     public void close(){
@@ -172,6 +300,7 @@ public class DataBase {
         }
     }
 }
+
 
 
 

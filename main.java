@@ -23,8 +23,9 @@ public class main
         // boolean granted2 = d.grantAccess("sobia", "wrong");
         // System.out.println(granted2);
 
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2022-12-01");
-        ArrayList<LocalTime> showtimes = d.getMovTimes("Black Panther", "Pink Panther", date);
+        LocalDate localdate = LocalDate.of(2022, 12, 01);
+        System.out.println(localdate);
+        ArrayList<LocalTime> showtimes = d.getMovTimes("Black Panther", "Pink Panther", localdate);
         System.out.println(showtimes);
 
     }

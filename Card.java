@@ -14,9 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 
 public class Card {
-    private LocalDate date;
-    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM"); 
-    private String expiry = formatter.format(date);
+    private String expiry;
     private String cardNumber;
     private int cvv;
     private String name;
@@ -27,8 +25,9 @@ public class Card {
      * Constructor for Card which takes in an expiry LocalDate, String card number integer cvv 
      * and String name. Returns noting 
      */
-    public Card(String e, String n, int c, String name) {
-        this.expiry = e;
+    public Card(LocalDate e, String n, int c, String name) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM"); 
+        this.expiry = formatter.format(e);
         this.cardNumber = n;
         this.cvv = c;
         this.name = name;

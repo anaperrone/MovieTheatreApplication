@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 /*
 * Payment.java
 *
@@ -9,6 +7,8 @@ import java.time.LocalDate;
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+
+import java.time.LocalDate;
 
 public class Payment {
     static int num;

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class MainController implements ActionListener {
     //private MoviesController movieController;
@@ -10,6 +11,8 @@ public class MainController implements ActionListener {
     private GUI gui;
     Seats seats;
     private int flag = 0;
+    private ArrayList<JButton> selectedButtons = new ArrayList<JButton>();
+    private int selectedTicketNum = 3;
 
     public MainController() {
         database = new DataBase();
@@ -189,18 +192,138 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "movie");
         }
 
-        if(e.getSource() == gui.getSeatSelection().getNext()) {
-            gui.maincl.show(gui.mainPanel, "payment");
+        if(e.getSource() == gui.getSeatSelection().getSeat1()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
+                selectedButtons.add(gui.getSeatSelection().getSeat1());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat1());
+                selectedButtons.remove(gui.getSeatSelection().getSeat1());
+                flag = 0;
+            }
         }
 
-        if(e.getSource() == gui.getSeatSelection().getSeat1()) {
-            gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
+        if(e.getSource() == gui.getSeatSelection().getSeat2()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat2());
+                selectedButtons.add(gui.getSeatSelection().getSeat2());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat2());
+                selectedButtons.remove(gui.getSeatSelection().getSeat2());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat3()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat3());
+                selectedButtons.add(gui.getSeatSelection().getSeat3());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat3());
+                selectedButtons.remove(gui.getSeatSelection().getSeat3());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat4()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat4());
+                selectedButtons.add(gui.getSeatSelection().getSeat4());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat4());
+                selectedButtons.remove(gui.getSeatSelection().getSeat4());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat5()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat5());
+                selectedButtons.add(gui.getSeatSelection().getSeat5());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat5());
+                selectedButtons.remove(gui.getSeatSelection().getSeat5());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat6()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat6());
+                selectedButtons.add(gui.getSeatSelection().getSeat6());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat6());
+                selectedButtons.remove(gui.getSeatSelection().getSeat6());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat7()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat7());
+                selectedButtons.add(gui.getSeatSelection().getSeat7());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat7());
+                selectedButtons.remove(gui.getSeatSelection().getSeat7());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat8()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat8());
+                selectedButtons.add(gui.getSeatSelection().getSeat8());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat8());
+                selectedButtons.remove(gui.getSeatSelection().getSeat8());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat9()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat9());
+                selectedButtons.add(gui.getSeatSelection().getSeat9());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat9());
+                selectedButtons.remove(gui.getSeatSelection().getSeat9());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat10()) {
+            if(flag == 0) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat10());
+                selectedButtons.add(gui.getSeatSelection().getSeat10());
+                flag++;
+            } else {
+                gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat10());
+                selectedButtons.remove(gui.getSeatSelection().getSeat10());
+                flag = 0;
+            }
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getNext()) {
+            if(selectedButtons.size() == selectedTicketNum) {
+                gui.maincl.show(gui.mainPanel, "payment");
+            } else {
+                gui.getSeatSelection().displayErrorMsg();
+            }
         }
     }
 
     public void GUIPaymentPageButton(ActionEvent e) {
         if(e.getSource() == gui.getPaymentPage().getBack()) {
-            gui.maincl.show(gui.mainPanel, "movie");
+            gui.maincl.show(gui.mainPanel, "seatSelection");
         }
 
         if(e.getSource() == gui.getPaymentPage().getPay()) {

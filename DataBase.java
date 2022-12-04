@@ -109,12 +109,27 @@ public class DataBase {
             state.setString(1, username);
             state.execute();
 
+            String get = "SELECT buildNum, streetName FROM REGISTERED_USER WHERE email = ?";
+            PreparedStatment getState = this.connect.prepareStatement(query);
+            getState.setString(1, username);
+            ResultSet results = getState.executeQuery(get);
+            int buildNum = results.getInt("buildNum");
+            String streetName = results.getString("streetName");
+
+            String removeCard = "DELETE FROM REGISTERED_USER WHERE email = ?;";
+            PreparedStatement statement = this.connect.prepareStatement(remove);
+            statement.setString(1, username);
+            statement.execute();
+
+
             String remove = "DELETE FROM REGISTERED_USER WHERE email = ?;";
             PreparedStatement statement = this.connect.prepareStatement(remove);
             statement.setString(1, username);
             statement.execute();
 
             //String address = "DELETE FROM ADDRESS WHERE num = '" + 
+
+
             return true;
         }
     

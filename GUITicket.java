@@ -15,7 +15,9 @@ public class GUITicket extends JPanel {
         title = new JLabel("Here Are Your Ticket Details: ");
         title.setFont(new Font("Serif", Font.BOLD, 20));
         panel.add(title);
+    }
 
-        
+    public JPanel getPanel() {
+        return this.panel;
     }
 }

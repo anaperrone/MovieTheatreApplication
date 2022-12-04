@@ -19,13 +19,13 @@ SELECT * FROM ADDRESS;
 SELECT * FROM LOCATION;
         
 INSERT INTO SHOWING 
-VALUES 	('Black Panther', '2022-12-01', '1:15', 3, 'Pink Panther');
+VALUES 	('Black Panther', '2022-12-01', '1:15', '3', 'Pink Panther');
 
 INSERT INTO SHOWING 
-VALUES 	('Black Panther', '2022-12-03', '1:15', 3, 'Pink Panther');
+VALUES 	('Black Panther', '2022-12-03', '1:15', '3', 'Pink Panther');
 
 INSERT INTO SHOWING 
-VALUES 	('Black Panther', '2022-12-05', '1:15', 3, 'Pink Panther');
+VALUES 	('Black Panther', '2022-12-05', '1:15', '3', 'Pink Panther');
 
 INSERT INTO SHOWING 
 VALUES 	('Black Panther', '2022-12-05', '7:15', 8, 'Golden Jubilee');
@@ -38,7 +38,22 @@ VALUES 	('Black Panther', '2022-12-08', '7:15', 8, 'Golden Jubilee');
 
 SELECT * FROM SHOWING;
 
-INSERT INTO SEATS 
-VALUES ('Pink Panther', 3, '2022-12-01', '1:15', 7);
-
+INSERT INTO SEATS (email, theaterName, roomNum, d, t, seatNum) VALUES 	
+		('tina@gmail.com', 'Pink Panther', 3, '2022-12-01', '1:15', 1),
+		('maitry@gmail.com', 'Pink Panther', 3, '2022-12-01', '1:15', 2),
+		('ana@gmail.com', 'Pink Panther', 3, '2022-12-01', '1:15', 3);
+        
 SELECT * FROM SEATS;
+
+SELECT * FROM LOGIN;
+SELECT * FROM REGISTERED_USER;
+SELECT * FROM ADDRESS;
+SELECT * FROM CARD;
+SELECT * FROM SEATS;
+
+INSERT INTO LOGIN VALUES ('ana', 'password');
+
+DELETE FROM LOGIN WHERE username = 'ana';
+DELETE FROM CARD WHERE email = 'ana';
+DELETE FROM REGISTERED_USER WHERE email = 'ana';
+DELETE FROM ADDRESS WHERE num = 64 AND streetName = 'Covepark Rise';

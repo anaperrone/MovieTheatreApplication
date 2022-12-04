@@ -14,25 +14,6 @@ CREATE TABLE ADDRESS
     PRIMARY KEY(num, streetName)
 );
 
-DROP TABLE IF EXISTS ORDINARY_USER;
-CREATE TABLE ORDINARY_USER 
-(
-	email 		VARCHAR(50),
-    
-    PRIMARY KEY (email)
-);
-
-DROP TABLE IF EXISTS REGISTERED_USER;
-CREATE TABLE REGISTERED_USER
-(
-	email		VARCHAR(50),
-    buildNum 	INT,
-    streetName	VARCHAR(25),
-    
-    PRIMARY KEY (email),
-    FOREIGN KEY (buildNum, streetName) REFERENCES ADDRESS(num, streetName)
-);
-
 DROP TABLE IF EXISTS CARD;
 CREATE TABLE CARD
 (
@@ -42,7 +23,34 @@ CREATE TABLE CARD
     cv			INT,
     holderName	VARCHAR(25),
     
-    FOREIGN KEY (email) REFERENCES ORDINARY_USER (email)
+    PRIMARY KEY(num, cv)
+);
+
+DROP TABLE IF EXISTS ORDINARY_USER;
+CREATE TABLE ORDINARY_USER 
+(
+	email 		VARCHAR(50),
+    cardNumber	VARCHAR(16), 
+    cvv			INT,
+    
+    PRIMARY KEY (email),
+    FOREIGN KEY (cardNumber, cvv) REFERENCES CARD(num, cv)
+);
+
+DROP TABLE IF EXISTS REGISTERED_USER;
+CREATE TABLE REGISTERED_USER
+(
+	email		VARCHAR(50),
+    pass		VARCHAR(25),
+    buildNum 	INT,
+    streetName	VARCHAR(25),
+    signupdate	DATE,
+    cardNumber 	VARCHAR(16),
+    cvv			INT,
+    
+    PRIMARY KEY (email),
+    FOREIGN KEY (cardNumber, cvv) REFERENCES CARD(num, cv),
+    FOREIGN KEY (buildNum, streetName) REFERENCES ADDRESS(num, streetName)
 );
 
 DROP TABLE IF EXISTS LOCATION;
@@ -83,12 +91,15 @@ CREATE TABLE SHOWING
 DROP TABLE IF EXISTS SEATS;
 CREATE TABLE SEATS
 (
+    ticketNum 		INT NOT NULL AUTO_INCREMENT,
+    email			VARCHAR(25),
     theaterName 	VARCHAR(100),
     roomNum			INT,
     d				DATE,
     t				TIME,
     seatNum			INT,	
     
+    PRIMARY KEY(ticketNum),
     FOREIGN KEY (theaterName, roomNum, d, t) REFERENCES SHOWING(loc, roomNum, movDate, movTime)
 );
 
@@ -97,5 +108,6 @@ CREATE TABLE LOGIN
 (
 	username 	VARCHAR(50),
     pass		VARCHAR(25),
-    primary key (username)
+    
+    PRIMARY KEY (username)
 );

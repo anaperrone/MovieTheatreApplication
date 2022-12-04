@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
-
+import java.util.*;
 public class GUIMovie extends JFrame {
     private JPanel panel;
     private JLabel label;
@@ -11,9 +11,7 @@ public class GUIMovie extends JFrame {
     JComboBox<String> theatre;
     JComboBox<Integer> tickets;
     private JComboBox<String> show;
-    String[] movies = {"Finding Nemo", "One Direction: This is Us", "Black Panther"};
     String[] dates = {"July 18", "March 4", "Dec 2"};
-    String[] theatres = {"Signal Hill", "Chinook", "Rio"};
     String[] showTime = {"1:20", "4:30", "6:00", "9:15", "11:00"};
     Integer[] ticketNo = {1,2,3,4,5,6,7,8,9,10};
     private JButton back;
@@ -22,7 +20,7 @@ public class GUIMovie extends JFrame {
     private JButton submit;
     GridBagConstraints gbc = new GridBagConstraints();
 
-    public GUIMovie() {
+    public GUIMovie(ArrayList<String> movies, ArrayList<String> locations) {
 
         panel = new JPanel();
         
@@ -37,13 +35,15 @@ public class GUIMovie extends JFrame {
         gbc.gridy = 0;
         panel.add(label, gbc);
 
-        movie = new JComboBox<String>(movies);
+        String[] moviesList = movies.toArray(new String[movies.size()]);
+        movie = new JComboBox<String>(moviesList);
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 2;
         panel.add(movie, gbc);
 
-        theatre = new JComboBox<String>(theatres);
+        String[] locationsList = locations.toArray(new String[locations.size()]);
+        theatre = new JComboBox<String>(locationsList);
         gbc.gridx = 1;
         gbc.gridy = 2;
         panel.add(theatre, gbc);

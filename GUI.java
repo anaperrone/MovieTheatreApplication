@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.util.*;
 public class GUI {
     protected JFrame frame;
     public JPanel mainPanel;
@@ -15,7 +15,7 @@ public class GUI {
     protected GUICancelTicket ticketCancel;
     public CardLayout maincl = new CardLayout();
 
-    public GUI() {
+    public GUI(ArrayList<String> movies, ArrayList<String> locations) {
         frame = new JFrame("Cine-Ma-Ma");
         mainPanel = new JPanel();
         mainPanel.setLayout(maincl);
@@ -28,7 +28,7 @@ public class GUI {
         seatMap = new GUISeatMap();
         ticket = new GUITicket();
         payPage = new GUIPaymentPage();
-        moviePage = new GUIMovie();
+        moviePage = new GUIMovie(movies, locations);
 
 
         mainPanel.add(loginPage.getPanel(), "home");

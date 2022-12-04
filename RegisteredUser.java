@@ -9,6 +9,7 @@
 */
 import java.util.*;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class RegisteredUser extends OrdinaryUser{
     private ArrayList<Card> cards; 
@@ -30,14 +31,14 @@ public class RegisteredUser extends OrdinaryUser{
         instance.setDatabase(database);
     }
 
-    /* 
-    * public method which checks if the current username and password already
-    * exist in the database or not. Returns a boolean: true if the username is
-    * available to use and false if it already exists
-    */
-    public boolean checkUsername(String username, String password){
-        return instance.checkUsername(username, password);
-    }
+    // /* 
+    // * public method which checks if the current username and password already
+    // * exist in the database or not. Returns a boolean: true if the username is
+    // * available to use and false if it already exists
+    // */
+    // public boolean checkUsername(String username, String password){
+    //     return instance.checkUsername(username, password);
+    // }
 
     /*
      * public method which takes in a username and password and checks both against
@@ -55,34 +56,57 @@ public class RegisteredUser extends OrdinaryUser{
      * calls individual setters to set all the information and then adds the 
      * info to the database
      */
-    public void setAll(String username, String password, LocalDate expiry, String cardNumber, int cvv, String name, String street, int number, String city, String country, String postal)
+    public String setAll(String username, String password, String expiry, String cardNumber, int cvv, String name, String street, int number, String city, String country, String postal)
     {
-        setUser(username, password);
-        setCard(expiry, cardNumber, cvv, name);
-        setAddress(street, number, city, country, postal);
+        boolean usernameValidated = setUser(username, password);
+        if(usernameValidated == false){
+            return "ERROR: Invalid username. Please select another";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
+        LocalDate exp;
+        try{
+            exp = LocalDate.parse(expiry, formatter);
+        }
+        catch(IllegalArgumentException ex){
+            return "ERROR: Invalid expiry date. Please re-enter.";
+        }
+        boolean cardValidated = setCard(exp, cardNumber, cvv, name);
+        if(cardValidated == false){
+            return "ERROR: Invalid card information. Please try again";
+        }
         
+        setAddress(street, number, city, country, postal);
+
         d.addAddress(street, number, city, country, postal);
         d.addRegisteredUser(username, password, number, street);
-        d.addCard(username, expiry, cardNumber, cvv, name);
-        d.close();  
+        d.addCard(username, exp, cardNumber, cvv, name);
+        
+        return "Account created successfully." ;
     }
 
     /*
      * public method which sets the username and password
      */
-    public void setUser(String username, String password){
+    public boolean setUser(String username, String password){
         this.username = username;
         this.password = password;
-
+        return instance.checkUsername(username, password);
     }
 
     /*
      * public method which takes in all the information of a card and makes a new
      * card object and appends that to the arraylist of cards for this account
+     * after checking if the card is valid. Returns true if valid, false otherwise
      */
-    public void setCard(LocalDate expiry, String cardNumber, int cvv, String name){
-        Card card = new Card(expiry, cardNumber, cvv, name);
-        cards.add(card);
+    public boolean setCard(LocalDate expiry, String cardNumber, int cvv, String name){
+        Card card = new Card();
+        card.setFields(expiry, cardNumber, cvv, name);
+        if(card.verifyCard(cvv, cardNumber)){
+            cards.add(card);
+            this.name = name;
+            return true;
+        }
+        return false;
     }
 
     /*

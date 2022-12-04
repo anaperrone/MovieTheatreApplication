@@ -260,9 +260,9 @@ public class DataBase {
             } 
             
             //if the results came bul empty (null) then there is no booking under this email for this ticket number
-            if(room == 0)
+            if(room == 0 && theatre.compareTo("") == 0)
             {
-                 return "ERROR: Could not find booking with ticketNum " + ticketNum + " and email " + email +" ";
+                return "ERROR: Could not find booking with ticketNum " + ticketNum + " and email " + email +" ";
             }
             
             //select the title of the movie based on these details from SHOWING table

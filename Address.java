@@ -21,7 +21,7 @@ public class Address {
 
     /*
      * Public constructor to create new object of address. It takes in street name, building number, city,
-     * counrty and the postal code. Returns nothing. 
+     * country and the postal code. Returns nothing. 
     */
     public Address(String name, int num, String city, String country, String postal) {
         this.streetName = name; 

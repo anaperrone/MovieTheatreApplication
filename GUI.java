@@ -50,7 +50,7 @@ public class GUI {
         frame.add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(600,400);
+        frame.setSize(700,600);
         frame.setVisible(true);
 
     }

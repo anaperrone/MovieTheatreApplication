@@ -12,9 +12,10 @@ import java.util.regex.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 public class Card {
-    private String expiry;
+    private LocalDate expiry;
     private String cardNumber;
     private int cvv;
     private String name;
@@ -22,12 +23,19 @@ public class Card {
     private Pattern CARD_PATTERN = Pattern.compile(CARD_REGEX);
 
     /*
-     * Constructor for Card which takes in an expiry LocalDate, String card number integer cvv 
-     * and String name. Returns noting 
+     * Defaul constructor for Card 
      */
-    public Card(LocalDate e, String n, int c, String name) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM"); 
-        this.expiry = formatter.format(e);
+    public Card(){
+
+    }
+    public void setFields(String e, String n, int c, String name) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
+        try{
+            this.expiry = LocalDate.parse(e, formatter);
+        }
+        catch(IllegalArgumentException ex){
+            ex.printStackTrace();
+        }
         this.cardNumber = n;
         this.cvv = c;
         this.name = name;

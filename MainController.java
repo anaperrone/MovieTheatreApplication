@@ -106,6 +106,19 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "seats");
         }
 
+        if(e.getSource() == gui.getPaymentPage().getBack()) {
+            gui.maincl.show(gui.mainPanel, "ticket");
+        }
+        
+        if(e.getSource() == gui.getPaymentPage().getPay()) {
+            String name = gui.getPaymentPage().getNameText();
+            String card = gui.getPaymentPage().getCardText();
+            String expiry = gui.getPaymentPage().getExpiryText();
+            String cvv = gui.getPaymentPage().getCVVText();
+            
+            //database tings
+        }
+
 
     }
 

@@ -16,8 +16,10 @@ import java.time.*;
 
 
 public class DataBase {
+    //connection object which stores the connection to the database
     private Connection connect;
 
+    //constructor for database which calls the method to iniialize the connection
     public DataBase(){
         initializeConnection();
     }
@@ -287,13 +289,11 @@ public class DataBase {
      * public method to get all the movies playing on a certain date
      * returns an arraylist of all the movie titles
      */
-    public ArrayList<String> getMovies(LocalDate date)
+    public ArrayList<String> getMovies()
     {
         try{
-            String query = "SELECT title FROM SHOWING WHERE movDate = ? ";
+            String query = "SELECT title FROM SHOWING;";
             PreparedStatement state = this.connect.prepareStatement(query);
-            java.sql.Date newDate = java.sql.Date.valueOf(date);
-            state.setDate(1, newDate);
             ResultSet results = state.executeQuery(query);
 
             //loop through all the results and retrieve the titles of the movies 

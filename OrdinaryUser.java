@@ -14,12 +14,15 @@ abstract class OrdinaryUser { //should this be abstract? no objects of it.
     private String email;
     private Card card;
 
+    //defualt constructor
     public OrdinaryUser(){}
 
+    //method to store the email of the ordinary user for the time being
     public void addEmail(String e){
         this.email = e;
     }
 
+    //add a card for the user by creating a new card object
     public void addCard(int cvv, String cardNumber, LocalDate expiry, String name){
         Card c = new Card(expiry, cardNumber, cvv, name);
         this.card = c;

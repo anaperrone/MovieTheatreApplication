@@ -218,7 +218,7 @@ public class DataBase {
             ResultSet results = s.executeQuery(query);
             int room = results.getInt("roomNum");
 
-            String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum, email) VALUES(?, ?, ?, ?, ?, ?);";
+            String addQuery = "INSERT INTO SEATS(theaterName, roomNum, d, t, seatNum, email) VALUES(?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, theatre);
             state.setInt(2, room);
@@ -244,22 +244,36 @@ public class DataBase {
         try{
             Statement s = this.connect.createStatement();
             //select the details of the booking with the provided ticketnumber and email
-            String query = "SELECT roomNum, theatreName, d, t FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '"+ email +"';";
+            String query = "SELECT roomNum, theaterName, d, t FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '"+ email +"';";
             ResultSet results = s.executeQuery(query);
             //if the results came bul empty (null) then there is no booking under this email for this ticket number
             if(results == null){
                 return "ERROR: Could not find booking with ticketNum " + ticketNum + "and email " + email +" ";
             }
             //else, there is a booking and we store the details in local variables
-            int room = results.getInt("roomNum");
-            String theatre = results.getString("theatreName");
-            LocalDate date = results.getObject("d", LocalDate.class);
-            LocalTime time = results.getObject("t", LocalTime.class);
+            int room = 0;
+            String theatre = "";
+            LocalDate date = LocalDate.now();
+            LocalTime time = LocalTime.now(); 
+            while(results.next())
+            {
+                room = results.getInt("roomNum");
+                theatre = results.getString("theaterName");
+                date = results.getObject("d", LocalDate.class);
+                time = results.getObject("t", LocalTime.class);
+            } 
+            
             //select the title of the movie based on these details from SHOWING table
-            String getTitle= "SELECT title FROM SHOWING WHERE roomNum = '" + room + "' AND theatre = '" + theatre + "' AND d = '"
-                                + date + "' AND t = '" + time + "';";
+            String getTitle= "SELECT title FROM SHOWING WHERE roomNum = '" + room + "' AND loc = '" + theatre + "' AND movDate = '"
+                                + date + "' AND movTime = '" + time + "';";
             ResultSet res = s.executeQuery(getTitle);
-            String title = res.getString("title");
+            
+            String title = "";
+            while(res.next())
+            {
+                title = res.getString("title");
+            } 
+
             //delete the ticket, making the seat available now
             String deleteQuery = "DELETE FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '" + email + "'";
             PreparedStatement state = this.connect.prepareStatement(deleteQuery);
@@ -343,7 +357,7 @@ public class DataBase {
      */
     public ArrayList<String> getLocations(){
         try{
-            String query = "SELECT theatreName FROM SHOWING";
+            String query = "SELECT theaterName FROM SHOWING";
             PreparedStatement state = this.connect.prepareStatement(query);
             ResultSet results = state.executeQuery(query);
 
@@ -351,7 +365,7 @@ public class DataBase {
             ArrayList<String> locations = new ArrayList<String>();
                 while(results.next())
                 {
-                    String loc = results.getString("theatreName");
+                    String loc = results.getString("theaterName");
                     locations.add(loc);
 
                 } 
@@ -371,13 +385,13 @@ public class DataBase {
      */
     public String getTheatreAddress(String theatre){
         try{
-            String query = "SELECT * FROM SHOWING WHERE theatreName = ?";
+            String query = "SELECT * FROM SHOWING WHERE theaterName = ?";
             PreparedStatement state = this.connect.prepareStatement(query);
             state.setString(1, theatre);
             ResultSet results = state.executeQuery(query);
 
            
-            String loc = results.getString("theatreName");
+            String loc = results.getString("theaterName");
             int num = results.getInt("buildNum");
             String street = results.getString("streetName");
             String query2 = "SELECT * FROM ADDRESS WHERE num = '" + num + "' AND streetName = '" + street + "';";

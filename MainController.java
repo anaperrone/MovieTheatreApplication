@@ -16,7 +16,7 @@ public class MainController implements ActionListener {
 
     public MainController() {
         database = new DataBase();
-        Seats seats = new Seats(database);
+        seats = new Seats(database);
         registeredUser = new RegisteredUser(database);
         gui = new GUI();
        

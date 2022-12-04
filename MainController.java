@@ -137,7 +137,7 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getTicketCancel().getCancel()) {
             String email = gui.getTicketCancel().getEmailText();
-            int ticketNo = Integer.parseInt(gui.getTicketCancel().getTicketNoText());
+            Integer ticketNo = Integer.parseInt(gui.getTicketCancel().getTicketNoText());
 
             String message = seats.cancelSeat(ticketNo, email); 
             JOptionPane.showMessageDialog(gui.getTicketCancel().getPanel(), message);

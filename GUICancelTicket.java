@@ -82,7 +82,7 @@ public class GUICancelTicket {
     }
 
     public String getTicketNoText() {
-        return this.ticketNo.getText();
+        return this.ticketNoField.getText();
     }
 
 }

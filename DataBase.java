@@ -235,32 +235,43 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to cancel a booking for a seat. 
+     * selects the details of the booking and checks if the booking exists will
+     * return the appropriate string depending on if the ticket can be cancelled or 
+     */
     public String cancelSeat(int ticketNum, String email){
         try{
             Statement s = this.connect.createStatement();
+            //select the details of the booking with the provided ticketnumber and email
             String query = "SELECT roomNum, theatreName, d, t FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '"+ email +"';";
             ResultSet results = s.executeQuery(query);
+            //if the results came bul empty (null) then there is no booking under this email for this ticket number
             if(results == null){
                 return "ERROR: Could not find booking with ticketNum " + ticketNum + "and email " + email +" ";
             }
+            //else, there is a booking and we store the details in local variables
             int room = results.getInt("roomNum");
             String theatre = results.getString("theatreName");
             LocalDate date = results.getObject("d", LocalDate.class);
             LocalTime time = results.getObject("t", LocalTime.class);
+            //select the title of the movie based on these details from SHOWING table
             String getTitle= "SELECT title FROM SHOWING WHERE roomNum = '" + room + "' AND theatre = '" + theatre + "' AND d = '"
                                 + date + "' AND t = '" + time + "';";
             ResultSet res = s.executeQuery(getTitle);
             String title = res.getString("title");
-            String deleteQuery = "DELETE FROM  SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '" + email + "'";
+            //delete the ticket, making the seat available now
+            String deleteQuery = "DELETE FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '" + email + "'";
             PreparedStatement state = this.connect.prepareStatement(deleteQuery);
             state.execute();
             results.close();
-            return "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + " successfully canceled. ";
+            //return ticket cancellation details
+            return "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + " successfully cancelled. ";
         }
         catch(SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return "ERROR: Could not cancel ticket. Please Try again.";
     }
 
     /*
@@ -273,6 +284,7 @@ public class DataBase {
             java.sql.Date newDate = java.sql.Date.valueOf(date);
 
             Statement s = this.connect.createStatement();
+            //select the showtimes based on the given details
             String query = "SELECT movTime FROM SHOWING WHERE loc = '" + theatreName + "' AND movDate = '" + newDate + "' AND title = '" + title + "';";
             ResultSet results = s.executeQuery(query);
 
@@ -381,6 +393,9 @@ public class DataBase {
         return null;
     }
 
+    /*
+     * public method which gets the available seats from the database for the specific date, time, location and movie
+     */
     public ArrayList<Integer> getSeats(String movie, String theatre, LocalDate date, LocalTime time){
         try{
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);

@@ -1,11 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Date;
 
-public class GUIMovie extends JFrame implements ActionListener {
-    CardLayout maincl;
-    JPanel mainPanel;
+public class GUIMovie extends JFrame {
     private JPanel panel;
     JComboBox<String> movie;
     JComboBox<String> date;
@@ -16,9 +13,8 @@ public class GUIMovie extends JFrame implements ActionListener {
     private JButton back;
     private JButton seat;
 
-    public GUIMovie(CardLayout cl, JPanel pan) {
-        mainPanel = pan;
-        maincl = cl;
+    public GUIMovie() {
+
         panel = new JPanel();
 
         panel.setLayout(new GridBagLayout());
@@ -44,27 +40,27 @@ public class GUIMovie extends JFrame implements ActionListener {
         back = new JButton("<--");
         gbc.gridx = 0;
         gbc.gridy = 2;
-        back.addActionListener(this);
+        //back.addActionListener(this);
         panel.add(back, gbc);
 
         seat = new JButton("Show Seats");
         gbc.gridx = 1;
         gbc.gridy = 2;
-        seat.addActionListener(this);
+        //seat.addActionListener(this);
         panel.add(seat, gbc);
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == back) {
-            maincl.show(mainPanel, "home");
-        }
+    // @Override
+    // public void actionPerformed(ActionEvent e) {
+    //     if(e.getSource() == back) {
+    //         maincl.show(mainPanel, "home");
+    //     }
 
-        if(e.getSource() == seat) {
-           maincl.show(mainPanel, "seats");
-        }
-    }
+    //     if(e.getSource() == seat) {
+    //        maincl.show(mainPanel, "seats");
+    //     }
+    // }
 
     public JPanel getPanel() {
         return this.panel;

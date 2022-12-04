@@ -19,7 +19,7 @@ public class RegisteredUser extends OrdinaryUser{
     private String name;
     private DataBase d;
 
-    //default constructor which invokes constructor of parent class, OrdinaryUser
+    //Constructor which invokes constructor of parent class, OrdinaryUser
     //and creates a new empty arraylist for cards as well as an instance of singleton
     //pattern; LoginServer
     public RegisteredUser(DataBase database){
@@ -64,8 +64,7 @@ public class RegisteredUser extends OrdinaryUser{
         d.addAddress(street, number, city, country, postal);
         d.addRegisteredUser(username, password, number, street);
         d.addCard(username, expiry, cardNumber, cvv, name);
-        d.close();
-        
+        d.close();  
     }
 
     /*

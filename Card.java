@@ -20,6 +20,10 @@ public class Card {
     private String CARD_REGEX = "[0-9]{16}";
     private Pattern CARD_PATTERN = Pattern.compile(CARD_REGEX);
 
+    /*
+     * Constructor for Card which takes in an expiry LocalDate, String card number integer cvv 
+     * and String name. Returns noting 
+     */
     public Card(LocalDate e, String n, int c, String name) {
         this.expiry = e;
         this.cardNumber = n;
@@ -27,6 +31,9 @@ public class Card {
         this.name = name;
     }
 
+    /*
+     * public method to verify that user has input correct card information before proceeding to make payment 
+    */
     public boolean verifyCard(int cvv, String cardNumber) {
         
         if(cvv <= 999 || cvv >= 100) {
@@ -41,6 +48,9 @@ public class Card {
         return false;
     }
 
+    /*
+     * public method to process payment after user has put in all correct information about card
+    */
     public boolean doPayment() {
         return true;
     }

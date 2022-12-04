@@ -8,6 +8,10 @@
 *
 */
 
+/*
+ * public class Address which works with database table ADDRESS.
+ */
+
 public class Address {
     private String streetName;
     private int number;
@@ -15,6 +19,10 @@ public class Address {
     private String country;
     private String postalCode;
 
+    /*
+     * Public constructor to create new object of address. It takes in street name, building number, city,
+     * counrty and the postal code. Returns nothing. 
+    */
     public Address(String name, int num, String city, String country, String postal) {
         this.streetName = name; 
         this.number = num;
@@ -23,11 +31,17 @@ public class Address {
         this.postalCode = postal;
     }
 
+    /*
+     * Public getter that returns address object.
+    */
     public Address getAddress() {
-        //Address address = new Address(streetName, number, city, country, postalCode);
         return this;
     }
 
+    /*
+     *
+    */
+    
     public void setAddress(String name, int num, String city, String country, String postal) {
         this.streetName = name;
         this.number = num;

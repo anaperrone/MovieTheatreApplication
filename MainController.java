@@ -173,6 +173,10 @@ public class MainController implements ActionListener {
         if(e.getSource() == gui.getSeatSelection().getNext()) {
             gui.maincl.show(gui.mainPanel, "payment");
         }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat1()) {
+            gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
+        }
     }
 
     public void GUIPaymentPageButton(ActionEvent e) {

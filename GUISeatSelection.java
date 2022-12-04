@@ -148,5 +148,11 @@ public class GUISeatSelection extends JPanel {
     public JButton getSeat10() {
         return this.seat10;
     }
+
+    public void changeColour(JButton button) {
+        button.setBackground(Color.PINK);
+        button.setOpaque(true);
+        panel.validate();
+    }
     
 }

@@ -99,6 +99,7 @@ public class GUIMovie extends JFrame {
         next.setEnabled(false);
         tickets.setVisible(true);
         submit.setVisible(true);
+        submit.setEnabled(true);
         panel.validate();
     }
 

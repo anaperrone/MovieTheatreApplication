@@ -28,14 +28,8 @@ public class Card {
     public Card(){
 
     }
-    public void setFields(String e, String n, int c, String name) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
-        try{
-            this.expiry = LocalDate.parse(e, formatter);
-        }
-        catch(IllegalArgumentException ex){
-            ex.printStackTrace();
-        }
+    public void setFields(LocalDate e, String n, int c, String name) {
+        this.expiry = e;
         this.cardNumber = n;
         this.cvv = c;
         this.name = name;

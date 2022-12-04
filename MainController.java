@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class MainController implements ActionListener {
-    //private MoviesController movieController;
+    private MoviesController movieController;
     //private Payment payment;
     private RegisteredUser registeredUser;
     private DataBase database; 
@@ -18,7 +18,9 @@ public class MainController implements ActionListener {
         database = new DataBase();
         seats = new Seats(database);
         registeredUser = new RegisteredUser(database);
-        gui = new GUI();
+        movieController = new MoviesController(database);
+
+        gui = new GUI(movieController.getMovies(), movieController.getLocations());
        
         addListener();
     }

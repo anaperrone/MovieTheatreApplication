@@ -144,19 +144,21 @@ public class DataBase {
         }
     }
 
-    public void addRegisteredUser(String username, String password, int number, String streetname)
+    public void addRegisteredUser(String username, String password, int number, String streetname, String cardNumber, int cvv)
     {
         try
         {
             LocalDate today = LocalDate.now();
             java.sql.Date td = java.sql.Date.valueOf(today);
-            String addQuery = "INSERT INTO REGISTERED_USER VALUES(?, ?, ?, ?, ?);";
+            String addQuery = "INSERT INTO REGISTERED_USER VALUES(?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, username);
             state.setString(2, password);
             state.setInt(3, number);
             state.setString(4, streetname);
             state.setDate(5, td);
+            state.setString(6, cardNumber);
+            state.setInt(7, cvv);
             state.execute();
         }
 
@@ -324,6 +326,35 @@ public class DataBase {
     }
 
     /*
+     * public method which gets all the dates which a movie is playing at a location
+     */
+    public ArrayList<LocalDate> getDates(String title, String theatre){
+        try{
+            Statement s = this.connect.createStatement();
+            //select the showtimes based on the given details
+            String query = "SELECT movDate FROM SHOWING WHERE loc = '" + theatre + "' AND title = '" + title + "';";
+            ResultSet results = s.executeQuery(query);
+
+            //loop through all of the results and get the showtimes, add them to an arraylist of times
+            ArrayList<LocalDate> showdates = new ArrayList<LocalDate>();
+            while(results.next())
+            {
+                LocalDate date = results.getObject("movTime", LocalDate.class);
+                showdates.add(date);
+
+            } 
+
+            results.close();
+            return showdates;
+                
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /*
      * public method to get all the movies playing on a certain date
      * returns an arraylist of all the movie titles
      */
@@ -451,8 +482,6 @@ public class DataBase {
         }
         return null;
     }
-
-
 
     //close database connection
     public void close(){

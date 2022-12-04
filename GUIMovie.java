@@ -30,7 +30,7 @@ public class GUIMovie extends JFrame {
         panel.setBackground(new Color(50, 168, 137));
         //gbc.insets = new Insets(0,0,10,0);
 
-        label = new JLabel("Select movie, theatre. Press next to select date. Press next to select show time.");
+        label = new JLabel("Select movie, theatre. Press next to select date. Press next to select showtimes.");
         //gbc.fill = GridBagConstraints.HORIZONTAL; 
         gbc.gridwidth = 7;
         gbc.gridx = 0;
@@ -85,23 +85,32 @@ public class GUIMovie extends JFrame {
         gbc.gridx = 3;
         gbc.gridy = 2;
         panel.add(show, gbc);
+        panel.validate();
+    }
 
+    public void showTickets() {
         tickets = new JComboBox<Integer>(ticketNo);
         gbc.gridx = 4;
         gbc.gridy = 2;
         panel.add(tickets, gbc);
 
         seat.setVisible(true);
-        panel.remove(next);
+        next.setVisible(false);
+        next.setEnabled(false);
+        tickets.setVisible(true);
         submit.setVisible(true);
         panel.validate();
     }
 
     public void remove() {
+        panel.remove(date);
         panel.remove(show);
         panel.remove(tickets);
         seat.setVisible(false);
         submit.setVisible(false);
+        submit.setEnabled(false);
+        next.setVisible(true);
+        next.setEnabled(true);
         panel.validate();
     }
 

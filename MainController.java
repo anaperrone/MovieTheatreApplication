@@ -142,8 +142,13 @@ public class MainController implements ActionListener {
                 flag++;
             }
 
-            else {
+            else if(flag == 1) {
                 gui.getMoviePage().showShowTimes();
+                flag++;
+            }
+
+            else if(flag == 2) {
+                gui.getMoviePage().showTickets();
                 flag = 0;
             }
 

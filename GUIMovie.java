@@ -65,4 +65,8 @@ public class GUIMovie extends JFrame {
     public JPanel getPanel() {
         return this.panel;
     }
+
+    public JButton getBack() {
+        return this.back;
+    }
 }

@@ -39,9 +39,9 @@ public class Address {
     }
 
     /*
-     *
+     * public setter to change address. Takes in street name, building number, city, country, and postal code
     */
-    
+
     public void setAddress(String name, int num, String city, String country, String postal) {
         this.streetName = name;
         this.number = num;

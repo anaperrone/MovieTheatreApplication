@@ -56,15 +56,7 @@ public class MainController implements ActionListener {
         GUISignUpPageButton(e);
         GUITicketCancelButton(e);
         GUIMoviePageButton(e);
-
-        if(e.getSource() == gui.getPaymentPage().getPay()) {
-            String name = gui.getPaymentPage().getNameText();
-            String card = gui.getPaymentPage().getCardText();
-            String expiry = gui.getPaymentPage().getExpiryText();
-            String cvv = gui.getPaymentPage().getCVVText();
-            
-            //database tings
-        }
+        GUIPaymentPageButton(e);
     
         //Add buttons for seats
         //Add seat array
@@ -108,7 +100,7 @@ public class MainController implements ActionListener {
 
     public void GUISignUpPageButton(ActionEvent e) {
         if(e.getSource() == gui.getSignUp().getBack()) {
-            gui.maincl.show(gui.mainPanel, "login");
+            gui.maincl.show(gui.mainPanel, "home");
         }
 
         if(e.getSource() == gui.getSignUp().getEnter()) {
@@ -116,7 +108,7 @@ public class MainController implements ActionListener {
             String password = gui.getSignUp().getPasswordText();
 
 
-            gui.maincl.show(gui.mainPanel, "movie");
+            gui.maincl.show(gui.mainPanel, "login");
         }
     }
 
@@ -153,11 +145,22 @@ public class MainController implements ActionListener {
         if(e.getSource() == gui.getMoviePage().getSeat()) {
             gui.maincl.show(gui.mainPanel, "seats");
         }
-
-        if(e.getSource() == gui.getPaymentPage().getBack()) {
-            gui.maincl.show(gui.mainPanel, "ticket");
-        }
         
+    }
+
+    public void GUIPaymentPageButton(ActionEvent e) {
+        if(e.getSource() == gui.getPaymentPage().getBack()) {
+            gui.maincl.show(gui.mainPanel, "movie");
+        }
+
+        if(e.getSource() == gui.getPaymentPage().getPay()) {
+            String name = gui.getPaymentPage().getNameText();
+            String card = gui.getPaymentPage().getCardText();
+            String expiry = gui.getPaymentPage().getExpiryText();
+            String cvv = gui.getPaymentPage().getCVVText();
+            
+            //database tings
+        }
     }
     
 

@@ -246,10 +246,6 @@ public class DataBase {
             //select the details of the booking with the provided ticketnumber and email
             String query = "SELECT roomNum, theaterName, d, t FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '"+ email +"';";
             ResultSet results = s.executeQuery(query);
-            //if the results came bul empty (null) then there is no booking under this email for this ticket number
-            if(results == null){
-                return "ERROR: Could not find booking with ticketNum " + ticketNum + "and email " + email +" ";
-            }
             //else, there is a booking and we store the details in local variables
             int room = 0;
             String theatre = "";
@@ -262,6 +258,12 @@ public class DataBase {
                 date = results.getObject("d", LocalDate.class);
                 time = results.getObject("t", LocalTime.class);
             } 
+            
+            //if the results came bul empty (null) then there is no booking under this email for this ticket number
+            if(room == 0)
+            {
+                 return "ERROR: Could not find booking with ticketNum " + ticketNum + " and email " + email +" ";
+            }
             
             //select the title of the movie based on these details from SHOWING table
             String getTitle= "SELECT title FROM SHOWING WHERE roomNum = '" + room + "' AND loc = '" + theatre + "' AND movDate = '"

@@ -204,20 +204,44 @@ public class DataBase {
         }
     }
 
-    public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, Time time){
+    public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time){
         try{
             Statement s = this.connect.createStatement();
             String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
             ResultSet results = s.executeQuery(query);
             int room = results.getInt("roomNum");
+
+            //convert LocalDate and Time to the sql equivalent
             java.sql.Date newDate = java.sql.Date.valueOf(date);
+            java.sql.Time sqlTime = java.sql.Time.valueOf(time);
+
             String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, theatre);
             state.setInt(2, room);
             state.setDate(3, newDate);
-            state.setTime(4, time);
+            state.setTime(4, sqlTime);
             state.setInt(5, seatNumber);
+            state.execute();
+            results.close();
+            return;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time){
+        try{
+            java.sql.Date newDate = java.sql.Date.valueOf(date);
+            java.sql.Time sqlTime = java.sql.Time.valueOf(time);
+            Statement s = this.connect.createStatement();
+            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
+            ResultSet results = s.executeQuery(query);
+            int room = results.getInt("roomNum");
+            String addQuery = "DELETE FROM  SEATS WHERE theatreName = '" + theatre + "' AND roomNum = '" + room +"' AND d = '" 
+                                        + newDate+"' AND t = '" + sqlTime +"' seatNum = '" + seatNumber +"'";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.execute();
             results.close();
             return;

@@ -27,7 +27,7 @@ public class Seats {
         database.bookSeat(seat, title, theatre, date, time, email);
     }
 
-    public void cancelSeat(int ticketNum, String email){
-        database.cancelSeat(ticketNum, email);
+    public String cancelSeat(int ticketNum, String email){
+        return database.cancelSeat(ticketNum, email);
     }
 }

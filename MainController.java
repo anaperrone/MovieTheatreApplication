@@ -6,13 +6,14 @@ public class MainController implements ActionListener {
     //private MoviesController movieController;
     //private Payment payment;
     //private OrdinaryUser ordinaryUser;
-    private DataBase database; 
+    //private DataBase database; 
     //private ActionListenerClass alc;
     private GUI gui;
+    private int flag = 0;
 
     public MainController() {
         gui = new GUI();
-        database = new DataBase();
+        //database = new DataBase();
         
 
         gui.getGuiLoginHomePage().getloginButton().addActionListener(this);
@@ -40,6 +41,8 @@ public class MainController implements ActionListener {
         gui.getSignUp().getBack().addActionListener(this);
 
         gui.getMoviePage().getBack().addActionListener(this);
+        gui.getMoviePage().getNext().addActionListener(this);
+        gui.getMoviePage().getSeat().addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -59,10 +62,10 @@ public class MainController implements ActionListener {
             String username = gui.getLogin().getUserText();
             String password = gui.getLogin().getPasswordText();
             
-            if(database.grantAccess(username, password)) {
-                System.out.println("HI");
-                gui.maincl.show(gui.mainPanel, "movie");
-            }
+            // if(database.grantAccess(username, password)) {
+            //     System.out.println("HI");
+            //     gui.maincl.show(gui.mainPanel, "movie");
+            // }
         }
 
         if(e.getSource() == gui.getLogin().getBack()) {
@@ -86,19 +89,23 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "home");
         }
 
-        if(e.getSource() == gui.getPaymentPage().getBack()) {
-            gui.maincl.show(gui.mainPanel, "ticket");
+        if(e.getSource() == gui.getMoviePage().getNext()) {
+            if(flag == 0) {
+                gui.getMoviePage().showDate();
+                flag++;
+            }
+
+            else {
+                gui.getMoviePage().showShowTimes();
+                flag = 0;
+            }
+
         }
-        
-        if(e.getSource() == gui.getPaymentPage().getPay()) {
-            String name = gui.getPaymentPage().getNameText();
-            String card = gui.getPaymentPage().getCardText();
-            String expiry = gui.getPaymentPage().getExpiryText();
-            String cvv = gui.getPaymentPage().getCVVText();
-            
-            //database tings
+
+        if(e.getSource() == gui.getMoviePage().getSeat()) {
+            gui.maincl.show(gui.mainPanel, "seats");
         }
-        
+
 
     }
 

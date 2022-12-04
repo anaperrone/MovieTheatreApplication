@@ -14,6 +14,7 @@ public class GUISeats extends JPanel {
     private JButton seat8;
     private JButton seat9;
     private JButton seat10;
+    private JButton[] seats = new JButton[10];
 
     public GUISeats() {
         panel = new JPanel();

@@ -10,6 +10,7 @@ public class GUI {
     protected GUISignUp signup;
     protected GUIMovie moviePage;
     protected GUISeats seats;
+    protected GUITicket ticket;
     public CardLayout maincl = new CardLayout();
 
     public GUI() {
@@ -21,6 +22,7 @@ public class GUI {
         login = new GUILogin();
         signup = new GUISignUp();
         seats = new GUISeats();
+        ticket = new GUITicket();
         payPage = new GUIPaymentPage();
         moviePage = new GUIMovie();
 
@@ -31,6 +33,8 @@ public class GUI {
 
         mainPanel.add(moviePage.getPanel(), "movie");
         mainPanel.add(seats.getPanel(), "seats");
+
+        mainPanel.add(ticket.getPanel(), "ticket");
 
         mainPanel.add(payPage.getPanel(), "payment");
 

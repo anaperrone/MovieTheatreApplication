@@ -34,6 +34,7 @@ public class GUISeatSelection extends JPanel {
         panel.add(message, gbc);
 
         seat1 = new JButton("1");
+        seat1.setBackground(Color.GRAY);
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -41,54 +42,63 @@ public class GUISeatSelection extends JPanel {
         panel.add(seat1, gbc);
 
         seat2 = new JButton("2");
+        seat2.setBackground(Color.GRAY);
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat2, gbc);
 
         seat3 = new JButton("3");
+        seat3.setBackground(Color.GRAY);
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat3, gbc);
 
         seat4 = new JButton("4");
+        seat4.setBackground(Color.GRAY);
         gbc.gridx = 3;
         gbc.gridy = 1;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat4, gbc);
 
         seat5 = new JButton("5");
+        seat5.setBackground(Color.GRAY);
         gbc.gridx = 4;
         gbc.gridy = 1;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat5, gbc);
 
         seat6 = new JButton("6");
+        seat6.setBackground(Color.GRAY);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat6, gbc);
 
         seat7 = new JButton("7");
+        seat7.setBackground(Color.GRAY);
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat7, gbc);
 
         seat8 = new JButton("8");
+        seat8.setBackground(Color.GRAY);
         gbc.gridx = 2;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat8, gbc);
 
         seat9 = new JButton("9");
+        seat9.setBackground(Color.GRAY);
         gbc.gridx = 3;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat9, gbc);
 
         seat10 = new JButton("10");
+        seat10.setBackground(Color.GRAY);
         gbc.gridx = 4;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,5,10,5);

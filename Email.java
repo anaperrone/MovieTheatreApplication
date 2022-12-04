@@ -20,39 +20,48 @@ import javax.mail.internet.MimeMessage;
 // import javax.activation.*;
 
 public class Email {
-    private String email;
     private String to;
-    private String from = "ensf480L01group2@gmail.com";
+    private String from = "ensf480cinemama@gmail.com";
 
-    public Email(String e) {
-        this.email = e;
+    public Email() {
+        this.to = to;
     }
 
-    public void sendEmail(String to) throws Exception{
+    public void sendEmail(String to) {
 
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", 587);
-        properties.put("mail.smtp.starttls.enable", true);
-        properties.put("mail.transport.protocl", "smtp");
+        try {
+            Properties properties = new Properties();
+            properties.put("mail.smtp.auth", true);
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", 587);
+            properties.put("mail.smtp.starttls.enable", true);
+            properties.put("mail.transport.protocl", "smtp");
 
-        Session session = Session.getInstance(properties, new Authenticator() {
-            @Override 
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(from, "Password");
-            }
-        });
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override 
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(from, "ensf480fall2022");
+                }
+            });
 
-        Message message = new MimeMessage(session);
-        message.setSubject("Cine-Ma-Ma Receipt");
-        message.setContent("<h1>Email", "text/html");
+            Message message = new MimeMessage(session);
+            message.setSubject("Cine-Ma-Ma Receipt");
+            message.setContent("<h1>Email", "text/html");
 
-        Address addressTo = new InternetAddress(to);
-        message.setRecipient(Message.RecipientType.TO, addressTo);
+            Address addressTo = new InternetAddress(to);
+            message.setRecipient(Message.RecipientType.TO, addressTo);
 
-        Transport.send(message);
+            Transport.send(message);
+            
+        } catch(Exception e) {
 
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Email email = new Email();
+        email.sendEmail("anaclara.perrone@gmail.com");
     }
 
 }

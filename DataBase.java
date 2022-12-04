@@ -255,7 +255,7 @@ public class DataBase {
             PreparedStatement state = this.connect.prepareStatement(deleteQuery);
             state.execute();
             results.close();
-            return "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + ". ";
+            return "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + " successfully canceled. ";
         }
         catch(SQLException e){
             e.printStackTrace();

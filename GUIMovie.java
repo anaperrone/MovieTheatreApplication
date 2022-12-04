@@ -120,4 +120,8 @@ public class GUIMovie extends JFrame {
     public JButton getSeat() {
         return this.seat;
     }
+
+    public JButton getSubmit() {
+        return this.submit;
+    }
 }

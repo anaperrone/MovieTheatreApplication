@@ -15,9 +15,15 @@ public class MainController implements ActionListener {
         database = new DataBase();
         
 
-      gui.getGuiLoginHomePage().getloginButton().addActionListener(this);
-      gui.getLogin().getEnter().addActionListener(this);
-        
+        gui.getGuiLoginHomePage().getloginButton().addActionListener(this);
+        gui.getGuiLoginHomePage().getGuestButton().addActionListener(this);
+        gui.getGuiLoginHomePage().getRegButton().addActionListener(this);
+
+        gui.getLogin().getEnter().addActionListener(this);
+        gui.getLogin().getBack().addActionListener(this);
+
+        gui.getSignUp().getEnter().addActionListener(this);
+        gui.getSignUp().getBack().addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {

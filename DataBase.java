@@ -120,22 +120,23 @@ public class DataBase {
             int buildNum = results.getInt("buildNum");
             String streetName = results.getString("streetName");
 
+            //finally delete the the user from the REGISTERED_USER table
+            String removeUser = "DELETE FROM REGISTERED_USER WHERE email = ?;";
+            PreparedStatement deleteUser = this.connect.prepareStatement(removeUser);
+            deleteUser.setString(1, username);
+            deleteUser.execute();
+
             //then delete the card information attached to the profile
             String removeCard = "DELETE FROM CARD WHERE email = ?;";
             PreparedStatement statement = this.connect.prepareStatement(removeCard);
             statement.setString(1, username);
             statement.execute();
 
-            //then delete the the user from the REGISTERED_USER table
-            String removeUser = "DELETE FROM REGISTERED_USER WHERE email = ?;";
-            PreparedStatement deleteUser = this.connect.prepareStatement(removeUser);
-            deleteUser.setString(1, username);
-            deleteUser.execute();
-
-            //finally, delete the address associated with this profile
+            //then delete the address associated with this profile
             String removeAddress = "DELETE FROM ADDRESS WHERE num = '" + buildNum + "' AND streetName = '" + streetName + "';";
             PreparedStatement st = this.connect.prepareStatement(removeAddress);
             st.execute();
+
         }
     
         catch(SQLException e){
@@ -208,14 +209,14 @@ public class DataBase {
 
     public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time, String email){
         try{
-            Statement s = this.connect.createStatement();
-            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
-            ResultSet results = s.executeQuery(query);
-            int room = results.getInt("roomNum");
-
             //convert LocalDate and Time to the sql equivalent
             java.sql.Date newDate = java.sql.Date.valueOf(date);
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
+            
+            Statement s = this.connect.createStatement();
+            String query = "SELECT roomNum FROM SHOWING WHERE title = '" + movie + "' AND loc = '" + theatre + "' AND date = '" + newDate + "' AND time = '" + sqlTime + "';";
+            ResultSet results = s.executeQuery(query);
+            int room = results.getInt("roomNum");
 
             String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum, email) VALUES(?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
@@ -239,10 +240,10 @@ public class DataBase {
             java.sql.Date newDate = java.sql.Date.valueOf(date);
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
             Statement s = this.connect.createStatement();
-            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
+            String query = "SELECT roomNum FROM SHOWING WHERE title = '" + mvoie + "' AND loc = '"+ theatre +"' AND date = '"+ newDate +"' AND time = '"+ sqlTime +"';";
             ResultSet results = s.executeQuery(query);
             int room = results.getInt("roomNum");
-            String addQuery = "DELETE FROM  SEATS WHERE theatreName = '" + theatre + "' AND roomNum = '" + room +"' AND d = '" 
+            String addQuery = "DELETE FROM  SEATS WHERE theatreName = '" + theatre + "' AND roomNum = '" + room +"' AND d = '"+ newDate +"' AND t = '"+ sqlTime +"';"; 
                                         + newDate+"' AND t = '" + sqlTime +"' seatNum = '" + seatNumber +"'";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.execute();
@@ -252,28 +253,6 @@ public class DataBase {
         catch(SQLException e){
             e.printStackTrace();
         }
-    }
-
-    /*
-     * public method to get the seat number based on the ticket number and email inputted
-     */
-    public int getSeatFromTicket(String email, int ticketNumber){
-        try{
-            Statement s = this.connect.createStatement();
-            String query = "SELECT seatNum FROM SHOWING WHERE email = '" + email + "' AND ticketNum = '" + ticketNumber + "';";
-            ResultSet results = s.executeQuery(query);
-
-            //loop through all of the results and get the showtimes, add them to an arraylist of times
-            int seatNum = results.getInt("seatNum");
-
-            results.close();
-            return seatNum;
-                
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        return -1; //indicating no seats were found with that email and ticket number
     }
 
     /*
@@ -403,14 +382,15 @@ public class DataBase {
             String query = "SELECT roomNum FROM SHOWING WHERE loc = '" + theatre + "' AND movDate = '" + sqlDate + "' AND movTime = '" + sqlTime + "' AND title = '" + movie + "';";
             ResultSet results = s.executeQuery(query);
             
-            //gets the roomnumber where this movie is showing at the date, time and theatre selected
+            //get the roomnumber where this movie is showing at the date, time and theatre selected 
             ArrayList<Integer> roomNum = new ArrayList<Integer>();
             int room = 0; 
             while(results.next())
             {
                 room = results.getInt("roomNum");
                 roomNum.add(room);
-            }
+
+            } 
             
             query = "SELECT seatNum FROM SEATS WHERE roomNum = " + room + " AND theaterName = '"+ theatre + "' AND d = '" + sqlDate + "' AND t = '" + sqlTime + "';";
             results = s.executeQuery(query);

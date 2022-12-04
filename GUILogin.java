@@ -94,4 +94,9 @@ public class GUILogin extends JPanel {
         return String.valueOf(passwordField.getPassword());
     }
 
+    public void clear() {
+        usernameField.setText("");
+        passwordField.setText("");
+    }
+
 }

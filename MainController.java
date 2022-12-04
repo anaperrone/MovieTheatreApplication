@@ -5,14 +5,16 @@ import java.awt.event.*;
 public class MainController implements ActionListener {
     //private MoviesController movieController;
     //private Payment payment;
-    //private OrdinaryUser ordinaryUser;
-    //private DataBase database; 
+    private RegisteredUser registeredUser;
+    private DataBase database; 
     private GUI gui;
     private int flag = 0;
 
     public MainController() {
+        database = new DataBase();
+        registeredUser = new RegisteredUser(database);
         gui = new GUI();
-        //database = new DataBase();
+       
         addListener();
     }
 
@@ -93,13 +95,17 @@ public class MainController implements ActionListener {
             String username = gui.getLogin().getUserText();
             String password = gui.getLogin().getPasswordText();
             
-            // if(database.grantAccess(username, password)) {
-            //     System.out.println("HI");
-            //     gui.maincl.show(gui.mainPanel, "movie");
-            // }
+            if(registeredUser.grantAccess(username, password)) {
+                gui.maincl.show(gui.mainPanel, "movie");
+            }
+
+            else {
+                JOptionPane.showMessageDialog(gui.getLogin(), "Login Unsucessful! Try Again.");
+            }
         }
 
         if(e.getSource() == gui.getLogin().getBack()) {
+            gui.getLogin().clear();
             gui.maincl.show(gui.mainPanel, "home");
 
         }

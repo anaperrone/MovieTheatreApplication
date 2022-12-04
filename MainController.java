@@ -22,6 +22,20 @@ public class MainController implements ActionListener {
         gui.getLogin().getEnter().addActionListener(this);
         gui.getLogin().getBack().addActionListener(this);
 
+        gui.getPaymentPage().getBack().addActionListener(this);
+        gui.getPaymentPage().getPay().addActionListener(this);
+
+        gui.getSeats().getSeat1().addActionListener(this);
+        gui.getSeats().getSeat2().addActionListener(this);
+        gui.getSeats().getSeat3().addActionListener(this);
+        gui.getSeats().getSeat4().addActionListener(this);
+        gui.getSeats().getSeat5().addActionListener(this);
+        gui.getSeats().getSeat6().addActionListener(this);
+        gui.getSeats().getSeat7().addActionListener(this);
+        gui.getSeats().getSeat8().addActionListener(this);
+        gui.getSeats().getSeat9().addActionListener(this);
+        gui.getSeats().getSeat10().addActionListener(this);
+
         gui.getSignUp().getEnter().addActionListener(this);
         gui.getSignUp().getBack().addActionListener(this);
     }

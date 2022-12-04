@@ -12,8 +12,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class GUIPaymentPage extends JPanel {
-    // CardLayout maincl;
-    // JPanel mainPanel;
     private JPanel panel;
     private JLabel name;
     private JTextField nameField;
@@ -28,8 +26,6 @@ public class GUIPaymentPage extends JPanel {
 
 
     public GUIPaymentPage() {
-        // maincl = cl;
-        // mainPanel = pan;
         panel = new JPanel();
 
         panel.setLayout(new GridBagLayout());

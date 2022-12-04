@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class GUIMovie extends JFrame {
     private JPanel panel;
+    private JLabel label;
+    private JLabel label2;
     JComboBox<String> movie;
     JComboBox<String> date;
     JComboBox<String> theatre;
@@ -26,42 +28,45 @@ public class GUIMovie extends JFrame {
         
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
-    
-        movie = new JComboBox<String>(movies);
+        //gbc.insets = new Insets(0,0,10,0);
+
+        label = new JLabel("Select movie, theatre. Press next to select date. Press next to select show time.");
+        //gbc.fill = GridBagConstraints.HORIZONTAL; 
+        gbc.gridwidth = 7;
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(0,0,10,0);
+        panel.add(label, gbc);
+
+        movie = new JComboBox<String>(movies);
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         panel.add(movie, gbc);
 
         theatre = new JComboBox<String>(theatres);
         gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(0,0,10,0);
+        gbc.gridy = 2;
         panel.add(theatre, gbc);
 
         back = new JButton("<--");
         gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(0,0,10,0);
-        //back.addActionListener(this);
+        gbc.gridy = 4;
         panel.add(back, gbc);
 
         next = new JButton("Next");
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy = 4;
-        gbc.insets = new Insets(0,0,10,0);
-        //back.addActionListener(this);
         panel.add(next, gbc);
 
         seat = new JButton("Show Seats");
-        gbc.gridx = 8;
-        gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 6;
         panel.add(seat, gbc);
         seat.setVisible(false);
 
         submit = new JButton("Submit");
-        gbc.gridx = 10;
-        gbc.gridy = 0;
+        gbc.gridx = 1;
+        gbc.gridy = 4;
         panel.add(submit, gbc);
         submit.setVisible(false);
 
@@ -69,28 +74,34 @@ public class GUIMovie extends JFrame {
 
     public void showDate() {
         date = new JComboBox<String>(dates);
-        gbc.gridx = 4;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(0,0,10,0);
+        gbc.gridx = 2;
+        gbc.gridy = 2;
         panel.add(date, gbc);
         panel.validate();
     }
 
     public void showShowTimes() {
         show = new JComboBox<String>(showTime);
-        gbc.gridx = 6;
+        gbc.gridx = 3;
         gbc.gridy = 2;
-        gbc.insets = new Insets(0,0,10,0);
         panel.add(show, gbc);
 
         tickets = new JComboBox<Integer>(ticketNo);
-        gbc.gridx = 8;
+        gbc.gridx = 4;
         gbc.gridy = 2;
-        gbc.insets = new Insets(0,0,10,0);
         panel.add(tickets, gbc);
 
         seat.setVisible(true);
+        panel.remove(next);
         submit.setVisible(true);
+        panel.validate();
+    }
+
+    public void remove() {
+        panel.remove(show);
+        panel.remove(tickets);
+        seat.setVisible(false);
+        submit.setVisible(false);
         panel.validate();
     }
 

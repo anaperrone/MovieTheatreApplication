@@ -7,21 +7,26 @@ public class MainController implements ActionListener {
     //private Payment payment;
     //private OrdinaryUser ordinaryUser;
     //private DataBase database; 
-    //private ActionListenerClass alc;
     private GUI gui;
     private int flag = 0;
 
     public MainController() {
         gui = new GUI();
         //database = new DataBase();
-        
+        addListener();
+    }
 
+    public void addListener() {
         gui.getGuiLoginHomePage().getloginButton().addActionListener(this);
         gui.getGuiLoginHomePage().getGuestButton().addActionListener(this);
         gui.getGuiLoginHomePage().getRegButton().addActionListener(this);
+        gui.getGuiLoginHomePage().getCancelButton().addActionListener(this);
 
         gui.getLogin().getEnter().addActionListener(this);
         gui.getLogin().getBack().addActionListener(this);
+
+        gui.getTicketCancel().getBack().addActionListener(this);
+        gui.getTicketCancel().getCancel().addActionListener(this);
 
         gui.getPaymentPage().getBack().addActionListener(this);
         gui.getPaymentPage().getPay().addActionListener(this);
@@ -46,6 +51,27 @@ public class MainController implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        GUIloginHomePageButton(e);
+        GUIloginPageButton(e);
+        GUISignUpPageButton(e);
+        GUITicketCancelButton(e);
+        GUIMoviePageButton(e);
+
+        if(e.getSource() == gui.getPaymentPage().getPay()) {
+            String name = gui.getPaymentPage().getNameText();
+            String card = gui.getPaymentPage().getCardText();
+            String expiry = gui.getPaymentPage().getExpiryText();
+            String cvv = gui.getPaymentPage().getCVVText();
+            
+            //database tings
+        }
+    
+        //Add buttons for seats
+        //Add seat array
+
+    }
+
+    public void GUIloginHomePageButton(ActionEvent e) {
         if(e.getSource() == gui.getGuiLoginHomePage().getloginButton()) {
             gui.maincl.show(gui.mainPanel, "login");
         }
@@ -58,6 +84,12 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "movie");
         }
 
+        if(e.getSource() == gui.getGuiLoginHomePage().getCancelButton()) {
+            gui.maincl.show(gui.mainPanel, "cancelTicket");
+        }
+    }
+
+    public void GUIloginPageButton(ActionEvent e) {
         if(e.getSource() == gui.getLogin().getEnter()) {
             String username = gui.getLogin().getUserText();
             String password = gui.getLogin().getPasswordText();
@@ -72,7 +104,9 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "home");
 
         }
+    }
 
+    public void GUISignUpPageButton(ActionEvent e) {
         if(e.getSource() == gui.getSignUp().getBack()) {
             gui.maincl.show(gui.mainPanel, "login");
         }
@@ -84,8 +118,22 @@ public class MainController implements ActionListener {
 
             gui.maincl.show(gui.mainPanel, "movie");
         }
+    }
 
+    public void GUITicketCancelButton(ActionEvent e) {
+        if(e.getSource() == gui.getTicketCancel().getBack()) {
+            gui.maincl.show(gui.mainPanel, "home");
+        }
+
+        if(e.getSource() == gui.getTicketCancel().getCancel()) {
+            String email = gui.getTicketCancel().getEmailText();
+            int ticketNo = Integer.parseInt(gui.getTicketCancel().getTicketNoText());
+        }
+    }
+    
+    public void GUIMoviePageButton(ActionEvent e) {
         if(e.getSource() == gui.getMoviePage().getBack()) {
+            gui.getMoviePage().remove();
             gui.maincl.show(gui.mainPanel, "home");
         }
 
@@ -110,18 +158,10 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "ticket");
         }
         
-        if(e.getSource() == gui.getPaymentPage().getPay()) {
-            String name = gui.getPaymentPage().getNameText();
-            String card = gui.getPaymentPage().getCardText();
-            String expiry = gui.getPaymentPage().getExpiryText();
-            String cvv = gui.getPaymentPage().getCVVText();
-            
-            //database tings
-        }
-
-
     }
+    
 
+    
     public static void main(String[] args){        
         MainController main = new MainController();
         

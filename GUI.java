@@ -47,7 +47,7 @@ public class GUI {
         frame.add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setResizable(true);
+        frame.setSize(600,400);
         frame.setVisible(true);
 
     }

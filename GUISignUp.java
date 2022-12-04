@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
-public class GUISignUp extends JPanel implements ActionListener {
-    CardLayout maincl;
-    JPanel mainPanel;
+public class GUISignUp extends JPanel {
     private JPanel panel;
     private JLabel username; //this is email
     private JTextField usernameField;
@@ -35,12 +32,8 @@ public class GUISignUp extends JPanel implements ActionListener {
 
 
 
-    public GUISignUp(CardLayout cl, JPanel pan) {
-        mainPanel = pan;
-        maincl = cl;
-
+    public GUISignUp() {
         panel = new JPanel();
-
 
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
@@ -189,29 +182,71 @@ public class GUISignUp extends JPanel implements ActionListener {
         back = new JButton("<--");
         gbc.gridx = 0;
         gbc.gridy = 28;
-        back.addActionListener(this);
+        //back.addActionListener(this);
         panel.add(back, gbc);
 
         enter = new JButton("enter");
         gbc.gridx = 2;
         gbc.gridy = 28;
-        back.addActionListener(this);
+        //back.addActionListener(this);
         panel.add(enter, gbc);
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == back) {
-            maincl.show(mainPanel, "home");
-        }
-
-        if(e.getSource() == enter) {
-           
-        }
     }
 
     public JPanel getPanel() {
         return this.panel;
     }
+
+    public JButton getEnter() {
+        return this.enter;
+    }
+
+    public JButton getBack() {
+        return this.back;
+    }
+
+    public String getUserText() {
+        return this.usernameField.getText();
+    }
+
+    public String getPasswordText() {
+        return String.valueOf(passwordField.getPassword());
+    }
+
+    public String getNameText() {
+        return this.nameField.getText();
+    }
+
+    public String getCardText() {
+        return this.CCField.getText();
+    }
+
+    public String getExpiryText() {
+        return this.expiryField.getText();
+    }
+
+    public String getCVVText() {
+        return this.CVVField.getText();
+    }
+
+    public String getStreetNameField() {
+        return this.streetNameField.getText();
+    }
+
+    public String getNumberField() {
+        return this.numberField.getText();
+    }
+
+    public String getCityField() {
+        return this.cityField.getText();
+    }
+
+    public String getPostalcodeField() {
+        return this.postalcodeField.getText();
+    }
+
+    public String getCountryField() {
+        return this.countryField.getText();
+    }
+
 }

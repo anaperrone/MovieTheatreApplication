@@ -18,11 +18,11 @@ public class GUI {
         mainPanel.setLayout(maincl);
 
         loginPage = new GUILoginHomePage();
-        login = new GUILogin(maincl, mainPanel);
-        signup = new GUISignUp(maincl, mainPanel);
-        seats = new GUISeats(maincl, mainPanel);
-        payPage = new GUIPaymentPage(maincl, mainPanel);
-        moviePage = new GUIMovie(maincl, mainPanel);
+        login = new GUILogin();
+        signup = new GUISignUp();
+        seats = new GUISeats();
+        payPage = new GUIPaymentPage();
+        moviePage = new GUIMovie();
 
 
         mainPanel.add(loginPage.getPanel(), "home");

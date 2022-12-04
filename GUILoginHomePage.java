@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class GUILoginHomePage extends JPanel {
-    private CardLayout maincl;
-    private JPanel mainPanel;
     private JPanel panel;
     private JButton loginButton;
     private JButton guestButton;
@@ -12,8 +9,6 @@ public class GUILoginHomePage extends JPanel {
     private JLabel text;
 
     public GUILoginHomePage(){
-        //maincl = cl;
-        //mainPanel = pan;
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
@@ -52,22 +47,6 @@ public class GUILoginHomePage extends JPanel {
     public JPanel getPanel() {
         return panel;
     }
-
-    // @Override
-    // public void actionPerformed(ActionEvent e) {
-    //     if(e.getSource() == loginButton) {
-    //         maincl.show(mainPanel, "login");
-           
-    //     }
-
-    //     if(e.getSource() == guestButton) {
-    //         maincl.show(mainPanel, "movie");
-    //     }
-
-    //     if(e.getSource() == regButton) {
-    //         maincl.show(mainPanel, "signup");
-    //     }
-    // }
 
     public JButton getloginButton() {
         return this.loginButton;

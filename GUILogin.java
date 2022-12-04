@@ -1,11 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-
 
 public class GUILogin extends JPanel {
-    CardLayout maincl;
-    JPanel mainPanel;
     private JPanel panel;
     private JLabel username;
     private JLabel password;
@@ -14,9 +10,7 @@ public class GUILogin extends JPanel {
     private JButton back;
     private JButton enter;
 
-    public GUILogin(CardLayout cl, JPanel pan) {
-        maincl = cl;
-        mainPanel = pan;
+    public GUILogin() {
         panel = new JPanel();
         
         panel.setLayout(new GridBagLayout());
@@ -90,6 +84,10 @@ public class GUILogin extends JPanel {
         return this.enter;
     }
 
+    public JButton getBack() {
+        return this.back;
+    }
+
     public String getUserText() {
         return this.usernameField.getText();
     }
@@ -97,4 +95,5 @@ public class GUILogin extends JPanel {
     public String getPasswordText() {
         return String.valueOf(passwordField.getPassword());
     }
+
 }

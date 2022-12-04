@@ -16,8 +16,10 @@ import java.time.*;
 
 
 public class DataBase {
+    //connection object which stores the connection to the database
     private Connection connect;
 
+    //constructor for database which calls the method to iniialize the connection
     public DataBase(){
         initializeConnection();
     }
@@ -118,6 +120,12 @@ public class DataBase {
             int buildNum = results.getInt("buildNum");
             String streetName = results.getString("streetName");
 
+            //finally delete the the user from the REGISTERED_USER table
+            String removeUser = "DELETE FROM REGISTERED_USER WHERE email = ?;";
+            PreparedStatement deleteUser = this.connect.prepareStatement(removeUser);
+            deleteUser.setString(1, username);
+            deleteUser.execute();
+
             //then delete the card information attached to the profile
             String removeCard = "DELETE FROM CARD WHERE email = ?;";
             PreparedStatement statement = this.connect.prepareStatement(removeCard);
@@ -129,11 +137,6 @@ public class DataBase {
             PreparedStatement st = this.connect.prepareStatement(removeAddress);
             st.execute();
 
-            //finally delete the the user from the REGISTERED_USER table
-            String removeUser = "DELETE FROM REGISTERED_USER WHERE email = ?;";
-            PreparedStatement deleteUser = this.connect.prepareStatement(removeUser);
-            deleteUser.setString(1, username);
-            deleteUser.execute();
         }
     
         catch(SQLException e){
@@ -204,24 +207,25 @@ public class DataBase {
         }
     }
 
-    public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time){
+    public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time, String email){
         try{
-            Statement s = this.connect.createStatement();
-            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
-            ResultSet results = s.executeQuery(query);
-            int room = results.getInt("roomNum");
-
             //convert LocalDate and Time to the sql equivalent
             java.sql.Date newDate = java.sql.Date.valueOf(date);
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
+            
+            Statement s = this.connect.createStatement();
+            String query = "SELECT roomNum FROM SHOWING WHERE title = '" + movie + "' AND loc = '" + theatre + "' AND date = '" + newDate + "' AND time = '" + sqlTime + "';";
+            ResultSet results = s.executeQuery(query);
+            int room = results.getInt("roomNum");
 
-            String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?);";
+            String addQuery = "INSERT INTO SEATS(theatreName, roomNum, d, t, seatNum, email) VALUES(?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, theatre);
             state.setInt(2, room);
             state.setDate(3, newDate);
             state.setTime(4, sqlTime);
             state.setInt(5, seatNumber);
+            state.setString(6, email);
             state.execute();
             results.close();
             return;
@@ -236,10 +240,10 @@ public class DataBase {
             java.sql.Date newDate = java.sql.Date.valueOf(date);
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
             Statement s = this.connect.createStatement();
-            String query = "SELECT roomNum FROM SHOWING WHERE title = ? AND loc = ? AND date = ? AND time = ?;";
+            String query = "SELECT roomNum FROM SHOWING WHERE title = '" + mvoie + "' AND loc = '"+ theatre +"' AND date = '"+ newDate +"' AND time = '"+ sqlTime +"';";
             ResultSet results = s.executeQuery(query);
             int room = results.getInt("roomNum");
-            String addQuery = "DELETE FROM  SEATS WHERE theatreName = '" + theatre + "' AND roomNum = '" + room +"' AND d = '" 
+            String addQuery = "DELETE FROM  SEATS WHERE theatreName = '" + theatre + "' AND roomNum = '" + room +"' AND d = '"+ newDate +"' AND t = '"+ sqlTime +"';"; 
                                         + newDate+"' AND t = '" + sqlTime +"' seatNum = '" + seatNumber +"'";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.execute();
@@ -287,13 +291,11 @@ public class DataBase {
      * public method to get all the movies playing on a certain date
      * returns an arraylist of all the movie titles
      */
-    public ArrayList<String> getMovies(LocalDate date)
+    public ArrayList<String> getMovies()
     {
         try{
-            String query = "SELECT title FROM SHOWING WHERE movDate = ? ";
+            String query = "SELECT title FROM SHOWING;";
             PreparedStatement state = this.connect.prepareStatement(query);
-            java.sql.Date newDate = java.sql.Date.valueOf(date);
-            state.setDate(1, newDate);
             ResultSet results = state.executeQuery(query);
 
             //loop through all the results and retrieve the titles of the movies 
@@ -317,7 +319,7 @@ public class DataBase {
     
 
     /*
-     * public metho to retrieve the threatre name for all theatres in the database
+     * public method to retrieve the threatre name for all theatres in the database
      */
     public ArrayList<String> getLocations(){
         try{
@@ -378,9 +380,9 @@ public class DataBase {
             
             Statement s = this.connect.createStatement();
             String query = "SELECT roomNum FROM SHOWING WHERE loc = '" + theatre + "' AND movDate = '" + sqlDate + "' AND movTime = '" + sqlTime + "' AND title = '" + movie + "';";
-            // System.out.println(query);
             ResultSet results = s.executeQuery(query);
             
+            //get the roomnumber where this movie is showing at the date, time and theatre selected 
             ArrayList<Integer> roomNum = new ArrayList<Integer>();
             int room = 0; 
             while(results.next())
@@ -389,16 +391,8 @@ public class DataBase {
                 roomNum.add(room);
 
             } 
-
-            // System.out.println(room);
             
             query = "SELECT seatNum FROM SEATS WHERE roomNum = " + room + " AND theaterName = '"+ theatre + "' AND d = '" + sqlDate + "' AND t = '" + sqlTime + "';";
-            // System.out.println(query);
-            // state = this.connect.prepareStatement(query);
-            // state.setInt(1, room);
-            // state.setString(2, theatre);
-            // state.setDate(3, sqlDate);
-            // state.setTime(4, sqlTime);
             results = s.executeQuery(query);
 
             ArrayList<Integer> seats = new ArrayList<Integer>();

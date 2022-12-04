@@ -12,3 +12,4 @@ GUIPaymentPage.class
 GUISeats.class
 MainController.class
 GUISignUp.class
+*.class

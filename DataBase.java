@@ -102,41 +102,43 @@ public class DataBase {
      * public method to remove a user from the database
      * the username will be removed from both the LOGIN table and the REGISTERED_USER table
      */
-    public boolean removeUser(String username){
+    public void removeUser(String username){
         try{
+            //delete the username from the LOGIN table
             String query = "DELETE FROM LOGIN WHERE username = ?;";
             PreparedStatement state = this.connect.prepareStatement(query);
             state.setString(1, username);
             state.execute();
 
+            //retrieve the address associated with this profile
             String get = "SELECT buildNum, streetName FROM REGISTERED_USER WHERE email = ?";
-            PreparedStatment getState = this.connect.prepareStatement(query);
+            PreparedStatement getState = this.connect.prepareStatement(query);
             getState.setString(1, username);
             ResultSet results = getState.executeQuery(get);
             int buildNum = results.getInt("buildNum");
             String streetName = results.getString("streetName");
 
-            String removeCard = "DELETE FROM REGISTERED_USER WHERE email = ?;";
-            PreparedStatement statement = this.connect.prepareStatement(remove);
+            //then delete the card information attached to the profile
+            String removeCard = "DELETE FROM CARD WHERE email = ?;";
+            PreparedStatement statement = this.connect.prepareStatement(removeCard);
             statement.setString(1, username);
             statement.execute();
 
+            //then delete the address associated with this profile
+            String removeAddress = "DELETE FROM ADDRESS WHERE num = '" + buildNum + "' AND streetName = '" + streetName + "';";
+            PreparedStatement st = this.connect.prepareStatement(removeAddress);
+            st.execute();
 
-            String remove = "DELETE FROM REGISTERED_USER WHERE email = ?;";
-            PreparedStatement statement = this.connect.prepareStatement(remove);
-            statement.setString(1, username);
-            statement.execute();
-
-            //String address = "DELETE FROM ADDRESS WHERE num = '" + 
-
-
-            return true;
+            //finally delete the the user from the REGISTERED_USER table
+            String removeUser = "DELETE FROM REGISTERED_USER WHERE email = ?;";
+            PreparedStatement deleteUser = this.connect.prepareStatement(removeUser);
+            deleteUser.setString(1, username);
+            deleteUser.execute();
         }
     
         catch(SQLException e){
             e.printStackTrace();
         }
-        return false;
     }
 
     public void addRegisteredUser(String username, String password, int number, String streetname)

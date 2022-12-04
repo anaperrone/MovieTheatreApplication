@@ -167,7 +167,7 @@ public class GUISeatSelection extends JPanel {
     }
 
     public void resetColour(JButton button) {
-        button.setBackground(null);
+        button.setBackground(Color.WHITE);
         button.setOpaque(true);
         panel.validate();
     }

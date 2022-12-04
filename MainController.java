@@ -8,10 +8,12 @@ public class MainController implements ActionListener {
     private RegisteredUser registeredUser;
     private DataBase database; 
     private GUI gui;
+    Seats seats;
     private int flag = 0;
 
     public MainController() {
         database = new DataBase();
+        Seats seats = new Seats(database);
         registeredUser = new RegisteredUser(database);
         gui = new GUI();
        
@@ -133,6 +135,12 @@ public class MainController implements ActionListener {
         if(e.getSource() == gui.getTicketCancel().getCancel()) {
             String email = gui.getTicketCancel().getEmailText();
             int ticketNo = Integer.parseInt(gui.getTicketCancel().getTicketNoText());
+
+            String message = seats.cancelSeat(ticketNo, email); 
+            JOptionPane.showMessageDialog(gui.getTicketCancel().getPanel(), message);
+
+
+
         }
     }
     

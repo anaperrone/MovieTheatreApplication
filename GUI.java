@@ -52,4 +52,20 @@ public class GUI {
     public GUILogin getLogin() {
         return this.login;
     }
+
+    public GUISignUp getSignUp() {
+        return this.signup;
+    }
+
+    public GUIMovie getMoviePage() {
+        return this.moviePage;
+    }
+
+    public GUISeats getSeats() {
+        return this.seats;
+    }
+
+    public GUIPaymentPage getPaymentPage() {
+        return this.payPage;
+    }
 }

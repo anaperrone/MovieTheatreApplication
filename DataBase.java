@@ -235,24 +235,32 @@ public class DataBase {
         }
     }
 
-    public void cancelSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time){
+    public String cancelSeat(int ticketNum, String email){
         try{
-            java.sql.Date newDate = java.sql.Date.valueOf(date);
-            java.sql.Time sqlTime = java.sql.Time.valueOf(time);
             Statement s = this.connect.createStatement();
-            String query = "SELECT roomNum FROM SHOWING WHERE title = '" + mvoie + "' AND loc = '"+ theatre +"' AND date = '"+ newDate +"' AND time = '"+ sqlTime +"';";
+            String query = "SELECT roomNum, theatreName, d, t FROM SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '"+ email +"';";
             ResultSet results = s.executeQuery(query);
+            if(results == null){
+                return "ERROR: Could not find booking with ticketNum " + ticketNum + "and email " + email +" ";
+            }
             int room = results.getInt("roomNum");
-            String addQuery = "DELETE FROM  SEATS WHERE theatreName = '" + theatre + "' AND roomNum = '" + room +"' AND d = '"+ newDate +"' AND t = '"+ sqlTime +"';"; 
-                                        + newDate+"' AND t = '" + sqlTime +"' seatNum = '" + seatNumber +"'";
-            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            String theatre = results.getString("theatreName");
+            LocalDate date = results.getObject("d", LocalDate.class);
+            LocalTime time = results.getObject("t", LocalTime.class);
+            String getTitle= "SELECT title FROM SHOWING WHERE roomNum = '" + room + "' AND theatre = '" + theatre + "' AND d = '"
+                                + date + "' AND t = '" + time + "';";
+            ResultSet res = s.executeQuery(getTitle);
+            String title = res.getString("title");
+            String deleteQuery = "DELETE FROM  SEATS WHERE ticketNum = '" + ticketNum + "' AND email = '" + email + "'";
+            PreparedStatement state = this.connect.prepareStatement(deleteQuery);
             state.execute();
             results.close();
-            return;
+            return "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + ". ";
         }
         catch(SQLException e){
             e.printStackTrace();
         }
+        return null;
     }
 
     /*

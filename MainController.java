@@ -142,8 +142,13 @@ public class MainController implements ActionListener {
                 flag++;
             }
 
-            else {
+            else if(flag == 1) {
                 gui.getMoviePage().showShowTimes();
+                flag++;
+            }
+
+            else if(flag == 2) {
+                gui.getMoviePage().showTickets();
                 flag = 0;
             }
 
@@ -172,6 +177,10 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getSeatSelection().getNext()) {
             gui.maincl.show(gui.mainPanel, "payment");
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getSeat1()) {
+            gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
         }
     }
 

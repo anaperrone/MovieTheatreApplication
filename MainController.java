@@ -126,6 +126,18 @@ public class MainController implements ActionListener {
             String password = gui.getSignUp().getPasswordText();
 
 
+            String no = gui.getSignUp().getNumberField();
+            String street = gui.getSignUp().getStreetNameField();
+            String city = gui.getSignUp().getCityField();
+            String country = gui.getSignUp().getCountryField();
+            String postalcode = gui.getSignUp().getPostalcodeField();
+            String name = gui.getSignUp().getNameText();
+            String card = gui.getSignUp().getCardText();
+            String expiry = gui.getSignUp().getExpiryText();
+            String cvv = gui.getSignUp().getCVVText();
+            
+            
+
             gui.maincl.show(gui.mainPanel, "login");
         }
     }
@@ -141,9 +153,7 @@ public class MainController implements ActionListener {
 
             String message = seats.cancelSeat(ticketNo, email); 
             JOptionPane.showMessageDialog(gui.getTicketCancel().getPanel(), message);
-
-
-
+            gui.maincl.show(gui.mainPanel, "home");
         }
     }
     
@@ -168,7 +178,6 @@ public class MainController implements ActionListener {
                 gui.getMoviePage().showTickets();
                 flag = 0;
             }
-
         }
 
         if(e.getSource() == gui.getMoviePage().getSeat()) {

@@ -2,9 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUISeats extends JPanel {
+public class GUISeatSelection extends JPanel {
     private JPanel panel;
     private JButton back;
+    private JButton next;
     private JButton seat1;
     private JButton seat2;
     private JButton seat3;
@@ -15,9 +16,8 @@ public class GUISeats extends JPanel {
     private JButton seat8;
     private JButton seat9;
     private JButton seat10;
-    private JButton[] seats = new JButton[10];
 
-    public GUISeats() {
+    public GUISeatSelection() {
         panel = new JPanel();
 
         panel.setLayout(new GridBagLayout());
@@ -89,6 +89,12 @@ public class GUISeats extends JPanel {
         gbc.gridy = 2;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(back, gbc);
+
+        next = new JButton("Next");
+        gbc.gridx = 4;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10,5,10,5);
+        panel.add(next, gbc);
     }
 
     public JPanel getPanel() {
@@ -97,6 +103,10 @@ public class GUISeats extends JPanel {
 
     public JButton getBack() {
         return this.back;
+    }
+
+    public JButton getNext() {
+        return this.next;
     }
 
     public JButton getSeat1() {

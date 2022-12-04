@@ -31,17 +31,20 @@ public class MainController implements ActionListener {
         gui.getPaymentPage().getBack().addActionListener(this);
         gui.getPaymentPage().getPay().addActionListener(this);
 
-        gui.getSeats().getBack().addActionListener(this);
-        gui.getSeats().getSeat1().addActionListener(this);
-        gui.getSeats().getSeat2().addActionListener(this);
-        gui.getSeats().getSeat3().addActionListener(this);
-        gui.getSeats().getSeat4().addActionListener(this);
-        gui.getSeats().getSeat5().addActionListener(this);
-        gui.getSeats().getSeat6().addActionListener(this);
-        gui.getSeats().getSeat7().addActionListener(this);
-        gui.getSeats().getSeat8().addActionListener(this);
-        gui.getSeats().getSeat9().addActionListener(this);
-        gui.getSeats().getSeat10().addActionListener(this);
+        gui.getSeatMap().getBack().addActionListener(this);
+
+        gui.getSeatSelection().getBack().addActionListener(this);
+        gui.getSeatSelection().getNext().addActionListener(this);
+        gui.getSeatSelection().getSeat1().addActionListener(this);
+        gui.getSeatSelection().getSeat2().addActionListener(this);
+        gui.getSeatSelection().getSeat3().addActionListener(this);
+        gui.getSeatSelection().getSeat4().addActionListener(this);
+        gui.getSeatSelection().getSeat5().addActionListener(this);
+        gui.getSeatSelection().getSeat6().addActionListener(this);
+        gui.getSeatSelection().getSeat7().addActionListener(this);
+        gui.getSeatSelection().getSeat8().addActionListener(this);
+        gui.getSeatSelection().getSeat9().addActionListener(this);
+        gui.getSeatSelection().getSeat10().addActionListener(this);
 
         gui.getSignUp().getEnter().addActionListener(this);
         gui.getSignUp().getBack().addActionListener(this);
@@ -49,6 +52,7 @@ public class MainController implements ActionListener {
         gui.getMoviePage().getBack().addActionListener(this);
         gui.getMoviePage().getNext().addActionListener(this);
         gui.getMoviePage().getSeat().addActionListener(this);
+        gui.getMoviePage().getSubmit().addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -57,7 +61,8 @@ public class MainController implements ActionListener {
         GUISignUpPageButton(e);
         GUITicketCancelButton(e);
         GUIMoviePageButton(e);
-        GUISeatPageButton(e);
+        GUISeatMapButton(e);
+        GUISeatSelectionButton(e);
         GUIPaymentPageButton(e);
     
         //Add buttons for seats
@@ -145,14 +150,28 @@ public class MainController implements ActionListener {
         }
 
         if(e.getSource() == gui.getMoviePage().getSeat()) {
-            gui.maincl.show(gui.mainPanel, "seats");
+            gui.maincl.show(gui.mainPanel, "seatMap");
+        }
+
+        if(e.getSource() == gui.getMoviePage().getSubmit()) {
+            gui.maincl.show(gui.mainPanel, "seatSelection");
         }
         
     }
 
-    public void GUISeatPageButton(ActionEvent e) {
-        if(e.getSource() == gui.getSeats().getBack()) {
+    public void GUISeatMapButton(ActionEvent e) {
+        if(e.getSource() == gui.getSeatMap().getBack()) {
             gui.maincl.show(gui.mainPanel, "movie");
+        }
+    }
+
+    public void GUISeatSelectionButton(ActionEvent e) {
+        if(e.getSource() == gui.getSeatSelection().getBack()) {
+            gui.maincl.show(gui.mainPanel, "movie");
+        }
+
+        if(e.getSource() == gui.getSeatSelection().getNext()) {
+            gui.maincl.show(gui.mainPanel, "payment");
         }
     }
 
@@ -162,6 +181,7 @@ public class MainController implements ActionListener {
         }
 
         if(e.getSource() == gui.getPaymentPage().getPay()) {
+            String email = gui.getPaymentPage().getEmailText();
             String name = gui.getPaymentPage().getNameText();
             String card = gui.getPaymentPage().getCardText();
             String expiry = gui.getPaymentPage().getExpiryText();

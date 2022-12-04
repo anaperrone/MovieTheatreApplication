@@ -63,13 +63,14 @@ public class RegisteredUser extends OrdinaryUser{
             return "ERROR: Invalid username. Please select another";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
-        LocalDate exp;
+        YearMonth expMonth;
         try{
-            exp = LocalDate.parse(expiry, formatter);
+            expMonth = YearMonth.parse(expiry, formatter);
         }
-        catch(IllegalArgumentException ex){
+        catch(Exception ex){
             return "ERROR: Invalid expiry date. Please re-enter.";
         }
+        LocalDate exp = expMonth.atDay(1);
         boolean cardValidated = setCard(exp, cardNumber, cvv, name);
         if(cardValidated == false){
             return "ERROR: Invalid card information. Please try again";
@@ -78,8 +79,8 @@ public class RegisteredUser extends OrdinaryUser{
         setAddress(street, number, city, country, postal);
 
         d.addAddress(street, number, city, country, postal);
-        d.addRegisteredUser(username, password, number, street);
         d.addCard(username, exp, cardNumber, cvv, name);
+        d.addRegisteredUser(username, password, number, street, cardNumber, cvv);
         
         return "Account created successfully." ;
     }

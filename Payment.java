@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class Payment {
     static int num;
     private int aud;
+    private DataBase database;
     private Seats seats;
     private Ticket ticket;
     private MoviesController cont;
@@ -25,7 +26,7 @@ public class Payment {
     {
         cont = movCont;
         this.card = card;
-        seats = new Seats();
+        seats = new Seats(database);
         ticket = new Ticket(num, aud, seats, cont.getMovie(), cont.getLocation());
         
         num++;

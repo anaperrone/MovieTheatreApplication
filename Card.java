@@ -10,11 +10,14 @@
 
 import java.util.regex.*;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.time.*;
 
 public class Card {
-    private LocalDate expiry;
-    private String cardNumber; //int? can it hold 16 digits?
+    private LocalDate date;
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM"); 
+    private String expiry = formatter.format(date);
+    private String cardNumber;
     private int cvv;
     private String name;
     private String CARD_REGEX = "[0-9]{16}";
@@ -24,7 +27,7 @@ public class Card {
      * Constructor for Card which takes in an expiry LocalDate, String card number integer cvv 
      * and String name. Returns noting 
      */
-    public Card(LocalDate e, String n, int c, String name) {
+    public Card(String e, String n, int c, String name) {
         this.expiry = e;
         this.cardNumber = n;
         this.cvv = c;

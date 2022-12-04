@@ -8,9 +8,15 @@
 *
 */
 
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 import javax.mail.Session;
-import javax.mail.internet.*;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 // import javax.activation.*;
 
 public class Email {
@@ -22,63 +28,31 @@ public class Email {
         this.email = e;
     }
 
-    public void sendEmail(String to) {
-        // Recipient's email ID needs to be mentioned.
-        this.to = to;
+    public void sendEmail(String to) throws Exception{
 
-        // Assuming you are sending email from localhost
-        String host = "localhost";
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", 587);
+        properties.put("mail.smtp.starttls.enable", true);
+        properties.put("mail.transport.protocl", "smtp");
 
-        // Get system properties
-        Properties properties = System.getProperties();
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override 
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, "Password");
+            }
+        });
 
-        // Setup mail server
-        properties.setProperty("mail.smtp.host", host);
+        Message message = new MimeMessage(session);
+        message.setSubject("Cine-Ma-Ma Receipt");
+        message.setContent("<h1>Email", "text/html");
 
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
+        Address addressTo = new InternetAddress(to);
+        message.setRecipient(Message.RecipientType.TO, addressTo);
 
-        // try {
-        //     // Create a default MimeMessage object.
-        //     MimeMessage message = new MimeMessage(session);
+        Transport.send(message);
 
-        //     // Set From: header field of the header.
-        //     message.setFrom(new InternetAddress(from));
-
-        //     // Set To: header field of the header.
-        //     message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-
-        //     // Set Subject: header field
-        //     message.setSubject("This is the Subject Line!");
-
-        //     // Create the message part 
-        //     BodyPart messageBodyPart = new MimeBodyPart();
-
-        //     // Fill the message
-        //     messageBodyPart.setText("This is message body");
-            
-        //     // Create a multipar message
-        //     Multipart multipart = new MimeMultipart();
-
-        //     // Set text message part
-        //     multipart.addBodyPart(messageBodyPart);
-
-        //     // Part two is attachment
-        //     messageBodyPart = new MimeBodyPart();
-        //     String filename = "file.txt"; 
-        //     DataSource source = new FileDataSource(filename);
-        //     messageBodyPart.setDataHandler(new DataHandler(source));
-        //     messageBodyPart.setFileName(filename);
-        //     multipart.addBodyPart(messageBodyPart);
-
-        //     // Send the complete message parts
-        //     message.setContent(multipart );
-
-        //     // Send message
-        //     Transport.send(message);
-        //     System.out.println("Sent message successfully....");
-        // } catch (MessagingException mex) {
-        //     mex.printStackTrace();
-        // }
     }
+
 }

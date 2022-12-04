@@ -56,6 +56,7 @@ public class MainController implements ActionListener {
         GUISignUpPageButton(e);
         GUITicketCancelButton(e);
         GUIMoviePageButton(e);
+        GUISeatPageButton(e);
         GUIPaymentPageButton(e);
     
         //Add buttons for seats
@@ -146,6 +147,12 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "seats");
         }
         
+    }
+
+    public void GUISeatPageButton(ActionEvent e) {
+        if(e.getSource() == gui.getPaymentPage().getBack()) {
+            gui.maincl.show(gui.mainPanel, "movie");
+        }
     }
 
     public void GUIPaymentPageButton(ActionEvent e) {

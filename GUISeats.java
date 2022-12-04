@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 public class GUISeats extends JPanel {
     private JPanel panel;
+    private JButton back;
     private JButton seat1;
     private JButton seat2;
     private JButton seat3;
@@ -86,6 +87,10 @@ public class GUISeats extends JPanel {
 
     public JPanel getPanel() {
         return this.panel;
+    }
+
+    public JButton getBack() {
+        return this.back;
     }
 
     public JButton getSeat1() {

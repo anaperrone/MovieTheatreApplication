@@ -11,6 +11,7 @@ public class GUI {
     protected GUIMovie moviePage;
     protected GUISeats seats;
     protected GUITicket ticket;
+    protected GUICancelTicket ticketCancel;
     public CardLayout maincl = new CardLayout();
 
     public GUI() {
@@ -21,6 +22,7 @@ public class GUI {
         loginPage = new GUILoginHomePage();
         login = new GUILogin();
         signup = new GUISignUp();
+        ticketCancel = new GUICancelTicket();
         seats = new GUISeats();
         ticket = new GUITicket();
         payPage = new GUIPaymentPage();
@@ -30,6 +32,7 @@ public class GUI {
         mainPanel.add(loginPage.getPanel(), "home");
         mainPanel.add(login.getPanel(), "login");
         mainPanel.add(signup.getPanel(), "signup");
+        mainPanel.add(ticketCancel.getPanel(), "cancelTicket");
 
         mainPanel.add(moviePage.getPanel(), "movie");
         mainPanel.add(seats.getPanel(), "seats");
@@ -71,5 +74,9 @@ public class GUI {
 
     public GUIPaymentPage getPaymentPage() {
         return this.payPage;
+    }
+
+    public GUICancelTicket getTicketCancel() {
+        return this.ticketCancel;
     }
 }

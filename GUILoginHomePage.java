@@ -6,6 +6,7 @@ public class GUILoginHomePage extends JPanel {
     private JButton loginButton;
     private JButton guestButton;
     private JButton regButton;
+    private JButton cancelButton;
     private JLabel text;
 
     public GUILoginHomePage(){
@@ -42,6 +43,14 @@ public class GUILoginHomePage extends JPanel {
         regButton.setBackground(Color.PINK);
         regButton.setOpaque(true);
         panel.add(regButton, gbc);
+
+        cancelButton = new JButton("Cancel Ticket");
+        //regButton.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        cancelButton.setBackground(Color.PINK);
+        cancelButton.setOpaque(true);
+        panel.add(cancelButton, gbc);
     }
 
     public JPanel getPanel() {
@@ -58,5 +67,9 @@ public class GUILoginHomePage extends JPanel {
 
     public JButton getRegButton() {
         return this.regButton;
+    }
+
+    public JButton getCancelButton() {
+        return this.cancelButton;
     }
 }

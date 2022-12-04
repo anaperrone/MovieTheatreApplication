@@ -40,7 +40,7 @@ public class GUICancelTicket {
         //password.setBounds(10,50,80,25);
         panel.add(ticketNo, gbc);
 
-        ticketNoField = new JPasswordField(30);
+        ticketNoField = new JTextField(30);
         gbc.gridx = 2;
         gbc.gridy = 4;
         gbc.insets = new Insets(10,0,10,0);
@@ -82,7 +82,7 @@ public class GUICancelTicket {
     }
 
     public String getTicketNoText() {
-        return this.emailField.getText();
+        return this.ticketNo.getText();
     }
 
 }

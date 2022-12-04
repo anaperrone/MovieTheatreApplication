@@ -38,11 +38,21 @@ public class MainController implements ActionListener {
 
         gui.getSignUp().getEnter().addActionListener(this);
         gui.getSignUp().getBack().addActionListener(this);
+
+        gui.getMoviePage().getBack().addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == gui.getGuiLoginHomePage().getloginButton()) {
             gui.maincl.show(gui.mainPanel, "login");
+        }
+
+        if(e.getSource() == gui.getGuiLoginHomePage().getRegButton()) {
+            gui.maincl.show(gui.mainPanel, "signup");
+        }
+
+        if(e.getSource() == gui.getGuiLoginHomePage().getGuestButton()) {
+            gui.maincl.show(gui.mainPanel, "movie");
         }
 
         if(e.getSource() == gui.getLogin().getEnter()) {
@@ -53,7 +63,27 @@ public class MainController implements ActionListener {
                 System.out.println("HI");
                 gui.maincl.show(gui.mainPanel, "movie");
             }
-        
+        }
+
+        if(e.getSource() == gui.getLogin().getBack()) {
+            gui.maincl.show(gui.mainPanel, "home");
+
+        }
+
+        if(e.getSource() == gui.getSignUp().getBack()) {
+            gui.maincl.show(gui.mainPanel, "login");
+        }
+
+        if(e.getSource() == gui.getSignUp().getEnter()) {
+            String username = gui.getSignUp().getUserText();
+            String password = gui.getSignUp().getPasswordText();
+
+
+            gui.maincl.show(gui.mainPanel, "movie");
+        }
+
+        if(e.getSource() == gui.getMoviePage().getBack()) {
+            gui.maincl.show(gui.mainPanel, "home");
         }
 
     }

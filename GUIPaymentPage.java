@@ -9,12 +9,9 @@
 */
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
-public class GUIPaymentPage extends JPanel implements ActionListener {
-    CardLayout maincl;
-    JPanel mainPanel;
+public class GUIPaymentPage extends JPanel {
     private JPanel panel;
     private JLabel name;
     private JTextField nameField;
@@ -28,9 +25,7 @@ public class GUIPaymentPage extends JPanel implements ActionListener {
     private JButton pay;
 
 
-    public GUIPaymentPage(CardLayout cl, JPanel pan) {
-        maincl = cl;
-        mainPanel = pan;
+    public GUIPaymentPage() {
         panel = new JPanel();
 
         panel.setLayout(new GridBagLayout());
@@ -81,31 +76,42 @@ public class GUIPaymentPage extends JPanel implements ActionListener {
         back = new JButton("<--");
         gbc.gridx = 0;
         gbc.gridy = 10;
-        back.addActionListener(this);
         panel.add(back, gbc);
 
         pay = new JButton("Proceed with Payment");
         gbc.gridx = 6;
         gbc.gridy = 10;
-        pay.addActionListener(this);
         panel.add(pay, gbc);
 
         panel.setVisible(true);
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == back) {
-            maincl.show(mainPanel, "home");
-        }
-
-        // if(e.getSource() == pay) {
-        //    maincl.show(mainPanel, "");
-        // }
-    }
-
     public JPanel getPanel() {
         return panel;
+    }
+
+    public String getNameText() {
+        return this.nameField.getText();
+    }
+
+    public String getCardText() {
+        return this.CCField.getText();
+    }
+
+    public String getExpiryText() {
+        return this.expiryField.getText();
+    }
+
+    public String getCVVText() {
+        return this.CVVField.getText();
+    }
+
+    public JButton getBack() {
+        return this.back;
+    }
+
+    public JButton getPay() {
+        return this.pay;
     }
 }

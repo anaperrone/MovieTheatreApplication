@@ -10,6 +10,7 @@ public class GUI {
     protected GUISignUp signup;
     protected GUIMovie moviePage;
     protected GUISeats seats;
+    protected GUITicket ticket;
     public CardLayout maincl = new CardLayout();
 
     public GUI() {
@@ -18,11 +19,12 @@ public class GUI {
         mainPanel.setLayout(maincl);
 
         loginPage = new GUILoginHomePage();
-        login = new GUILogin(maincl, mainPanel);
-        signup = new GUISignUp(maincl, mainPanel);
-        seats = new GUISeats(maincl, mainPanel);
-        payPage = new GUIPaymentPage(maincl, mainPanel);
-        moviePage = new GUIMovie(maincl, mainPanel);
+        login = new GUILogin();
+        signup = new GUISignUp();
+        seats = new GUISeats();
+        ticket = new GUITicket();
+        payPage = new GUIPaymentPage();
+        moviePage = new GUIMovie();
 
 
         mainPanel.add(loginPage.getPanel(), "home");
@@ -31,6 +33,8 @@ public class GUI {
 
         mainPanel.add(moviePage.getPanel(), "movie");
         mainPanel.add(seats.getPanel(), "seats");
+
+        mainPanel.add(ticket.getPanel(), "ticket");
 
         mainPanel.add(payPage.getPanel(), "payment");
 
@@ -51,5 +55,21 @@ public class GUI {
 
     public GUILogin getLogin() {
         return this.login;
+    }
+
+    public GUISignUp getSignUp() {
+        return this.signup;
+    }
+
+    public GUIMovie getMoviePage() {
+        return this.moviePage;
+    }
+
+    public GUISeats getSeats() {
+        return this.seats;
+    }
+
+    public GUIPaymentPage getPaymentPage() {
+        return this.payPage;
     }
 }

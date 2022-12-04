@@ -4,3 +4,11 @@ Location.class
 main.class
 Movie.class
 Showing.class
+GUI.class
+GUILogin.class
+GUILoginHomePage.class
+GUIMovie.class
+GUIPaymentPage.class
+GUISeats.class
+MainController.class
+GUISignUp.class

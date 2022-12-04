@@ -124,9 +124,7 @@ public class MainController implements ActionListener {
         if(e.getSource() == gui.getSignUp().getEnter()) {
             String username = gui.getSignUp().getUserText();
             String password = gui.getSignUp().getPasswordText();
-
-
-            String no = gui.getSignUp().getNumberField();
+            Integer no = Integer.valueOf(gui.getSignUp().getNumberField());
             String street = gui.getSignUp().getStreetNameField();
             String city = gui.getSignUp().getCityField();
             String country = gui.getSignUp().getCountryField();
@@ -134,9 +132,10 @@ public class MainController implements ActionListener {
             String name = gui.getSignUp().getNameText();
             String card = gui.getSignUp().getCardText();
             String expiry = gui.getSignUp().getExpiryText();
-            String cvv = gui.getSignUp().getCVVText();
-            
-            
+            Integer cvv = Integer.valueOf(gui.getSignUp().getCVVText());
+
+            String set = registeredUser.setAll(username, password, expiry, card, cvv, name, street, no, city, country, postalcode);
+            JOptionPane.showMessageDialog(gui.getSignUp(), set);
 
             gui.maincl.show(gui.mainPanel, "login");
         }

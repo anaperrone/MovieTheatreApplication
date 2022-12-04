@@ -31,6 +31,7 @@ public class MainController implements ActionListener {
         gui.getPaymentPage().getBack().addActionListener(this);
         gui.getPaymentPage().getPay().addActionListener(this);
 
+        gui.getSeats().getBack().addActionListener(this);
         gui.getSeats().getSeat1().addActionListener(this);
         gui.getSeats().getSeat2().addActionListener(this);
         gui.getSeats().getSeat3().addActionListener(this);
@@ -150,7 +151,7 @@ public class MainController implements ActionListener {
     }
 
     public void GUISeatPageButton(ActionEvent e) {
-        if(e.getSource() == gui.getPaymentPage().getBack()) {
+        if(e.getSource() == gui.getSeats().getBack()) {
             gui.maincl.show(gui.mainPanel, "movie");
         }
     }

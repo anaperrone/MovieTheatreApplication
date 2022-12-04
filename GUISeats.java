@@ -83,6 +83,12 @@ public class GUISeats extends JPanel {
         gbc.gridy = 1;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(seat10, gbc);
+
+        back = new JButton("<--");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10,5,10,5);
+        panel.add(back, gbc);
     }
 
     public JPanel getPanel() {

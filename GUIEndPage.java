@@ -9,6 +9,14 @@ public class GUIEndPage extends JPanel {
     private JLabel subtitle;
     private JButton backToMovies;
 
+    private JLabel totalprice;
+    private JLabel movie;
+    private JLabel date;
+    private JLabel time;
+    private JLabel theatre;
+    private JLabel seatNumber;
+    private JLabel ticketNum;
+
     public GUIEndPage() {
         panel = new JPanel();
 
@@ -51,7 +59,7 @@ public class GUIEndPage extends JPanel {
     }
 
     public void showTicketDetails() {
-        
+
     }
 
 }

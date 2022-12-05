@@ -137,7 +137,7 @@ public class GUIPaymentPage extends JPanel {
 
     public void displayPrice(int selectedTicketNum) {
         int total = selectedTicketNum * 8;
-        message = new JLabel("Your total is: " + total);
+        message = new JLabel("Your total is: $" + total);
         gbc.gridwidth = 7;
         gbc.gridx = 0;
         gbc.gridy = 0;

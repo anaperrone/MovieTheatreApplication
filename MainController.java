@@ -39,6 +39,7 @@ public class MainController implements ActionListener {
         registeredUser = new RegisteredUser(database);
         ordinaryUser = new OrdinaryUser(database);
         movieController = new MoviesController(database);
+        payment = new Payment();
 
         gui = new GUI(movieController.getMovies(), movieController.getLocations()); //Open the GUI for the user to use
        
@@ -465,6 +466,7 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getSeatSelection().getNext()) {
             if(selectedButtons.size() == selectedTicketNum) {
+                gui.getPaymentPage().displayPrice(selectedTicketNum);
                 if(registeredUser != null) {
                     String email = gui.getPaymentPage().getEmailText();
                     String name = gui.getPaymentPage().getNameText();
@@ -484,11 +486,6 @@ public class MainController implements ActionListener {
         }
 
         if(e.getSource() == gui.getPaymentPage().getPay()) {
-
-            int ticketSelected = gui.getMoviePage().getTickets();
-            selectedTicketNum = ticketSelected;
-
-            gui.getPaymentPage().displayPrice(selectedTicketNum);
 
             String email = gui.getPaymentPage().getEmailText();
             String name = gui.getPaymentPage().getNameText();

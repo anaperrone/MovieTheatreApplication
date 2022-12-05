@@ -9,6 +9,8 @@
 */
 
 import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 
 public class Payment {
     static int num;
@@ -66,6 +68,22 @@ public class Payment {
     public Location getLocation()
     {
         return location.getLocation();
+    }
+
+    public String proceed(String expiry, String cardNumber, int cvv) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
+        YearMonth expMonth;
+        try{
+            expMonth = YearMonth.parse(expiry, formatter);
+        }
+        catch(Exception ex){
+            return "ERROR: Invalid expiry date. Please re-enter.";
+        }
+        if(card.verifyCard(cvv, cardNumber) == true) {
+            return "Payment successful.";
+        } else {
+            return "ERROR: Invalid card information. Please try again";
+        }
     }
 
     public boolean refundPayment() {

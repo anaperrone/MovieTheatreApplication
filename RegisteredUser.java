@@ -52,13 +52,18 @@ public class RegisteredUser extends OrdinaryUser{
         return d.grantAccess(username, password);
     }
 
-    public boolean signUp()
+    public void annualFee()
     {
         //if it has been a whole number of years since sign up, prompt for annual fee. 
-        signUp = d.getRegistrationDate(username);
-        LocalDate year = LocalDate.now();
-        //if it has been a year prompt for payment  
-        return true;
+        signUp = d.getRegistrationDate(username);   //Get the date the user signed up
+        LocalDate year = LocalDate.now();           //Get today's date 
+        LocalDate signup = signUp.plusYears(1);     //Add a year to their signUp date 
+        if (signup.compareTo(year) >= 0)            //If it has been a year or more since they signed up. prompt for payment 
+        {
+            d.setRegistrationDate(signup, username);          //Set signup date to todays date 
+            Email email = new Email();
+            email.sendEmail(username, "Hello user, \nYou are due to pay the annual fee of $20.00 now. Please pay through your bank.", "Cinemama- Annual Fee Payment");                          //return false to say that registered user hasn't paid annual fee and to prompt them to pay fee
+        }
 
     }
 
@@ -93,12 +98,13 @@ public class RegisteredUser extends OrdinaryUser{
             return "ERROR: Invalid username. Please select another";
         }
 
-        
-
         d.addAddress(street, number, city, country, postal);
         d.addCard(username, exp, cardNumber, cvv, name);
         d.addRegisteredUser(username, password, number, street, cardNumber, cvv);
         
+        Email email = new Email();
+        email.sendEmail(username, "Hello user, \nYour account has been created successfully. You must now pay the annual fee of $20.00 through your bank.", "Cinemama - Account Creation and Annual Fee Payment");
+
         return "Account created successfully." ;
     }
 

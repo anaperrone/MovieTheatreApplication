@@ -356,7 +356,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat1());
                 selectedButtons.remove(gui.getSeatSelection().getSeat1());
-                selectedSeats.remove(1);
+                selectedSeats.remove(Integer.valueOf(1));
                 flag = 0;
             }
         }
@@ -370,7 +370,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat2());
                 selectedButtons.remove(gui.getSeatSelection().getSeat2());
-                selectedSeats.remove(2);
+                selectedSeats.remove(Integer.valueOf(2));
                 flag = 0;
             }
         }
@@ -384,7 +384,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat3());
                 selectedButtons.remove(gui.getSeatSelection().getSeat3());
-                selectedSeats.remove(3);
+                selectedSeats.remove(Integer.valueOf(3));
                 flag = 0;
             }
         }
@@ -398,7 +398,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat4());
                 selectedButtons.remove(gui.getSeatSelection().getSeat4());
-                selectedSeats.remove(4);
+                selectedSeats.remove(Integer.valueOf(4));
                 flag = 0;
             }
         }
@@ -412,7 +412,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat5());
                 selectedButtons.remove(gui.getSeatSelection().getSeat5());
-                selectedSeats.remove(5);
+                selectedSeats.remove(Integer.valueOf(5));
                 flag = 0;
             }
         }
@@ -426,7 +426,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat6());
                 selectedButtons.remove(gui.getSeatSelection().getSeat6());
-                selectedSeats.remove(6);
+                selectedSeats.remove(Integer.valueOf(6));
                 flag = 0;
             }
         }
@@ -440,7 +440,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat7());
                 selectedButtons.remove(gui.getSeatSelection().getSeat7());
-                selectedSeats.remove(7);
+                selectedSeats.remove(Integer.valueOf(7));
                 flag = 0;
             }
         }
@@ -454,7 +454,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat8());
                 selectedButtons.remove(gui.getSeatSelection().getSeat8());
-                selectedSeats.remove(8);
+                selectedSeats.remove(Integer.valueOf(8));
                 flag = 0;
             }
         }
@@ -468,7 +468,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat9());
                 selectedButtons.remove(gui.getSeatSelection().getSeat9());
-                selectedSeats.remove(9);
+                selectedSeats.remove(Integer.valueOf(9));
                 flag = 0;
             }
         }
@@ -482,7 +482,7 @@ public class MainController implements ActionListener {
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat10());
                 selectedButtons.remove(gui.getSeatSelection().getSeat10());
-                selectedSeats.remove(10);
+                selectedSeats.remove(Integer.valueOf(10));
                 flag = 0;
             }
         }

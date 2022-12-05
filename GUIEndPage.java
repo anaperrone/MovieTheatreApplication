@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.*;
 import java.time.*;
 
-public class GUIEndPage extends JFrame {
+public class GUIEndPage extends JPanel {
     private JPanel panel;
     private JLabel title;
     private JLabel subtitle;

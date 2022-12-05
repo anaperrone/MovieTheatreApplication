@@ -19,7 +19,7 @@ public class Card {
     private String cardNumber;
     private int cvv;
     private String name;
-    private String CARD_REGEX = "[0-9]{16}";
+    private String CARD_REGEX = "^(?:[\\s]?[0-9]){16}$";
     private Pattern CARD_PATTERN = Pattern.compile(CARD_REGEX);
 
     /*

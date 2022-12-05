@@ -32,6 +32,7 @@ public class MainController implements ActionListener {
     private int flag = 0;
     private boolean guest = true;
     private ArrayList<JButton> selectedButtons = new ArrayList<JButton>();
+    private ArrayList<Integer> selectedSeats = new ArrayList<Integer>();
     private int selectedTicketNum = 0;
 
     public MainController() {
@@ -350,10 +351,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
                 selectedButtons.add(gui.getSeatSelection().getSeat1());
+                selectedSeats.add(1);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat1());
                 selectedButtons.remove(gui.getSeatSelection().getSeat1());
+                selectedSeats.remove(1);
                 flag = 0;
             }
         }
@@ -362,10 +365,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat2());
                 selectedButtons.add(gui.getSeatSelection().getSeat2());
+                selectedSeats.add(2);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat2());
                 selectedButtons.remove(gui.getSeatSelection().getSeat2());
+                selectedSeats.remove(2);
                 flag = 0;
             }
         }
@@ -374,10 +379,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat3());
                 selectedButtons.add(gui.getSeatSelection().getSeat3());
+                selectedSeats.add(3);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat3());
                 selectedButtons.remove(gui.getSeatSelection().getSeat3());
+                selectedSeats.remove(3);
                 flag = 0;
             }
         }
@@ -386,10 +393,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat4());
                 selectedButtons.add(gui.getSeatSelection().getSeat4());
+                selectedSeats.add(4);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat4());
                 selectedButtons.remove(gui.getSeatSelection().getSeat4());
+                selectedSeats.remove(4);
                 flag = 0;
             }
         }
@@ -398,10 +407,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat5());
                 selectedButtons.add(gui.getSeatSelection().getSeat5());
+                selectedSeats.add(5);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat5());
                 selectedButtons.remove(gui.getSeatSelection().getSeat5());
+                selectedSeats.remove(5);
                 flag = 0;
             }
         }
@@ -410,10 +421,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat6());
                 selectedButtons.add(gui.getSeatSelection().getSeat6());
+                selectedSeats.add(6);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat6());
                 selectedButtons.remove(gui.getSeatSelection().getSeat6());
+                selectedSeats.remove(6);
                 flag = 0;
             }
         }
@@ -422,10 +435,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat7());
                 selectedButtons.add(gui.getSeatSelection().getSeat7());
+                selectedSeats.add(7);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat7());
                 selectedButtons.remove(gui.getSeatSelection().getSeat7());
+                selectedSeats.remove(7);
                 flag = 0;
             }
         }
@@ -434,10 +449,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat8());
                 selectedButtons.add(gui.getSeatSelection().getSeat8());
+                selectedSeats.add(8);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat8());
                 selectedButtons.remove(gui.getSeatSelection().getSeat8());
+                selectedSeats.remove(8);
                 flag = 0;
             }
         }
@@ -446,10 +463,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat9());
                 selectedButtons.add(gui.getSeatSelection().getSeat9());
+                selectedSeats.add(9);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat9());
                 selectedButtons.remove(gui.getSeatSelection().getSeat9());
+                selectedSeats.remove(9);
                 flag = 0;
             }
         }
@@ -458,10 +477,12 @@ public class MainController implements ActionListener {
             if(flag == 0) {
                 gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat10());
                 selectedButtons.add(gui.getSeatSelection().getSeat10());
+                selectedSeats.add(10);
                 flag++;
             } else {
                 gui.getSeatSelection().resetColour(gui.getSeatSelection().getSeat10());
                 selectedButtons.remove(gui.getSeatSelection().getSeat10());
+                selectedSeats.remove(10);
                 flag = 0;
             }
         }
@@ -498,8 +519,8 @@ public class MainController implements ActionListener {
             String pay = payment.proceed(expiry, card, cvv);
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
-            for(int i = 0; i < selectedButtons.size(); i++) {
-                seats.bookSeat(i, movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
+            for(int i = 0; i < selectedSeats.size(); i++) {
+                seats.bookSeat(selectedSeats.get(i), movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
             }
 
             //if ordinary user put email into ordinary table

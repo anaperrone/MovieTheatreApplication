@@ -128,6 +128,7 @@ public class MainController implements ActionListener {
 
     public void GUISignUpPageButton(ActionEvent e) {
         if(e.getSource() == gui.getSignUp().getBack()) {
+            gui.getSignUp().clear();
             gui.maincl.show(gui.mainPanel, "home");
         }
 

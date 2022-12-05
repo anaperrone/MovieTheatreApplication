@@ -40,7 +40,7 @@ public class Card {
     */
     public boolean verifyCard(int cvv, String cardNumber) {
         Matcher cardMatcher = CARD_PATTERN.matcher(cardNumber);
-        if(cvv <= 999 && cvv >= 100 && cardMatcher.matches()) {
+        if(cvv <= 999 && cvv >= 100 && cardMatcher.matches() && (cardNumber.length() == 16)) {
             return true;
         }
         

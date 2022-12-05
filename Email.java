@@ -15,7 +15,7 @@ import javax.mail.PasswordAuthentication;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//import java.activation;
+import javax.activation.*;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -42,7 +42,7 @@ public class Email {
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override 
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(from, "ensf480fall2022");
+                    return new PasswordAuthentication(from, "ttchjtogddcpudep");
                 }
             });
 
@@ -65,7 +65,7 @@ public class Email {
 
     public static void main(String[] args) {
         Email email = new Email();
-        email.sendEmail("anaclara.perrone@gmail.com");
+        email.sendEmail("sobiak4192@gmail.com");
     }
 
 }

@@ -339,7 +339,7 @@ public class DataBase {
             ArrayList<LocalDate> showdates = new ArrayList<LocalDate>();
             while(results.next())
             {
-                LocalDate date = results.getObject("movTime", LocalDate.class);
+                LocalDate date = results.getObject("movDate", LocalDate.class);
                 showdates.add(date);
 
             } 

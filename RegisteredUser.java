@@ -69,10 +69,6 @@ public class RegisteredUser extends OrdinaryUser{
      */
     public String setAll(String username, String password, String expiry, String cardNumber, int cvv, String name, String street, int number, String city, String country, String postal)
     {
-        boolean usernameValidated = setUser(username, password);
-        if(usernameValidated == false){
-            return "ERROR: Invalid username. Please select another";
-        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
         YearMonth expMonth;
         try{
@@ -86,8 +82,18 @@ public class RegisteredUser extends OrdinaryUser{
         if(cardValidated == false){
             return "ERROR: Invalid card information. Please try again";
         }
+
+        boolean addressValidated = setAddress(street, number, city, country, postal);
+        if(addressValidated == false){
+            return "ERROR: Account already created for this address.";
+        }
         
-        setAddress(street, number, city, country, postal);
+        boolean usernameValidated = setUser(username, password);
+        if(usernameValidated == false){
+            return "ERROR: Invalid username. Please select another";
+        }
+
+        
 
         d.addAddress(street, number, city, country, postal);
         d.addCard(username, exp, cardNumber, cvv, name);
@@ -120,7 +126,10 @@ public class RegisteredUser extends OrdinaryUser{
         if(card.verifyCard(cvv, cardNumber)){
             cards.add(card);
             this.name = name;
-            return true;
+            if(d.checkCard(cvv, cardNumber)){
+                return true;
+            }
+            
         }
         return false;
     }
@@ -129,9 +138,14 @@ public class RegisteredUser extends OrdinaryUser{
      * public method which sets the address for a person, creates a new address object
      * for this person
      */
-    public void setAddress(String street, int number, String city, String country, String postal){
-        Address add = new Address(street, number, city, country, postal);
-        this.address = add;
+    public boolean setAddress(String street, int number, String city, String country, String postal){
+        boolean validAddress = d.validateAddress(street, number);
+        if(validAddress){
+            Address add = new Address(street, number, city, country, postal);
+            this.address = add;
+            return true;
+        }
+        return false;
     }
 
     /*

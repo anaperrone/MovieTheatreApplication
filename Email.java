@@ -13,18 +13,21 @@ import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+//import java.activation;
+
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-// import javax.activation.*;
 
 public class Email {
     private String to;
-    private String from = "ensf480cinemama@gmail.com";
+    private String from;
 
     public Email() {
-        this.to = to;
+        from = "ensf480cinemama@gmail.com";
     }
 
     public void sendEmail(String to) {
@@ -32,10 +35,9 @@ public class Email {
         try {
             Properties properties = new Properties();
             properties.put("mail.smtp.auth", true);
+            properties.put("mail.smtp.starttls.enable", true);
             properties.put("mail.smtp.host", "smtp.gmail.com");
             properties.put("mail.smtp.port", 587);
-            properties.put("mail.smtp.starttls.enable", true);
-            properties.put("mail.transport.protocl", "smtp");
 
             Session session = Session.getInstance(properties, new Authenticator() {
                 @Override 
@@ -45,6 +47,9 @@ public class Email {
             });
 
             Message message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress(from));
+
             message.setSubject("Cine-Ma-Ma Receipt");
             message.setContent("<h1>Email", "text/html");
 
@@ -52,11 +57,10 @@ public class Email {
             message.setRecipient(Message.RecipientType.TO, addressTo);
 
             Transport.send(message);
-            
+
         } catch(Exception e) {
 
         }
-
     }
 
     public static void main(String[] args) {

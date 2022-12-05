@@ -39,17 +39,12 @@ public class Card {
      * public method to verify that user has input correct card information before proceeding to make payment 
     */
     public boolean verifyCard(int cvv, String cardNumber) {
-        boolean valid = false;
-        if(cvv <= 999 && cvv >= 100) {
-            valid = true;
-        }
-        
         Matcher cardMatcher = CARD_PATTERN.matcher(cardNumber);
-        if(cardMatcher.matches()) {
-            valid = true;
+        if(cvv <= 999 && cvv >= 100 && cardMatcher.matches()) {
+            return true;
         }
         
-        return valid;
+        return false;
     }
 
     /*

@@ -208,10 +208,11 @@ public class MainController implements ActionListener {
                 flag++;
             }
 
-            else if(flag == 3) {
+            else if(flag == 2) {
                 LocalTime timeSelected = gui.getMoviePage().getShowtimes();
                 movieController.setShow(timeSelected);
                 gui.getMoviePage().showTicketsAv(movieController.getTickets());
+                flag++;
 
             }
 

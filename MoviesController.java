@@ -93,6 +93,10 @@ public class MoviesController {
         return this.location;
     }
 
+    public LocalTime getShow() {
+        return this.showTime;
+    }
+
     // public Showing getShow() {
     //     return this.show;
     // }

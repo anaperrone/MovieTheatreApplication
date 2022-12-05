@@ -498,6 +498,10 @@ public class MainController implements ActionListener {
             String pay = payment.proceed(expiry, card, cvv);
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
+            for(int i = 0; i < selectedButtons.size(); i++) {
+                seats.bookSeat(i, movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
+            }
+
             //if ordinary user put email into ordinary table
             if(guest == true) {
                 ordinaryUser.addOrdinaryUser(email);

@@ -459,7 +459,6 @@ public class DataBase {
             {
                 room = results.getInt("roomNum");
                 roomNum.add(room);
-
             } 
             
             query = "SELECT seatNum FROM SEATS WHERE roomNum = " + room + " AND theaterName = '"+ theatre + "' AND d = '" + sqlDate + "' AND t = '" + sqlTime + "';";
@@ -472,7 +471,7 @@ public class DataBase {
                 seats.add(seat);
 
             } 
-
+            
             results.close();
             return seats;
                 

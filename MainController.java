@@ -26,6 +26,7 @@ public class MainController implements ActionListener {
         addListener();
     }
 
+
     public void addListener() {
         gui.getGuiLoginHomePage().getloginButton().addActionListener(this);
         gui.getGuiLoginHomePage().getGuestButton().addActionListener(this);
@@ -223,6 +224,7 @@ public class MainController implements ActionListener {
                 selectedTicketNum = ticketSelected;
                 flag = 0;
             }
+            
         }
 
         if(e.getSource() == gui.getMoviePage().getSeat()) {

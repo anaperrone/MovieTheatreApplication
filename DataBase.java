@@ -257,13 +257,15 @@ public class DataBase {
             state.execute();
             results.close();
             String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber;
-            Emial em = new Email();
+            Email em = new Email();
             em.sendEmail(email, message, "Cinemama - Confirmation of Ticket Booking");
             return message;
         }
         catch(SQLException e){
             e.printStackTrace();
         }
+
+        return null;
     }
 
     /*

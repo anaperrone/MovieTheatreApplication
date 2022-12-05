@@ -100,9 +100,13 @@ public class RegisteredUser extends OrdinaryUser{
      * public method which sets the username and password
      */
     public boolean setUser(String username, String password){
-        this.username = username;
-        this.password = password;
-        return instance.checkUsername(username, password);
+        boolean value = instance.checkUsername(username, password);
+        if(value){
+            this.username = username;
+            this.password = password;
+            return true;
+        }
+        return false;
     }
 
     /*

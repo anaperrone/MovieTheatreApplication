@@ -57,8 +57,7 @@ public class RegisteredUser extends OrdinaryUser{
         //if it has been a whole number of years since sign up, prompt for annual fee. 
         signUp = d.getRegistrationDate(username);
         LocalDate year = LocalDate.now();
-        //if it has been a year 
-
+        //if it has been a year prompt for payment  
 
     }
 

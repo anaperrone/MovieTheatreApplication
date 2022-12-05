@@ -21,7 +21,9 @@ public class MoviesController {
     private ArrayList<String> locations;
     private Location location;
     private ArrayList<LocalTime> showTimes;
+    private LocalTime showTime;
     private Seats seats;
+    private ArrayList<Integer> ticketsNotAvailable;
 
 
     //If title string is set to "AllMovies" then movie will conduct something different
@@ -61,8 +63,13 @@ public class MoviesController {
         newShowTimes();
     }
 
-    public void setTickets() {
-        //seats = New Seat(movie.getTitle(), location.getLocation(), date, )
+    public void setShow(LocalTime showTime) {
+        this.showTime = showTime;
+    }
+
+
+    public ArrayList<Integer> getTickets() {
+        return seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);
     }
 
     // public void setShow(LocalTime showing) { //When a user selects a showing

@@ -111,9 +111,14 @@ public class GUIMovie extends JFrame {
         panel.validate();
     }
 
-    public void showTickets() {
+    public void showTicketsAv(ArrayList<Integer> ticketsNotAvailable) {
         panel.remove(tickets);
-        tickets = new JComboBox<Integer>(nullvalues2);
+        Integer[] temp = new Integer[ticketsNotAvailable.size()];
+        for(int i = 0; i < ticketsNotAvailable.size(); i++) {
+            temp[i] = i;
+        }
+
+        tickets = new JComboBox<Integer>(temp);
         gbc.gridx = 4;
         gbc.gridy = 2;
         panel.add(tickets, gbc);
@@ -154,6 +159,26 @@ public class GUIMovie extends JFrame {
 
     public JButton getSubmit() {
         return this.submit;
+    }
+
+    public JComboBox<String> getMovieBox() {
+        return this.movie;
+    }
+
+    public JComboBox<String> getLocationBox() {
+        return this.theatre;
+    }
+
+    public JComboBox<LocalDate> getDateBox() {
+        return this.date;
+    }
+
+    public JComboBox<LocalTime> getShowsBox() {
+        return this.show;
+    }
+
+    public JComboBox<Integer> getTicketsBox() {
+        return this.tickets;
     }
 
     public String getMovie() {

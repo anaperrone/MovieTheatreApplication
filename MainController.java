@@ -63,6 +63,13 @@ public class MainController implements ActionListener {
         gui.getMoviePage().getNext().addActionListener(this);
         gui.getMoviePage().getSeat().addActionListener(this);
         gui.getMoviePage().getSubmit().addActionListener(this);
+        
+        gui.getMoviePage().getMovieBox().addActionListener(this);
+        gui.getMoviePage().getLocationBox().addActionListener(this);
+        gui.getMoviePage().getDateBox().addActionListener(this);
+        gui.getMoviePage().getShowsBox().addActionListener(this);
+        gui.getMoviePage().getTicketsBox().addActionListener(this);
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -164,6 +171,26 @@ public class MainController implements ActionListener {
             gui.getMoviePage().remove();
             gui.maincl.show(gui.mainPanel, "home");
         }
+        
+        // if(e.getSource() == gui.getMoviePage().getMovieBox()) {
+        //     String movieSelected = gui.getMoviePage().getMovie();
+        //     movieController.setMovie(movieSelected);
+        // }
+
+        // if(e.getSource() == gui.getMoviePage().getLocationBox()) {
+        //     String locationSelected = gui.getMoviePage().getLocationSel();
+        //     movieController.setLocation(locationSelected);
+        // }
+
+        // if(e.getSource() == gui.getMoviePage().getShowsBox()) {
+        //     LocalDate dateSelected = gui.getMoviePage().getDatesSel();
+        //     movieController.setDate(dateSelected);
+        // }
+
+        // if(e.getSource() == gui.getMoviePage().getTicketsBox()) {
+
+        // }
+
 
         if(e.getSource() == gui.getMoviePage().getNext()) {
             if(flag == 0) {
@@ -177,14 +204,19 @@ public class MainController implements ActionListener {
             else if(flag == 1) {
                 LocalDate dateSelected = gui.getMoviePage().getDatesSel();
                 movieController.setDate(dateSelected);
-                //movieController.setTickets(dateSelected);
                 gui.getMoviePage().showShowTimes(movieController.getShowTimes());
                 flag++;
             }
 
-            else if(flag == 2) {
+            else if(flag == 3) {
+                LocalTime timeSelected = gui.getMoviePage().getShowtimes();
+                movieController.setShow(timeSelected);
+                gui.getMoviePage().showTicketsAv(movieController.getTickets());
+
+            }
+
+            else if(flag == 4) {
                 String ticketSelected = gui.getMoviePage().getTickets();
-                gui.getMoviePage().showTickets();
                 flag = 0;
             }
         }
@@ -355,7 +387,6 @@ public class MainController implements ActionListener {
         }
     }
     
-
     
     public static void main(String[] args){        
         MainController main = new MainController();

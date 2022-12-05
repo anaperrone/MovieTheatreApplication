@@ -52,13 +52,19 @@ public class RegisteredUser extends OrdinaryUser{
         return d.grantAccess(username, password);
     }
 
-    public boolean signUp()
+    public boolean annualFee()
     {
         //if it has been a whole number of years since sign up, prompt for annual fee. 
-        signUp = d.getRegistrationDate(username);
-        LocalDate year = LocalDate.now();
+        signUp = d.getRegistrationDate(username);   //Get the date the user signed up
+        LocalDate year = LocalDate.now();           //Get today's date 
+        LocalDate signup = signUp.plusYears(1);     //Add a year to their signUp date 
+        if (signup.compareTo(year) >= 0)            //If it has been a year or more since they signed up. prompt for payment 
+        {
+            d.setRegistrationDate(signup, username);          //Set signup date to todays date 
+            return false;                           //return false to say that registered user hasn't paid annual fee and to prompt them to pay fee
+        }
         //if it has been a year prompt for payment  
-        return true;
+        return true;                                // User has paid annual fee and so return true 
 
     }
 

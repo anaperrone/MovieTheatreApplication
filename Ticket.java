@@ -14,9 +14,11 @@ public class Ticket {
     private Seats seat;
     private Movie movie;
     private Location location;
+    private int price = 8;
 
-    public Ticket(int ticket, int aud, Seats seat, Movie mov, Location loc) {
+    public Ticket(int ticket, int price, int aud, Seats seat, Movie mov, Location loc) {
         this.ticketNum = ticket;
+        this.price = price;
         this.auditorium = aud;
         this.seat = seat;
         this.movie = mov;

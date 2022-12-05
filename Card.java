@@ -19,7 +19,7 @@ public class Card {
     private String cardNumber;
     private int cvv;
     private String name;
-    private String CARD_REGEX = "[0-9]{16}";
+    private String CARD_REGEX = "^(?:[\\s]?[0-9]){16}$";
     private Pattern CARD_PATTERN = Pattern.compile(CARD_REGEX);
 
     /*
@@ -40,12 +40,12 @@ public class Card {
     */
     public boolean verifyCard(int cvv, String cardNumber) {
         
-        if(cvv <= 999 || cvv >= 100) {
+        if(cvv <= 999 && cvv >= 100) {
             return true;
         }
         
-        Matcher cardMatcher = CARD_PATTERN.matcher(cardNumber);
-        if(cardMatcher.find()) {
+        //Matcher cardMatcher = CARD_PATTERN.matcher(cardNumber);
+        if(Pattern.compile(CARD_REGEX).matcher(cardNumber).matches()) {
             return true;
         }
         

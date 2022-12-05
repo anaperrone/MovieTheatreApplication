@@ -215,6 +215,68 @@ public class DataBase {
         }
     }
 
+    public boolean checkCard(int cvv, String cardNumber)
+    {
+        try
+        {
+            Statement s = this.connect.createStatement();
+            String cardQuery = "SELECT cv, num FROM CARD;";
+            ResultSet results = s.executeQuery(cardQuery);
+
+            //loop through each result retrieved
+            while(results.next()){
+                String num = results.getString("num");
+                int cv = results.getInt("cv");
+                //compare the card number and cvv to existing ones in the database
+                if(cardNumber.compareTo(num) == 0 && cv == cvv){
+                    results.close();
+                    return false;
+                }
+            }
+
+            //no card with this match was found, can add it to the database
+            return true;
+        }
+
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean validateAddress(String street, int number)
+    {
+        try
+        {
+            Statement s = this.connect.createStatement();
+            String cardQuery = "SELECT streetName, num FROM ADDRESS;";
+            ResultSet results = s.executeQuery(cardQuery);
+
+            //loop through each result retrieved
+            while(results.next()){
+                int num = results.getInt("num");
+                String name = results.getString("streetName");
+                System.out.println(name);
+                System.out.println(num);
+                //compare the street number and name to existing ones in the database
+                if(street.equalsIgnoreCase(name) && num == number){
+                    results.close();
+                    return false;
+                }
+            }
+
+            //no card with this match was found, can add it to the database
+            return true;
+        }
+
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public void addAddress(String street, int num, String city, String country, String postalCode)
     {
         try

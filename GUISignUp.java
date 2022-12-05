@@ -249,4 +249,18 @@ public class GUISignUp extends JPanel {
         return this.countryField.getText();
     }
 
+    public void clear() {
+        usernameField.setText("");
+        passwordField.setText("");
+        streetNameField.setText("");
+        numberField.setText("");
+        cityField.setText("");
+        countryField.setText("");
+        postalcodeField.setText("");
+        nameField.setText("");
+        CCField.setText("");
+        expiryField.setText("");
+        CVVField.setText("");
+    }
+
 }

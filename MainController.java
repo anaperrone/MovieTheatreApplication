@@ -233,9 +233,11 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getMoviePage().getSubmit()) {
             int ticketSelected = gui.getMoviePage().getTickets();
-            System.out.println(ticketSelected);
             selectedTicketNum = ticketSelected;
             flag = 0;
+            if(movieController.getTickets().contains(1)) {
+                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
+            }
             gui.maincl.show(gui.mainPanel, "seatSelection");
         }
         

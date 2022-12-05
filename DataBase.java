@@ -144,6 +144,32 @@ public class DataBase {
         }
     }
 
+    public LocalDate getRegistrationDate(String username)
+    {
+        try
+        {
+            String addQuery = "SELECT signupdate FROM REGISTERED_USER WHERE email = ?";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            ResultsSet results = state.setString(1, username);
+
+            LocalDate signUp = LocalDate.now();
+            while (results.next())
+            {
+                signup = results.getObject("signupdate", LocalDate.class);
+            }
+
+            return signup;
+        }
+
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
     public void addRegisteredUser(String username, String password, int number, String streetname, String cardNumber, int cvv)
     {
         try

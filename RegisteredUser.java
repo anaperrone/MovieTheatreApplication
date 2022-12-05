@@ -19,6 +19,7 @@ public class RegisteredUser extends OrdinaryUser{
     private String password;
     private String name;
     private DataBase d;
+    private LocalDate signUp;
 
     //Constructor which invokes constructor of parent class, OrdinaryUser
     //and creates a new empty arraylist for cards as well as an instance of singleton
@@ -49,6 +50,16 @@ public class RegisteredUser extends OrdinaryUser{
     public boolean grantAccess(String username, String password)
     {
         return d.grantAccess(username, password);
+    }
+
+    public boolean signUp()
+    {
+        //if it has been a whole number of years since sign up, prompt for annual fee. 
+        signUp = d.getRegistrationDate(username);
+        LocalDate year = LocalDate.now();
+        //if it has been a year 
+
+
     }
 
     /*
@@ -137,13 +148,13 @@ public class RegisteredUser extends OrdinaryUser{
         return cards.get(0).getCardNumber();
     }
 
-    public int getCvv()
+    public String getEmail()
     {
-        return cards.get(0).getCVV();
+        return username;
     }
 
-    public LocalDate getExpiry()
+    public String getName()
     {
-        return cards.get(0).getExp();
+        return name;
     }
 }

@@ -8,9 +8,10 @@
 *
 */
 
+//Stores the specific theatre location that the user has selected
 public class Location {
     private String theatreName;
-    private Address address;
+    //private Address address;
 
     public Location(String loc) {
         theatreName = loc;

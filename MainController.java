@@ -129,6 +129,7 @@ public class MainController implements ActionListener {
     }
 
     public void GUISignUpPageButton(ActionEvent e) {
+        JOptionPane.showMessageDialog(gui.getSignUp(), "Remember your username must be in the format of an email or you will recieve no ticket confirmation.");
         if(e.getSource() == gui.getSignUp().getBack()) {
             gui.getSignUp().clear();
             gui.maincl.show(gui.mainPanel, "home");
@@ -149,8 +150,9 @@ public class MainController implements ActionListener {
 
             String set = registeredUser.setAll(username, password, expiry, card, cvv, name, street, no, city, country, postalcode);
             JOptionPane.showMessageDialog(gui.getSignUp(), set);
-
-            gui.maincl.show(gui.mainPanel, "login");
+            if(!set.contains("ERROR")) {
+                gui.maincl.show(gui.mainPanel, "login");
+            }
         }
     }
 

@@ -1,3 +1,16 @@
+/*
+* GUILogin.java
+*
+* ENSF 480 Term Project
+* Fall 2022
+* L01 Group 2
+* Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
+
+About this class:
+    Allows the user to input their username and password and login into their account
+    If the user decides to go back to home page their last login information will be cleared
+*/
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,8 +20,8 @@ public class GUILogin extends JPanel {
     private JLabel password;
     private JTextField usernameField;
     private JPasswordField passwordField;
-    private JButton back;
-    private JButton enter;
+    private JButton back; // --> Back to home page
+    private JButton enter; // --> Takes login and attempts to verify it
 
     public GUILogin() {
         panel = new JPanel();
@@ -29,50 +42,33 @@ public class GUILogin extends JPanel {
         gbc.gridx = 2;
         gbc.gridy = 2;
         gbc.insets = new Insets(10,0,10,0);
-        //usernameField.setBounds(100,20,165,25);
         panel.add(usernameField, gbc);
 
         password = new JLabel("Password:");
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.insets = new Insets(10,0,10,0);
-        //password.setBounds(10,50,80,25);
         panel.add(password, gbc);
 
         passwordField = new JPasswordField(30);
         gbc.gridx = 2;
         gbc.gridy = 4;
         gbc.insets = new Insets(10,0,10,0);
-        //passwordField.setBounds(100,50,165,25);
         panel.add(passwordField, gbc);
 
         back = new JButton("<--");
         gbc.gridx = 2;
         gbc.gridy = 8;
         gbc.insets = new Insets(10,5,10,5);
-        //back.setBounds(50,80,80,25);
-        //back.addActionListener(this);
         panel.add(back, gbc);
 
         enter = new JButton("Enter");
         gbc.gridx = 2;
         gbc.gridy = 11;
         gbc.insets = new Insets(10,5,10,5);
-        //enter.setBounds(160,80,80,25);
-        //enter.addActionListener(this);
         panel.add(enter, gbc);
         
     }
-
-    // public void actionPerformed(ActionEvent e) {
-    //     if(e.getSource() == back) {
-    //         maincl.show(mainPanel, "home");
-    //     }
-
-    //     // if(e.getSource() == enter) {
-    //     //     maincl.show(mainPanel, "movie");
-    //     // }
-    // }
 
     public JPanel getPanel() {
         return panel;
@@ -94,7 +90,7 @@ public class GUILogin extends JPanel {
         return String.valueOf(passwordField.getPassword());
     }
 
-    public void clear() {
+    public void clear() { //Clears jtextfield
         usernameField.setText("");
         passwordField.setText("");
     }

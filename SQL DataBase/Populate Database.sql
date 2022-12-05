@@ -19,13 +19,13 @@ SELECT * FROM ADDRESS;
 SELECT * FROM LOCATION;
         
 INSERT INTO SHOWING 
-VALUES 	('Black Panther', '2022-12-01', '1:15', '3', 'Pink Panther');
+VALUES 	('Black Panther', '2022-12-01', '1:15', 3, 'Pink Panther');
 
 INSERT INTO SHOWING 
-VALUES 	('Black Panther', '2022-12-03', '1:15', '3', 'Pink Panther');
+VALUES 	('Black Panther', '2022-12-03', '1:15', 3, 'Pink Panther');
 
 INSERT INTO SHOWING 
-VALUES 	('Black Panther', '2022-12-05', '1:15', '3', 'Pink Panther');
+VALUES 	('Black Panther', '2022-12-05', '1:15', 3, 'Pink Panther');
 
 INSERT INTO SHOWING 
 VALUES 	('Black Panther', '2022-12-05', '7:15', 8, 'Golden Jubilee');
@@ -36,10 +36,16 @@ VALUES 	('Black Panther', '2022-12-07', '7:15', 8, 'Golden Jubilee');
 INSERT INTO SHOWING 
 VALUES 	('Black Panther', '2022-12-08', '7:15', 8, 'Golden Jubilee');
 
-INSERT INTO SHOWING VALUES 
-	('Finding Nemo', '2022-12-05', '8:30', 1, 'Pink Panther'),
+INSERT INTO SHOWING 
+VALUES 	('Finding Nemo', '2022-12-05', '8:30', 1, 'Pink Panther'),
     ('Puss in Boots', '2022-12-06', '11:00', 5, 'Golden Jubilee'),
-    ('Violent Night', '2022-12-07', '6:00', 2, 'Golden Jubilee');
+    ('Violent Night', '2022-12-23', '6:00', 2, 'Golden Jubilee'),
+    ('Finding Nemo', '2022-12-05', '8:30', 1, 'Golden Jubilee'),
+    ('Puss in Boots', '2022-12-08', '11:00', 5, 'Pink Panther'),
+    ('Violent Night', '2022-12-25', '6:00', 2, 'Golden Jubilee'), 
+    ('Finding Nemo', '2022-12-09', '8:30', 1, 'Pink Panther'),
+    ('Puss in Boots', '2022-12-08', '11:00', 5, 'Golden Jubilee'),
+    ('Violent Night', '2022-12-24', '6:00', 2, 'Pink Panther');
 
 SELECT * FROM SHOWING;
 
@@ -55,10 +61,4 @@ SELECT * FROM REGISTERED_USER;
 SELECT * FROM ADDRESS;
 SELECT * FROM CARD;
 SELECT * FROM SEATS;
-
-INSERT INTO LOGIN VALUES ('ana', 'password');
-
-DELETE FROM LOGIN WHERE username = 'ana';
-DELETE FROM CARD WHERE email = 'ana';
-DELETE FROM REGISTERED_USER WHERE email = 'ana';
-DELETE FROM ADDRESS WHERE num = 64 AND streetName = 'Covepark Rise';
+SELECT * FROM SHOWING;

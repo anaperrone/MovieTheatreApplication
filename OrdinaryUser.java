@@ -10,25 +10,22 @@
 import java.util.*;
 import java.time.*;
 
-abstract class OrdinaryUser { //should this be abstract? no objects of it.
+public class OrdinaryUser { //should this be abstract? no objects of it.
     private String email;
-    private Card card;
     private LocalDate purchaseDate;
+    private DataBase database;
+
 
     //defualt constructor
-    public OrdinaryUser(){}
-
-    //method to store the email of the ordinary user for the time being
-    public void addEmail(String e){
-        this.email = e;
-        //should we send this to the db?
-
+    public OrdinaryUser(DataBase database){
+        this.database = database;
     }
 
-    //add a card for the user by creating a new card object
-    public void addCard(int cvv, String cardNumber, LocalDate expiry, String name){
-        Card c = new Card();
-        c.setFields(expiry, cardNumber, cvv, name);
-        this.card = c;
+    //method to be called once a guest checks out to purchase a ticket
+    public void addOrdinaryUser(String e){
+        this.email = e;
+
+        database.addOrdinaryUser(e, LocalDate.now());
+        
     }
 }

@@ -297,6 +297,37 @@ public class DataBase {
         }
     }
 
+    public void setRegistrationDate(LocalDate newDate, String username){
+        try
+        {
+            String addQuery = "UPDATE REGISTERED_USER SET signupdate = '" + newDate + "' WHERE username = '" + username +"';";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.execute();
+        }
+
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void addOrdinaryUser(String email, LocalDate purchase){
+        try
+        {
+            java.sql.Date purchDate = java.sql.Date.valueOf(purchase);
+            String addQuery = "INSERT INTO ORDINARY_USER VALUES(?, ?);";
+            PreparedStatement state = this.connect.prepareStatement(addQuery);
+            state.setString(1, email);
+            state.setDate(2, purchDate);
+            state.execute();
+        }
+
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public String bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time, String email){
         try{
             //convert LocalDate and Time to the sql equivalent

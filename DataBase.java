@@ -297,7 +297,7 @@ public class DataBase {
         }
     }
 
-    public void bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time, String email){
+    public String bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time, String email){
         try{
             //convert LocalDate and Time to the sql equivalent
             java.sql.Date newDate = java.sql.Date.valueOf(date);
@@ -318,11 +318,16 @@ public class DataBase {
             state.setString(6, email);
             state.execute();
             results.close();
-            return;
+            String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber;
+            Email em = new Email();
+            em.sendEmail(email, message, "Cinemama - Confirmation of Ticket Booking");
+            return message;
         }
         catch(SQLException e){
             e.printStackTrace();
         }
+
+        return null;
     }
 
     /*
@@ -372,7 +377,10 @@ public class DataBase {
             state.execute();
             results.close();
             //return ticket cancellation details
-            return "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + " successfully cancelled. ";
+            String message = "Ticket for " + title + " on " + date + " at " + time + " showing at " + theatre + " successfully cancelled. ";
+            Email em = new Email();
+            em.sendEmail(email, message, "Cinemama - Ticket Cancellation Cofirmation");
+            return message;
         }
         catch(SQLException e){
             e.printStackTrace();

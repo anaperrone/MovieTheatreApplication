@@ -33,13 +33,14 @@ public class MoviesController {
         database = db;
         movies = db.getMovies();
         locations = db.getLocations();
+        seats = new Seats(db);
     }
 
     public void newShowTimes()
     {
         DataBase d = new DataBase();
         showTimes = d.getMovTimes(movie.getTitle(), location.getTheatreName(), date);
-        d.close();
+        //d.close();
     }
 
     public void setMovieLocation(String title, String location) {
@@ -69,7 +70,13 @@ public class MoviesController {
 
 
     public ArrayList<Integer> getTickets() {
-        return seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);
+        System.out.println(movie.getTitle());
+        System.out.println(location.getTheatreName());
+        System.out.println(date);
+        System.out.println(showTime);
+        ArrayList<Integer> s = seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);
+        System.out.println(s);
+        return s;
     }
 
     // public void setShow(LocalTime showing) { //When a user selects a showing

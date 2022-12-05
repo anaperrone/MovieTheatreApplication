@@ -5,7 +5,9 @@
 * Fall 2022
 * L01 Group 2
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
-*  About this Class:
+*  
+
+About this Class:
 *    Driving controller of the GUI classes
 *    Initializes all pages and retrieves them to pass to main controller which switches between them
 *    Utilizes the CardLayout structure to switch between every page
@@ -28,7 +30,6 @@ public class GUI {
     private GUIMovie moviePage;
     private GUISeatMap seatMap;
     private GUISeatSelection seatSelection;
-    private GUITicket ticket;
     private GUICancelTicket ticketCancel;
     private GUIEndPage end;
     public CardLayout maincl = new CardLayout();
@@ -44,7 +45,6 @@ public class GUI {
         ticketCancel = new GUICancelTicket();
         seatSelection = new GUISeatSelection();
         seatMap = new GUISeatMap();
-        ticket = new GUITicket();
         payPage = new GUIPaymentPage();
         moviePage = new GUIMovie(movies, locations);
         end = new GUIEndPage();
@@ -57,8 +57,6 @@ public class GUI {
         mainPanel.add(moviePage.getPanel(), "movie");
         mainPanel.add(seatMap.getPanel(), "seatMap");
         mainPanel.add(seatSelection.getPanel(), "seatSelection");
-
-        mainPanel.add(ticket.getPanel(), "ticket");
 
         mainPanel.add(payPage.getPanel(), "payment");
 

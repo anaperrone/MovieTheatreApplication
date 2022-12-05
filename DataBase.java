@@ -361,7 +361,7 @@ public class DataBase {
     public ArrayList<String> getMovies()
     {
         try{
-            String query = "SELECT title FROM SHOWING;";
+            String query = "SELECT DISTINCT title FROM SHOWING;";
             PreparedStatement state = this.connect.prepareStatement(query);
             ResultSet results = state.executeQuery(query);
 
@@ -390,7 +390,7 @@ public class DataBase {
      */
     public ArrayList<String> getLocations(){
         try{
-            String query = "SELECT theaterName FROM SHOWING";
+            String query = "SELECT DISTINCT loc FROM SHOWING";
             PreparedStatement state = this.connect.prepareStatement(query);
             ResultSet results = state.executeQuery(query);
 
@@ -398,7 +398,7 @@ public class DataBase {
             ArrayList<String> locations = new ArrayList<String>();
                 while(results.next())
                 {
-                    String loc = results.getString("theaterName");
+                    String loc = results.getString("loc");
                     locations.add(loc);
 
                 } 

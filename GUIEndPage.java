@@ -50,4 +50,8 @@ public class GUIEndPage extends JPanel {
         return this.backToMovies;
     }
 
+    public void showTicketDetails() {
+        
+    }
+
 }

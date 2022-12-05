@@ -482,6 +482,12 @@ public class MainController implements ActionListener {
         }
 
         if(e.getSource() == gui.getPaymentPage().getPay()) {
+
+            int ticketSelected = gui.getMoviePage().getTickets();
+            selectedTicketNum = ticketSelected;
+
+            gui.getPaymentPage().displayPrice(selectedTicketNum);
+
             String email = gui.getPaymentPage().getEmailText();
             String name = gui.getPaymentPage().getNameText();
             String card = gui.getPaymentPage().getCardText();
@@ -490,6 +496,8 @@ public class MainController implements ActionListener {
             
             String pay = payment.proceed(expiry, card, cvv);
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
+
+            //if ordinary user put email into ordinary table
 
             if(!pay.contains("ERROR")) { //If there are no errors then payment will approve and move onto final page
                 gui.maincl.show(gui.mainPanel, "end");

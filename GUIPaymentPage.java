@@ -15,6 +15,7 @@ import javax.swing.*;
 
 public class GUIPaymentPage extends JPanel {
     private JPanel panel;
+    private JLabel message;
     private JLabel email;
     private JTextField emailField;
     private JLabel name;
@@ -27,6 +28,7 @@ public class GUIPaymentPage extends JPanel {
     private JTextField CVVField;
     private JButton back; // --> Goes back to seat selection
     private JButton pay; // --> Attempts to confirm payment when this button is pressed
+    GridBagConstraints gbc = new GridBagConstraints();
 
 
     public GUIPaymentPage() {
@@ -34,7 +36,6 @@ public class GUIPaymentPage extends JPanel {
 
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
-        GridBagConstraints gbc = new GridBagConstraints();
 
         email = new JLabel("Enter Email: ");
         gbc.gridx = 0;
@@ -132,6 +133,17 @@ public class GUIPaymentPage extends JPanel {
 
     public JButton getPay() {
         return this.pay;
+    }
+
+    public void displayPrice(int selectedTicketNum) {
+        int total = selectedTicketNum * 8;
+        message = new JLabel("Your total is: " + total);
+        gbc.gridwidth = 7;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10,5,10,5);
+        panel.add(message, gbc);
+        panel.validate();
     }
 
     public void setTexts(String email, String name, String card) { //If the user is registered it will retrive data from registered user and set the text fields

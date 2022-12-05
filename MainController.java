@@ -228,45 +228,46 @@ public class MainController implements ActionListener {
         }
 
         if(e.getSource() == gui.getMoviePage().getSeat()) {
+            gui.getSeatMap().getSeat1().setEnabled(false);
+            gui.getSeatMap().getSeat2().setEnabled(false);
+            gui.getSeatMap().getSeat3().setEnabled(false);
+            gui.getSeatMap().getSeat4().setEnabled(false);
+            gui.getSeatMap().getSeat5().setEnabled(false);
+            gui.getSeatMap().getSeat6().setEnabled(false);
+            gui.getSeatMap().getSeat7().setEnabled(false);
+            gui.getSeatMap().getSeat8().setEnabled(false);
+            gui.getSeatMap().getSeat9().setEnabled(false);
+            gui.getSeatMap().getSeat10().setEnabled(false);
+
             if(movieController.getTickets().contains(1)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat1());
-                gui.getSeatSelection().getSeat1().setEnabled(false);
             }
             if(movieController.getTickets().contains(2)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat2());
-                gui.getSeatSelection().getSeat2().setEnabled(false);
             }
             if(movieController.getTickets().contains(3)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat3());
-                gui.getSeatSelection().getSeat3().setEnabled(false);
             }
             if(movieController.getTickets().contains(4)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat4());
-                gui.getSeatSelection().getSeat4().setEnabled(false);
             }
             if(movieController.getTickets().contains(5)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat5());
-                gui.getSeatSelection().getSeat5().setEnabled(false);
             }
             if(movieController.getTickets().contains(6)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat6());
-                gui.getSeatSelection().getSeat6().setEnabled(false);
             }
             if(movieController.getTickets().contains(7)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat7());
-                gui.getSeatSelection().getSeat7().setEnabled(false);
             }
             if(movieController.getTickets().contains(8)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat8());
-                gui.getSeatSelection().getSeat8().setEnabled(false);
             }
             if(movieController.getTickets().contains(9)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat9());
-                gui.getSeatSelection().getSeat9().setEnabled(false);
             }
             if(movieController.getTickets().contains(10)) {
                 gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat10());
-                gui.getSeatSelection().getSeat10().setEnabled(false);
             }
             gui.maincl.show(gui.mainPanel, "seatMap");
         }

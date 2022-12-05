@@ -257,8 +257,6 @@ public class DataBase {
             while(results.next()){
                 int num = results.getInt("num");
                 String name = results.getString("streetName");
-                System.out.println(name);
-                System.out.println(num);
                 //compare the street number and name to existing ones in the database
                 if(street.equalsIgnoreCase(name) && num == number){
                     results.close();

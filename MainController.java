@@ -216,7 +216,7 @@ public class MainController implements ActionListener {
 
             }
 
-            else if(flag == 4) {
+            else if(flag == 3) {
                 String ticketSelected = gui.getMoviePage().getTickets();
                 flag = 0;
             }

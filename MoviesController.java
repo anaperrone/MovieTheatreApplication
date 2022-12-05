@@ -11,23 +11,22 @@
 import java.time.*;
 import java.util.ArrayList; 
 
-
+//Movies controller contains both the individual selection the user makes such as the movie, location, date, and time AND
+//retrieves all the options that are available in the database which the user can choose
 public class MoviesController {
     private DataBase database;
-    private ArrayList<String> movies;
+    private ArrayList<String> movies; //Saves all the movie options we have in the database 
     private Movie movie;
-    private ArrayList<LocalDate> dates;
+    private ArrayList<LocalDate> dates; //Saves all the date options for the movie at that location in the database
     private LocalDate date;
-    private ArrayList<String> locations;
+    private ArrayList<String> locations; //Saves all the location options for the movie at that location in the database
     private Location location;
-    private ArrayList<LocalTime> showTimes;
+    private ArrayList<LocalTime> showTimes; //Saves all the showtime options for the movie at that location in the database
     private LocalTime showTime;
     private Seats seats;
-    private ArrayList<Integer> ticketsNotAvailable;
+    private ArrayList<Integer> ticketsNotAvailable; //Stores all the seats that are already booked so that the user cannot select those seats
 
 
-    //If title string is set to "AllMovies" then movie will conduct something different
-    //If loc string is set to "AllLocations" then location will conduct something different
     //Showing takes all 3 parameters and would ideally call the database to match them with a showing that matches the query
     public MoviesController(DataBase db) {
         database = db;
@@ -70,8 +69,8 @@ public class MoviesController {
 
 
     public ArrayList<Integer> getTickets() {
-        ArrayList<Integer> s = seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);
-        return s;
+        ticketsNotAvailable = seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);
+        return ticketsNotAvailable;
     }
 
     // public void setShow(LocalTime showing) { //When a user selects a showing

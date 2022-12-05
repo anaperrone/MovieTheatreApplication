@@ -15,7 +15,6 @@ public class GUIMovie extends JFrame {
     Integer[] nullvalues2 = new Integer[3];
     LocalDate[]nullvalues3 = new LocalDate[3];
     LocalTime[]nullvalues4 = new LocalTime[3];
-    String[] showTime = {"1:20", "4:30", "6:00", "9:15", "11:00"};
     private JButton back;
     private JButton seat;
     private JButton next;
@@ -30,7 +29,7 @@ public class GUIMovie extends JFrame {
         panel.setBackground(new Color(50, 168, 137));
         //gbc.insets = new Insets(0,0,10,0);
 
-        label = new JLabel("Press 'Next' to get other valid data.");
+        label = new JLabel("Select movie and theatre location to get dates. Press next to continue");
         //gbc.fill = GridBagConstraints.HORIZONTAL; 
         gbc.gridwidth = 7;
         gbc.gridx = 0;
@@ -91,6 +90,7 @@ public class GUIMovie extends JFrame {
     }
 
     public void showDate(ArrayList<LocalDate> dates) {
+        label.setText("Select date in next dropdown menu to continue. Press next for showtimes");
         panel.remove(date);
         LocalDate[] localdates = dates.toArray(new LocalDate[dates.size()]);
         date = new JComboBox<LocalDate>(localdates);
@@ -102,6 +102,7 @@ public class GUIMovie extends JFrame {
     }
 
     public void showShowTimes(ArrayList<LocalTime> shows) {
+        label.setText("Select showtimes in next dropdown menu to continue. Press next for showtimes.");
         panel.remove(show);
         LocalTime[] localtimes = shows.toArray(new LocalTime[shows.size()]);
         show = new JComboBox<LocalTime>(localtimes);
@@ -112,6 +113,7 @@ public class GUIMovie extends JFrame {
     }
 
     public void showTicketsAv(ArrayList<Integer> ticketsNotAvailable) {
+        label.setText("Select number of tickets and submit to buy tickets. You may also view seats for this showing or press back for new movie selection.");
         panel.remove(tickets);
         Integer[] temp = new Integer[10 - ticketsNotAvailable.size()];
         for(int i = 0; i < (10 - ticketsNotAvailable.size()); i++) {

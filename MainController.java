@@ -172,6 +172,7 @@ public class MainController implements ActionListener {
     public void GUIMoviePageButton(ActionEvent e) {
         if(e.getSource() == gui.getMoviePage().getBack()) {
             gui.getMoviePage().remove();
+            gui.reloadGUIMovie(movieController.getMovies(), movieController.getLocations());
             gui.maincl.show(gui.mainPanel, "home");
         }
         

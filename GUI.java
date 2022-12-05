@@ -1,19 +1,36 @@
+/*
+* GUI.java
+*
+* ENSF 480 Term Project
+* Fall 2022
+* L01 Group 2
+* Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
+*  About this Class:
+*    Driving controller of the GUI classes
+*    Initializes all pages and retrieves them to pass to main controller which switches between them
+*    Utilizes the CardLayout structure to switch between every page
+*    Any JButton that is connected to any one of these pages will be activated and controlled through main controller
+*    Utilizes the MVC pattern in which GUI displays the view which the user can interact with and the main controller and GUI work with ActionListener to munipulate the view and change it 
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+
+
 public class GUI {
-    protected JFrame frame;
+    private JFrame frame;
     public JPanel mainPanel;
-    protected GUILoginHomePage loginPage;
-    protected GUILogin login;
-    protected GUIPaymentPage payPage;
-    protected GUISignUp signup;
-    protected GUIMovie moviePage;
-    protected GUISeatMap seatMap;
-    protected GUISeatSelection seatSelection;
-    protected GUITicket ticket;
-    protected GUICancelTicket ticketCancel;
-    protected GUIEndPage end;
+    private GUILoginHomePage loginPage;
+    private GUILogin login;
+    private GUIPaymentPage payPage;
+    private GUISignUp signup;
+    private GUIMovie moviePage;
+    private GUISeatMap seatMap;
+    private GUISeatSelection seatSelection;
+    private GUITicket ticket;
+    private GUICancelTicket ticketCancel;
+    private GUIEndPage end;
     public CardLayout maincl = new CardLayout();
 
     public GUI(ArrayList<String> movies, ArrayList<String> locations) {
@@ -56,6 +73,10 @@ public class GUI {
         frame.setSize(700,600);
         frame.setVisible(true);
 
+    }
+
+    public void reloadGUIMovie(ArrayList<String> movies, ArrayList<String> locations) {
+        moviePage = new GUIMovie(movies, locations);
     }
 
     public GUILoginHomePage getGuiLoginHomePage() {

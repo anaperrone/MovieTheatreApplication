@@ -26,9 +26,11 @@ public class Email {
     private String from;
 
     public Email() {
-        from = "ensf480cinemama@gmail.com";
+        from = "ensf480cinemama@gmail.com"; //assigning our sending email 
+        //account we created specifically for the project
     }
 
+    //method called from database with the email of client, content of the email to send and subject 
     public void sendEmail(String to, String content, String subject) {
 
         try {

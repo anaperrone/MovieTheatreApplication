@@ -486,11 +486,14 @@ public class MainController implements ActionListener {
             String name = gui.getPaymentPage().getNameText();
             String card = gui.getPaymentPage().getCardText();
             String expiry = gui.getPaymentPage().getExpiryText();
-            String cvv = gui.getPaymentPage().getCVVText();
+            Integer cvv = Integer.valueOf(gui.getPaymentPage().getCVVText());
             
-            //
+            String pay = payment.proceed(expiry, card, cvv);
+            JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
-            gui.maincl.show(gui.mainPanel, "end");
+            if(!pay.contains("ERROR")) { //If there are no errors then payment will approve and move onto final page
+                gui.maincl.show(gui.mainPanel, "end");
+            }
         }
     }
 

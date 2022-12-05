@@ -43,7 +43,7 @@ public class MainController implements ActionListener {
         addListener(); //Add all the action listeners for every button used in the GUI
     }
 
-
+    //Function adds all the listener for every button
     public void addListener() {
         gui.getGuiLoginHomePage().getloginButton().addActionListener(this);
         gui.getGuiLoginHomePage().getGuestButton().addActionListener(this);
@@ -126,33 +126,33 @@ public class MainController implements ActionListener {
 
     public void GUIloginPageButton(ActionEvent e) {
 
-        if(e.getSource() == gui.getLogin().getEnter()) {
+        if(e.getSource() == gui.getLogin().getEnter()) { //When a login username and password is submitted registered user check is called
             String username = gui.getLogin().getUserText();
             String password = gui.getLogin().getPasswordText();
             
-            if(registeredUser.grantAccess(username, password)) {
-                gui.maincl.show(gui.mainPanel, "movie");
+            if(registeredUser.grantAccess(username, password)) { //Calls registered user to check login server to validate login
+                gui.maincl.show(gui.mainPanel, "movie"); //Goes to movie page if validated
             }
 
-            else {
+            else { //If the login is not validated it prompts for the try again
                 JOptionPane.showMessageDialog(gui.getLogin(), "Login Unsucessful! Try Again.");
             }
         }
 
         if(e.getSource() == gui.getLogin().getBack()) {
-            gui.getLogin().clear();
+            gui.getLogin().clear(); //Clears any saved login and goes to home page if you press back button
             gui.maincl.show(gui.mainPanel, "home");
 
         }
     }
 
     public void GUISignUpPageButton(ActionEvent e) {
-        if(e.getSource() == gui.getSignUp().getBack()) {
-            gui.getSignUp().clear();
+        if(e.getSource() == gui.getSignUp().getBack()) { //Clears any signup details placed if the user decided to backtrack to homepage
+            gui.getSignUp().clear(); 
             gui.maincl.show(gui.mainPanel, "home");
         }
 
-        if(e.getSource() == gui.getSignUp().getEnter()) {
+        if(e.getSource() == gui.getSignUp().getEnter()) { //When user signs up it gets all the fields it places
             String username = gui.getSignUp().getUserText();
             String password = gui.getSignUp().getPasswordText();
             Integer no = Integer.valueOf(gui.getSignUp().getNumberField());
@@ -166,23 +166,27 @@ public class MainController implements ActionListener {
             Integer cvv = Integer.valueOf(gui.getSignUp().getCVVText());
 
             String set = registeredUser.setAll(username, password, expiry, card, cvv, name, street, no, city, country, postalcode);
+            //Calls to registered user which validates and checks every single field 
+            //The database will send a message through registered user and that will show user if there are any errors
             JOptionPane.showMessageDialog(gui.getSignUp(), set);
-            if(!set.contains("ERROR")) {
+
+            if(!set.contains("ERROR")) { //If there are no errors then login server will approve login and then move onto a login page
                 gui.maincl.show(gui.mainPanel, "login");
             }
         }
     }
 
-    public void GUITicketCancelButton(ActionEvent e) {
+    public void GUITicketCancelButton(ActionEvent e) { 
         if(e.getSource() == gui.getTicketCancel().getBack()) {
             gui.maincl.show(gui.mainPanel, "home");
         }
 
-        if(e.getSource() == gui.getTicketCancel().getCancel()) {
-            String email = gui.getTicketCancel().getEmailText();
+        if(e.getSource() == gui.getTicketCancel().getCancel()) { //When user selects ticket to be cancelled it gets the fields the user has inputted and then checks them
+            String email = gui.getTicketCancel().getEmailText(); 
             Integer ticketNo = Integer.valueOf(gui.getTicketCancel().getTicketNoText());
 
-            String message = seats.cancelSeat(ticketNo, email); 
+            String message = seats.cancelSeat(ticketNo, email); //Recieves a message from seats that is connected to database
+            //Will print a sucessessful or unsuccessful message and take the user to home 
             JOptionPane.showMessageDialog(gui.getTicketCancel().getPanel(), message);
             gui.maincl.show(gui.mainPanel, "home");
         }

@@ -34,23 +34,14 @@ public class GUISeatSelection extends JPanel {
         gbc.insets = new Insets(10,5,10,5);
         panel.add(message, gbc);
 
-        if(movieController.getTickets().contains(1)) {
-            seat1 = new JButton("1");
-            seat1.setBackground(Color.PINK);
-            gbc.gridwidth = 1;
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-            gbc.insets = new Insets(10,5,10,5);
-            panel.add(seat1, gbc);
-        } else {
-            seat1 = new JButton("1");
-            seat1.setBackground(Color.GRAY);
-            gbc.gridwidth = 1;
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-            gbc.insets = new Insets(10,5,10,5);
-            panel.add(seat1, gbc);
-        }
+        seat1 = new JButton("1");
+        seat1.setBackground(Color.GRAY);
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10,5,10,5);
+        panel.add(seat1, gbc);
+
 
         seat2 = new JButton("2");
         seat2.setBackground(Color.GRAY);

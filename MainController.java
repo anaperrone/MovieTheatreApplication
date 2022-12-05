@@ -218,6 +218,7 @@ public class MainController implements ActionListener {
 
             else if(flag == 3) {
                 int ticketSelected = gui.getMoviePage().getTickets();
+                System.out.println(ticketSelected);
                 selectedTicketNum = ticketSelected;
                 flag = 0;
             }
@@ -228,6 +229,10 @@ public class MainController implements ActionListener {
         }
 
         if(e.getSource() == gui.getMoviePage().getSubmit()) {
+            int ticketSelected = gui.getMoviePage().getTickets();
+            System.out.println(ticketSelected);
+            selectedTicketNum = ticketSelected;
+            flag = 0;
             gui.maincl.show(gui.mainPanel, "seatSelection");
         }
         

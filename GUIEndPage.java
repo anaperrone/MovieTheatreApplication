@@ -34,7 +34,7 @@ public class GUIEndPage extends JPanel {
 
         //display ticket details?
 
-        backToMovies = new JButton("Back to Movie Selection");
+        backToMovies = new JButton("Back to Home Page");
         gbc.gridwidth = 7;
         gbc.gridx = 0;
         gbc.gridy = 4;

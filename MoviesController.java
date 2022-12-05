@@ -70,12 +70,7 @@ public class MoviesController {
 
 
     public ArrayList<Integer> getTickets() {
-        System.out.println(movie.getTitle());
-        System.out.println(location.getTheatreName());
-        System.out.println(date);
-        System.out.println(showTime);
         ArrayList<Integer> s = seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);
-        System.out.println(s);
         return s;
     }
 

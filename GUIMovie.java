@@ -197,7 +197,7 @@ public class GUIMovie extends JFrame {
         return (LocalTime) show.getSelectedItem();
     }
 
-    public String getTickets() {
-        return (String) tickets.getSelectedItem();
+    public Integer getTickets() {
+        return (Integer) tickets.getSelectedItem();
     }
 }

@@ -21,6 +21,8 @@ public class MoviesController {
     private ArrayList<String> locations;
     private Location location;
     private ArrayList<LocalTime> showTimes;
+    private Seats seats;
+
 
     //If title string is set to "AllMovies" then movie will conduct something different
     //If loc string is set to "AllLocations" then location will conduct something different
@@ -57,6 +59,10 @@ public class MoviesController {
     public void setLocation(String loc) {
         location = new Location(loc);
         newShowTimes();
+    }
+
+    public void setTickets() {
+        //seats = New Seat(movie.getTitle(), location.getLocation(), date, )
     }
 
     // public void setShow(LocalTime showing) { //When a user selects a showing

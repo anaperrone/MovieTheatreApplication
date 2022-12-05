@@ -10,10 +10,11 @@ public class GUIMovie extends JFrame {
     JComboBox<LocalDate> date;
     JComboBox<String> theatre;
     JComboBox<Integer> tickets;
-    private JComboBox<String> show;
+    private JComboBox<LocalTime> show;
     String[] nullvalues = new String[3];
     Integer[] nullvalues2 = new Integer[3];
     LocalDate[]nullvalues3 = new LocalDate[3];
+    LocalTime[]nullvalues4 = new LocalTime[3];
     String[] showTime = {"1:20", "4:30", "6:00", "9:15", "11:00"};
     private JButton back;
     private JButton seat;
@@ -54,7 +55,7 @@ public class GUIMovie extends JFrame {
         gbc.gridy = 2;
         panel.add(date, gbc);
 
-        show = new JComboBox<String>(nullvalues);
+        show = new JComboBox<LocalTime>(nullvalues4);
         gbc.gridx = 3;
         gbc.gridy = 2;
         panel.add(show, gbc);
@@ -100,9 +101,10 @@ public class GUIMovie extends JFrame {
         panel.validate();
     }
 
-    public void showShowTimes() {
+    public void showShowTimes(ArrayList<LocalTime> shows) {
         panel.remove(show);
-        show = new JComboBox<String>(nullvalues);
+        LocalTime[] localtimes = shows.toArray(new LocalTime[shows.size()]);
+        show = new JComboBox<LocalTime>(localtimes);
         gbc.gridx = 3;
         gbc.gridy = 2;
         panel.add(show, gbc);
@@ -162,12 +164,12 @@ public class GUIMovie extends JFrame {
         return (String)theatre.getSelectedItem();
     }
 
-    public String getDatesSel() {
-        return (String) date.getSelectedItem();
+    public LocalDate getDatesSel() {
+        return (LocalDate) date.getSelectedItem();
     }
 
-    public String getShowtimes() {
-        return (String) show.getSelectedItem();
+    public LocalTime getShowtimes() {
+        return (LocalTime) show.getSelectedItem();
     }
 
     public String getTickets() {

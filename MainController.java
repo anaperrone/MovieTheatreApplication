@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.time.*;
 
 public class MainController implements ActionListener {
     private MoviesController movieController;
@@ -174,9 +175,10 @@ public class MainController implements ActionListener {
             }
 
             else if(flag == 1) {
-                String dateSelected = gui.getMoviePage().getDatesSel();
-
-                gui.getMoviePage().showShowTimes();
+                LocalDate dateSelected = gui.getMoviePage().getDatesSel();
+                movieController.setDate(dateSelected);
+                //movieController.setTickets(dateSelected);
+                gui.getMoviePage().showShowTimes(movieController.getShowTimes());
                 flag++;
             }
 

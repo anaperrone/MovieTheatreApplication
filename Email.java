@@ -23,14 +23,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Email {
-    private String to;
     private String from;
 
     public Email() {
         from = "ensf480cinemama@gmail.com";
     }
 
-    public void sendEmail(String to) {
+    public void sendEmail(String to, String content, String subject) {
 
         try {
             Properties properties = new Properties();
@@ -50,8 +49,8 @@ public class Email {
 
             message.setFrom(new InternetAddress(from));
 
-            message.setSubject("Cine-Ma-Ma Receipt");
-            message.setContent("<h1>Email", "text/html");
+            message.setSubject(subject);
+            message.setContent(content, "text/plain");
 
             Address addressTo = new InternetAddress(to);
             message.setRecipient(Message.RecipientType.TO, addressTo);
@@ -59,13 +58,6 @@ public class Email {
             Transport.send(message);
 
         } catch(Exception e) {
-
         }
     }
-
-    public static void main(String[] args) {
-        Email email = new Email();
-        email.sendEmail("sobiak4192@gmail.com");
-    }
-
 }

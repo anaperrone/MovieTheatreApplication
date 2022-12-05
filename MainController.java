@@ -229,34 +229,34 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getMoviePage().getSeat()) {
             if(movieController.getTickets().contains(1)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat1());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat1());
             }
             if(movieController.getTickets().contains(2)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat2());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat2());
             }
             if(movieController.getTickets().contains(3)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat3());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat3());
             }
             if(movieController.getTickets().contains(4)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat4());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat4());
             }
             if(movieController.getTickets().contains(5)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat5());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat5());
             }
             if(movieController.getTickets().contains(6)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat6());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat6());
             }
             if(movieController.getTickets().contains(7)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat7());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat7());
             }
             if(movieController.getTickets().contains(8)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat8());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat8());
             }
             if(movieController.getTickets().contains(9)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat9());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat9());
             }
             if(movieController.getTickets().contains(10)) {
-                gui.getSeatSelection().changeColour(gui.getSeatSelection().getSeat10());
+                gui.getSeatSelection().changeColour(gui.getSeatMap().getSeat10());
             }
             gui.maincl.show(gui.mainPanel, "seatMap");
         }

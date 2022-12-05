@@ -6,6 +6,8 @@
 * L01 Group 2
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
+About this class: 
+    Takes in the users information for buying a ticket and uses those details to book a ticket
 */
 
 import java.awt.*;
@@ -17,14 +19,14 @@ public class GUIPaymentPage extends JPanel {
     private JTextField emailField;
     private JLabel name;
     private JTextField nameField;
-    private JLabel CC;
+    private JLabel CC; // --> credit card number
     private JTextField CCField;
     private JLabel expiry;
     private JTextField expiryField;
     private JLabel CVV;
     private JTextField CVVField;
-    private JButton back;
-    private JButton pay;
+    private JButton back; // --> Goes back to seat selection
+    private JButton pay; // --> Attempts to confirm payment when this button is pressed
 
 
     public GUIPaymentPage() {
@@ -132,7 +134,7 @@ public class GUIPaymentPage extends JPanel {
         return this.pay;
     }
 
-    public void setTexts(String email, String name, String card) {
+    public void setTexts(String email, String name, String card) { //If the user is registered it will retrive data from registered user and set the text fields
         emailField.setText(email);
         nameField.setText(name);
         CCField.setText(card);

@@ -30,11 +30,7 @@ DROP TABLE IF EXISTS ORDINARY_USER;
 CREATE TABLE ORDINARY_USER 
 (
 	email 		VARCHAR(50),
-    cardNumber	VARCHAR(16), 
-    cvv			INT,
-    
-    PRIMARY KEY (email),
-    FOREIGN KEY (cardNumber, cvv) REFERENCES CARD(num, cv)
+    purchase    DATE
 );
 
 DROP TABLE IF EXISTS REGISTERED_USER;

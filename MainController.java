@@ -1,8 +1,25 @@
+/*
+* MainController.java
+*
+* ENSF 480 Term Project
+* Fall 2022
+* L01 Group 2
+* Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
+
+About this class:
+    This is the driving class that initializes and connects the entire program together
+    Main controller serves as both the model and controller part of the MVC pattern
+    The GUI creates buttons and fields which are then recognized by main controller by action listener
+    When a certain button is pressed within any panel main controller will act on it by executing a certain command that is specific to that button
+*
+*/
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.time.*;
+
+
 
 public class MainController implements ActionListener {
     private MoviesController movieController;
@@ -16,14 +33,14 @@ public class MainController implements ActionListener {
     private int selectedTicketNum = 0;
 
     public MainController() {
-        database = new DataBase();
-        seats = new Seats(database);
+        database = new DataBase(); //Open the database and pass it to other functions so that they can retrieve information
+        seats = new Seats(database); //
         registeredUser = new RegisteredUser(database);
         movieController = new MoviesController(database);
 
-        gui = new GUI(movieController.getMovies(), movieController.getLocations());
+        gui = new GUI(movieController.getMovies(), movieController.getLocations()); //Open the GUI for the user to use
        
-        addListener();
+        addListener(); //Add all the action listeners for every button used in the GUI
     }
 
 
@@ -73,7 +90,8 @@ public class MainController implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) { 
+        //When an action event is triggered it checks all the buttons within the program to see if it matches the action event
         GUIloginHomePageButton(e);
         GUIloginPageButton(e);
         GUISignUpPageButton(e);
@@ -83,19 +101,18 @@ public class MainController implements ActionListener {
         GUISeatSelectionButton(e);
         GUIPaymentPageButton(e);
         GUIEndButton(e);
-    
-        //Add buttons for seats
-        //Add seat array
-
     }
 
     public void GUIloginHomePageButton(ActionEvent e) {
+        //Moves from the homepage to any of the other login type pages 
+        //Depending on what button you press you move to that login type page
         if(e.getSource() == gui.getGuiLoginHomePage().getloginButton()) {
             gui.maincl.show(gui.mainPanel, "login");
         }
 
         if(e.getSource() == gui.getGuiLoginHomePage().getRegButton()) {
             gui.maincl.show(gui.mainPanel, "signup");
+            JOptionPane.showMessageDialog(gui.getSignUp(), "Remember your username must be in the format of an email or you will recieve no ticket confirmation.");
         }
 
         if(e.getSource() == gui.getGuiLoginHomePage().getGuestButton()) {
@@ -108,6 +125,7 @@ public class MainController implements ActionListener {
     }
 
     public void GUIloginPageButton(ActionEvent e) {
+
         if(e.getSource() == gui.getLogin().getEnter()) {
             String username = gui.getLogin().getUserText();
             String password = gui.getLogin().getPasswordText();
@@ -129,7 +147,6 @@ public class MainController implements ActionListener {
     }
 
     public void GUISignUpPageButton(ActionEvent e) {
-        JOptionPane.showMessageDialog(gui.getSignUp(), "Remember your username must be in the format of an email or you will recieve no ticket confirmation.");
         if(e.getSource() == gui.getSignUp().getBack()) {
             gui.getSignUp().clear();
             gui.maincl.show(gui.mainPanel, "home");
@@ -180,26 +197,6 @@ public class MainController implements ActionListener {
             gui.maincl.show(gui.mainPanel, "home");
         }
         
-        // if(e.getSource() == gui.getMoviePage().getMovieBox()) {
-        //     String movieSelected = gui.getMoviePage().getMovie();
-        //     movieController.setMovie(movieSelected);
-        // }
-
-        // if(e.getSource() == gui.getMoviePage().getLocationBox()) {
-        //     String locationSelected = gui.getMoviePage().getLocationSel();
-        //     movieController.setLocation(locationSelected);
-        // }
-
-        // if(e.getSource() == gui.getMoviePage().getShowsBox()) {
-        //     LocalDate dateSelected = gui.getMoviePage().getDatesSel();
-        //     movieController.setDate(dateSelected);
-        // }
-
-        // if(e.getSource() == gui.getMoviePage().getTicketsBox()) {
-
-        // }
-
-
         if(e.getSource() == gui.getMoviePage().getNext()) {
             if(flag == 0) {
                 String movieSelected = gui.getMoviePage().getMovie();

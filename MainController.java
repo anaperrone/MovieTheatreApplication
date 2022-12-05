@@ -30,6 +30,7 @@ public class MainController implements ActionListener {
     private GUI gui;
     Seats seats;
     private int flag = 0;
+    private boolean guest = true;
     private ArrayList<JButton> selectedButtons = new ArrayList<JButton>();
     private int selectedTicketNum = 0;
 
@@ -136,6 +137,7 @@ public class MainController implements ActionListener {
             String password = gui.getLogin().getPasswordText();
             
             if(registeredUser.grantAccess(username, password)) { //Calls registered user to check login server to validate login
+                guest = false;
                 gui.maincl.show(gui.mainPanel, "movie"); //Goes to movie page if validated
             }
 
@@ -497,7 +499,7 @@ public class MainController implements ActionListener {
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
             //if ordinary user put email into ordinary table
-            if(registeredUser == null) {
+            if(guest == true) {
                 ordinaryUser.addOrdinaryUser(email);
             }
 

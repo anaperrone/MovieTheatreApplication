@@ -134,16 +134,16 @@ public class RegisteredUser extends OrdinaryUser{
 
     public String getCardNumber()
     {
-        return cards[0].getCardNumber();
+        return cards.get(0).getCardNumber();
     }
 
     public int getCvv()
     {
-        return cards[0].getCVV();
+        return cards.get(0).getCVV();
     }
 
     public LocalDate getExpiry()
     {
-        return cards[0].getExpiry();
+        return cards.get(0).getExp();
     }
 }

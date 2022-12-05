@@ -71,6 +71,7 @@ public class Payment {
     }
 
     public String proceed(String expiry, String cardNumber, int cvv) {
+        Card car = new Card();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy"); 
         YearMonth expMonth;
         try{
@@ -79,7 +80,7 @@ public class Payment {
         catch(Exception ex){
             return "ERROR: Invalid expiry date. Please re-enter.";
         }
-        if(card.verifyCard(cvv, cardNumber) == true) {
+        if(car.verifyCard(cvv, cardNumber) == true) {
             return "Payment successful.";
         } else {
             return "ERROR: Invalid card information. Please try again";

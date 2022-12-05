@@ -25,7 +25,7 @@ public class RegisteredUser extends OrdinaryUser{
     //and creates a new empty arraylist for cards as well as an instance of singleton
     //pattern; LoginServer
     public RegisteredUser(DataBase database){
-        super();
+        super(database);
         this.d = database;
         cards = new ArrayList<Card>();
         instance = LoginServer.getOnlyInstance();

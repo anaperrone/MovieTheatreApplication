@@ -31,7 +31,7 @@ public class GUIMovie extends JFrame {
 
         label = new JLabel("Select movie and theatre location to get dates. Press next to continue");
         //gbc.fill = GridBagConstraints.HORIZONTAL; 
-        gbc.gridwidth = 7;
+        gbc.gridwidth = 20;
         gbc.gridx = 0;
         gbc.gridy = 0;
         panel.add(label, gbc);
@@ -113,7 +113,7 @@ public class GUIMovie extends JFrame {
     }
 
     public void showTicketsAv(ArrayList<Integer> ticketsNotAvailable) {
-        label.setText("Select number of tickets and submit to buy tickets. You may also view seats for this showing or press back for new movie selection.");
+        label.setText("Select number of tickets and submit to buy tickets. Press <-- for a new selection.");
         panel.remove(tickets);
         Integer[] temp = new Integer[10 - ticketsNotAvailable.size()];
         for(int i = 0; i < (10 - ticketsNotAvailable.size()); i++) {

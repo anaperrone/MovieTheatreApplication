@@ -148,17 +148,17 @@ public class DataBase {
     {
         try
         {
-            String addQuery = "SELECT signupdate FROM REGISTERED_USER WHERE email = ?";
-            PreparedStatement state = this.connect.prepareStatement(addQuery);
-            ResultsSet results = state.setString(1, username);
-
+            Statement s = this.connect.createStatement();
+            String addQuery = "SELECT signupdate FROM REGISTERED_USER WHERE email = '" + username + "';";
+            ResultSet results = s.executeQuery(addQuery);
+        
             LocalDate signUp = LocalDate.now();
             while (results.next())
             {
-                signup = results.getObject("signupdate", LocalDate.class);
+                signUp = results.getObject("signupdate", LocalDate.class);
             }
 
-            return signup;
+            return signUp;
         }
 
         catch(SQLException e)

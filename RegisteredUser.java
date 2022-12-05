@@ -58,6 +58,7 @@ public class RegisteredUser extends OrdinaryUser{
         signUp = d.getRegistrationDate(username);
         LocalDate year = LocalDate.now();
         //if it has been a year prompt for payment  
+        return true;
 
     }
 

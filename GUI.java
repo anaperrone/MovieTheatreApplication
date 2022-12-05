@@ -76,7 +76,9 @@ public class GUI {
     }
 
     public void reloadGUIMovie(ArrayList<String> movies, ArrayList<String> locations) {
+        mainPanel.remove(moviePage);
         moviePage = new GUIMovie(movies, locations);
+        mainPanel.add(moviePage.getPanel(), "movie");
     }
 
     public GUILoginHomePage getGuiLoginHomePage() {

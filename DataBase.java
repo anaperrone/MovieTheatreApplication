@@ -242,21 +242,41 @@ public class DataBase {
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
             
             Statement s = this.connect.createStatement();
-            String query = "SELECT roomNum FROM SHOWING WHERE title = '" + movie + "' AND loc = '" + theatre + "' AND date = '" + newDate + "' AND time = '" + sqlTime + "';";
+            String query = "SELECT DISTINCT roomNum FROM SHOWING WHERE title = '" + movie + "' AND loc = '" + theatre + "' AND movDate = '" + newDate + "' AND movTime = '" + sqlTime + "';";
             ResultSet results = s.executeQuery(query);
-            int room = results.getInt("roomNum");
 
-            String addQuery = "INSERT INTO SEATS(theaterName, roomNum, d, t, seatNum, email) VALUES(?, ?, ?, ?, ?, ?);";
+            int room = 0;
+        
+            while(results.next())
+            {
+                room = results.getInt("roomNum");
+            } 
+
+            String addQuery = "INSERT INTO SEATS(email, theaterName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
-            state.setString(1, theatre);
-            state.setInt(2, room);
-            state.setDate(3, newDate);
-            state.setTime(4, sqlTime);
-            state.setInt(5, seatNumber);
-            state.setString(6, email);
+            state.setString(1, email);
+            state.setString(2, theatre);
+            state.setInt(3, room);
+            state.setDate(4, newDate);
+            state.setTime(5, sqlTime);
+            state.setInt(6, seatNumber);
             state.execute();
+            
+
+            Statement st = this.connect.createStatement();
+            String q = "SELECT ticketNum FROM SEATS WHERE email = '" + email + "' AND d = '" + newDate + "' AND t = '" + sqlTime + "' AND seatNum = " + seatNumber + ";";
+            ResultSet r = st.executeQuery(q);
+
+            String ticket = "";
+        
+            while(r.next())
+            {
+                int t = r.getInt("ticketNum");
+                ticket += Integer.toString(t);
+            } 
+            
             results.close();
-            String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber;
+            String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber + "\nTicket Number(s): " + ticket;
             Email em = new Email();
             em.sendEmail(email, message, "Cinemama - Confirmation of Ticket Booking");
             return message;

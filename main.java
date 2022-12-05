@@ -8,6 +8,11 @@ public class main
     {
         DataBase d = new DataBase();
 
+        LocalDate localdate = LocalDate.of(2022, 12, 05);
+        LocalTime localtime = LocalTime.of(8, 30);
+        d.bookSeat(7, "Finding Nemo", "Pink Panther", localdate, localtime, "sobiak4192@gmail.com");
+
+
         // boolean added = d.validateUsername("sobia", "password");
         // System.out.println(added);
         // boolean added2 = d.validateUsername("tina", "password");

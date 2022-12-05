@@ -1,3 +1,19 @@
+/*
+* GUISignUp.java
+*
+* ENSF 480 Term Project
+* Fall 2022
+* L01 Group 2
+* Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
+
+About this Class: 
+    Takes in multiple fields to sign up 
+    Username and password for account 
+    Address details (number, street, city, country, postalcode)
+    Card payment details(name, Credit card number, cvv)
+*
+*/
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,14 +37,14 @@ public class GUISignUp extends JPanel {
 
     private JLabel name;
     private JTextField nameField;
-    private JLabel CC;
+    private JLabel CC; //Credit Card number
     private JTextField CCField;
     private JLabel expiry;
     private JTextField expiryField;
     private JLabel CVV;
     private JTextField CVVField;
-    private JButton back;
-    private JButton enter;
+    private JButton back; // --> Takes you to homepage
+    private JButton enter; // --> Attempts to verify login and then takes you to the login page
 
 
 

@@ -1,3 +1,19 @@
+/*
+* GUILoginHomePage.java
+*
+* ENSF 480 Term Project
+* Fall 2022
+* L01 Group 2
+* Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
+
+About this Class:
+    4 buttons: Login, Continue As Guest, Register, Cancel Ticket
+    Login --> Login page
+    Continue As Guest --> Movie page (browsing movies)
+    Register -> SignUp page
+    Cancel Ticket -> Ticket Page
+*/
+
 import javax.swing.*;
 import java.awt.*;
 

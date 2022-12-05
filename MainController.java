@@ -505,6 +505,10 @@ public class MainController implements ActionListener {
 
     public void GUIPaymentPageButton(ActionEvent e) {
         if(e.getSource() == gui.getPaymentPage().getBack()) {
+            gui.getMoviePage().remove();
+            flag = 0;
+            gui.reloadGUIMovie(movieController.getMovies(), movieController.getLocations());
+            addListener();
             gui.maincl.show(gui.mainPanel, "seatSelection");
         }
 
@@ -536,6 +540,10 @@ public class MainController implements ActionListener {
 
     public void GUIEndButton(ActionEvent e) {
         if(e.getSource() == gui.getEndPage().getBackToMovies()) {
+            gui.getMoviePage().remove();
+            flag = 0;
+            gui.reloadGUIMovie(movieController.getMovies(), movieController.getLocations());
+            addListener();
             gui.maincl.show(gui.mainPanel, "home");
         }
     }

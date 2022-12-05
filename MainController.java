@@ -88,6 +88,8 @@ public class MainController implements ActionListener {
         gui.getMoviePage().getShowsBox().addActionListener(this);
         gui.getMoviePage().getTicketsBox().addActionListener(this);
 
+        gui.getEndPage().getBackToMovies().addActionListener(this);
+
     }
 
     public void actionPerformed(ActionEvent e) { 
@@ -494,7 +496,7 @@ public class MainController implements ActionListener {
 
     public void GUIEndButton(ActionEvent e) {
         if(e.getSource() == gui.getEndPage().getBackToMovies()) {
-            gui.maincl.show(gui.mainPanel, "movie");
+            gui.maincl.show(gui.mainPanel, "home");
         }
     }
     

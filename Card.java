@@ -62,4 +62,14 @@ public class Card {
     public String getCardNumber(){
         return cardNumber;
     }
+
+    public int getCVV()
+    {
+        return cvv;
+    }
+
+    public LocalDate getExp()
+    {
+        return expiry;
+    }
 }

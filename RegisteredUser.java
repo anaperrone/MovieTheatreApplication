@@ -131,4 +131,19 @@ public class RegisteredUser extends OrdinaryUser{
         }
         //add a remove card method for db?
     }
+
+    public String getCardNumber()
+    {
+        return cards[0].getCardNumber();
+    }
+
+    public int getCvv()
+    {
+        return cards[0].getCVV();
+    }
+
+    public LocalDate getExpiry()
+    {
+        return cards[0].getExpiry();
+    }
 }

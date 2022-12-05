@@ -131,4 +131,10 @@ public class GUIPaymentPage extends JPanel {
     public JButton getPay() {
         return this.pay;
     }
+
+    public void setTexts(String email, String name, String card) {
+        emailField.setText(email);
+        nameField.setText(name);
+        CCField.setText(card);
+    }
 }

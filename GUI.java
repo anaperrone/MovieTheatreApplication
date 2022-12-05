@@ -13,6 +13,7 @@ public class GUI {
     protected GUISeatSelection seatSelection;
     protected GUITicket ticket;
     protected GUICancelTicket ticketCancel;
+    protected GUIEndPage end;
     public CardLayout maincl = new CardLayout();
 
     public GUI(ArrayList<String> movies, ArrayList<String> locations) {
@@ -29,7 +30,7 @@ public class GUI {
         ticket = new GUITicket();
         payPage = new GUIPaymentPage();
         moviePage = new GUIMovie(movies, locations);
-
+        end = new GUIEndPage();
 
         mainPanel.add(loginPage.getPanel(), "home");
         mainPanel.add(login.getPanel(), "login");
@@ -43,6 +44,8 @@ public class GUI {
         mainPanel.add(ticket.getPanel(), "ticket");
 
         mainPanel.add(payPage.getPanel(), "payment");
+
+        mainPanel.add(end.getPanel(), "end");
 
         maincl.show(mainPanel, "home");
 
@@ -85,5 +88,9 @@ public class GUI {
 
     public GUICancelTicket getTicketCancel() {
         return this.ticketCancel;
+    }
+
+    public GUIEndPage getEndPage() {
+        return this.end;
     }
 }

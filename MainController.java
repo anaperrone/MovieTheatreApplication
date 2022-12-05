@@ -6,7 +6,7 @@ import java.time.*;
 
 public class MainController implements ActionListener {
     private MoviesController movieController;
-    //private Payment payment;
+    private Payment payment;
     private RegisteredUser registeredUser;
     private DataBase database; 
     private GUI gui;
@@ -82,6 +82,7 @@ public class MainController implements ActionListener {
         GUISeatMapButton(e);
         GUISeatSelectionButton(e);
         GUIPaymentPageButton(e);
+        GUIEndButton(e);
     
         //Add buttons for seats
         //Add seat array
@@ -454,6 +455,12 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getSeatSelection().getNext()) {
             if(selectedButtons.size() == selectedTicketNum) {
+                if(registeredUser != null) {
+                    String email = gui.getPaymentPage().getEmailText();
+                    String name = gui.getPaymentPage().getNameText();
+                    String card = gui.getPaymentPage().getCardText();
+                    gui.getPaymentPage().setTexts(email, name, card);
+                }
                 gui.maincl.show(gui.mainPanel, "payment");
             } else {
                 gui.getSeatSelection().displayErrorMsg();
@@ -473,7 +480,15 @@ public class MainController implements ActionListener {
             String expiry = gui.getPaymentPage().getExpiryText();
             String cvv = gui.getPaymentPage().getCVVText();
             
-            //database tings
+            //
+
+            gui.maincl.show(gui.mainPanel, "end");
+        }
+    }
+
+    public void GUIEndButton(ActionEvent e) {
+        if(e.getSource() == gui.getEndPage().getBackToMovies()) {
+            gui.maincl.show(gui.mainPanel, "movie");
         }
     }
     

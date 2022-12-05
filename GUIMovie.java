@@ -114,8 +114,8 @@ public class GUIMovie extends JFrame {
     public void showTicketsAv(ArrayList<Integer> ticketsNotAvailable) {
         panel.remove(tickets);
         Integer[] temp = new Integer[ticketsNotAvailable.size()];
-        for(int i = 1; i < (10 - ticketsNotAvailable.size()); i++) {
-            temp[i] = i;
+        for(int i = 0; i < (10 - ticketsNotAvailable.size()); i++) {
+            temp[i] = i+1;
         }
 
         tickets = new JComboBox<Integer>(temp);
@@ -197,7 +197,7 @@ public class GUIMovie extends JFrame {
         return (LocalTime) show.getSelectedItem();
     }
 
-    public String getTickets() {
-        return (String) tickets.getSelectedItem();
+    public Integer getTickets() {
+        return (Integer) tickets.getSelectedItem();
     }
 }

@@ -13,7 +13,7 @@ public class MainController implements ActionListener {
     Seats seats;
     private int flag = 0;
     private ArrayList<JButton> selectedButtons = new ArrayList<JButton>();
-    private int selectedTicketNum = 3;
+    private int selectedTicketNum = 0;
 
     public MainController() {
         database = new DataBase();
@@ -217,7 +217,8 @@ public class MainController implements ActionListener {
             }
 
             else if(flag == 3) {
-                String ticketSelected = gui.getMoviePage().getTickets();
+                int ticketSelected = gui.getMoviePage().getTickets();
+                selectedTicketNum = ticketSelected;
                 flag = 0;
             }
         }

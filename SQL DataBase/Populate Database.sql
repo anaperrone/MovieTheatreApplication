@@ -54,11 +54,32 @@ INSERT INTO SEATS (email, theaterName, roomNum, d, t, seatNum) VALUES
 		('maitry@gmail.com', 'Pink Panther', 3, '2022-12-01', '1:15', 2),
 		('ana@gmail.com', 'Pink Panther', 3, '2022-12-01', '1:15', 3);
         
+INSERT INTO CARD (email, expiry, num, cv, holderName)
+VALUES ('tina@gmail.com', '2023-05-01', 1234567891234567, 123, 'tina'), 
+('maitry@gmail.com', '2023-06-01', 1234567891234569, 123, 'maitry'), 
+('ana@gmail.com', '2023-07-01', 1234567891234568, 123, 'ana');
+
+INSERT INTO ADDRESS(num, streetName, city, country, postalCode)
+VALUES (5, 'School DR', 'Calgary', 'Canada', 'T2N4V4'),
+(6, 'School DR', 'Calgary', 'Canada', 'T2N4V6'),
+(7, 'School DR', 'Calgary', 'Canada', 'T2N4V5');
+
+
+INSERT INTO REGISTERED_USER (email, pass, buildNum, streetName, signupdate, cardNumber, cvv)
+VALUES ('tina@gmail.com', 'password', 5, 'School DR', '2021-12-05', 1234567891234567, 123), 
+('maitry@gmail.com', 'password', 6, 'School DR', '2021-12-05', 1234567891234569, 123), 
+('ana@gmail.com', 'password', 7, 'School DR', '2021-12-05', 1234567891234568, 123);
+
+INSERT INTO LOGIN
+VALUES ('tina@gmail.com', 'password'),
+		('maitry@gmail.com', 'password'),
+        ('ana@gmail.com', 'password');
+
 SELECT * FROM SEATS;
 
 SELECT * FROM LOGIN;
-SELECT * FROM REGISTERED_USER;
-SELECT * FROM ADDRESS;
-SELECT * FROM CARD;
-SELECT * FROM SEATS;
-SELECT * FROM SHOWING;
+-- SELECT * FROM REGISTERED_USER;
+-- SELECT * FROM ADDRESS;
+-- SELECT * FROM CARD;
+-- SELECT * FROM SEATS;
+-- SELECT * FROM SHOWING;

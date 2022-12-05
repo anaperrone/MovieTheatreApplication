@@ -25,6 +25,7 @@ public class MainController implements ActionListener {
     private MoviesController movieController;
     private Payment payment;
     private RegisteredUser registeredUser;
+    private OrdinaryUser ordinaryUser;
     private DataBase database; 
     private GUI gui;
     Seats seats;
@@ -36,6 +37,7 @@ public class MainController implements ActionListener {
         database = new DataBase(); //Open the database and pass it to other functions so that they can retrieve information
         seats = new Seats(database); //
         registeredUser = new RegisteredUser(database);
+        ordinaryUser = new OrdinaryUser(database);
         movieController = new MoviesController(database);
 
         gui = new GUI(movieController.getMovies(), movieController.getLocations()); //Open the GUI for the user to use
@@ -498,6 +500,9 @@ public class MainController implements ActionListener {
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
             //if ordinary user put email into ordinary table
+            if(registeredUser == null) {
+                ordinaryUser.addOrdinaryUser(email);
+            }
 
             if(!pay.contains("ERROR")) { //If there are no errors then payment will approve and move onto final page
                 gui.maincl.show(gui.mainPanel, "end");

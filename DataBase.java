@@ -338,7 +338,7 @@ public class DataBase {
             } 
             
             results.close();
-            String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber + "\nTicket Number(s): " + ticket;
+            String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber + "\nTicket Number: " + ticket;
             Email em = new Email();
             em.sendEmail(email, message, "Cinemama - Confirmation of Ticket Booking");
             return message;

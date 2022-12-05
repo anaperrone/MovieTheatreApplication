@@ -166,16 +166,22 @@ public class MainController implements ActionListener {
 
         if(e.getSource() == gui.getMoviePage().getNext()) {
             if(flag == 0) {
-                gui.getMoviePage().showDate();
+                String movieSelected = gui.getMoviePage().getMovie();
+                String locationSelected = gui.getMoviePage().getLocationSel();
+                movieController.setMovieLocation(movieSelected, locationSelected);
+                gui.getMoviePage().showDate(movieController.getDateS());
                 flag++;
             }
 
             else if(flag == 1) {
+                String dateSelected = gui.getMoviePage().getDatesSel();
+
                 gui.getMoviePage().showShowTimes();
                 flag++;
             }
 
             else if(flag == 2) {
+                String ticketSelected = gui.getMoviePage().getTickets();
                 gui.getMoviePage().showTickets();
                 flag = 0;
             }

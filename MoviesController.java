@@ -11,9 +11,12 @@
 import java.time.*;
 import java.util.ArrayList; 
 
+
 public class MoviesController {
+    private DataBase database;
     private ArrayList<String> movies;
     private Movie movie;
+    private ArrayList<LocalDate> dates;
     private LocalDate date;
     private ArrayList<String> locations;
     private Location location;
@@ -23,16 +26,9 @@ public class MoviesController {
     //If loc string is set to "AllLocations" then location will conduct something different
     //Showing takes all 3 parameters and would ideally call the database to match them with a showing that matches the query
     public MoviesController(DataBase db) {
+        database = db;
         movies = db.getMovies();
         locations = db.getLocations();
-
-    }
-    
-    public MoviesController(String title, LocalDate date, String loc) {
-        movie = new Movie(title);
-        this.date = date;
-        location = new Location(loc);
-        newShowTimes();
     }
 
     public void newShowTimes()
@@ -40,6 +36,12 @@ public class MoviesController {
         DataBase d = new DataBase();
         showTimes = d.getMovTimes(movie.getTitle(), location.getTheatreName(), date);
         d.close();
+    }
+
+    public void setMovieLocation(String title, String location) {
+        this.movie = new Movie(title);
+        this.location = new Location(location);
+        dates = database.getDates(title, location);
     }
 
     public void setMovie(String title) {
@@ -92,6 +94,10 @@ public class MoviesController {
 
     public ArrayList<String> getLocations() {
         return this.locations;
+    }
+
+    public ArrayList<LocalDate> getDateS() {
+        return this.dates;
     }
 
 }

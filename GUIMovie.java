@@ -1,18 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
 import java.util.*;
+import java.time.*;
 public class GUIMovie extends JFrame {
     private JPanel panel;
     private JLabel label;
 
     JComboBox<String> movie;
-    JComboBox<String> date;
+    JComboBox<LocalDate> date;
     JComboBox<String> theatre;
     JComboBox<Integer> tickets;
     private JComboBox<String> show;
     String[] nullvalues = new String[3];
     Integer[] nullvalues2 = new Integer[3];
+    LocalDate[]nullvalues3 = new LocalDate[3];
     String[] showTime = {"1:20", "4:30", "6:00", "9:15", "11:00"};
     private JButton back;
     private JButton seat;
@@ -48,7 +49,7 @@ public class GUIMovie extends JFrame {
         gbc.gridy = 2;
         panel.add(theatre, gbc);
 
-        date = new JComboBox<String>(nullvalues);
+        date = new JComboBox<LocalDate>(nullvalues3);
         gbc.gridx = 2;
         gbc.gridy = 2;
         panel.add(date, gbc);
@@ -88,9 +89,10 @@ public class GUIMovie extends JFrame {
 
     }
 
-    public void showDate() {
+    public void showDate(ArrayList<LocalDate> dates) {
         panel.remove(date);
-        date = new JComboBox<String>(nullvalues);
+        LocalDate[] localdates = dates.toArray(new LocalDate[dates.size()]);
+        date = new JComboBox<LocalDate>(localdates);
         gbc.gridx = 2;
         gbc.gridy = 2;
         panel.add(date, gbc);
@@ -150,5 +152,25 @@ public class GUIMovie extends JFrame {
 
     public JButton getSubmit() {
         return this.submit;
+    }
+
+    public String getMovie() {
+        return (String)movie.getSelectedItem();
+    }
+
+    public String getLocationSel() {
+        return (String)theatre.getSelectedItem();
+    }
+
+    public String getDatesSel() {
+        return (String) date.getSelectedItem();
+    }
+
+    public String getShowtimes() {
+        return (String) show.getSelectedItem();
+    }
+
+    public String getTickets() {
+        return (String) tickets.getSelectedItem();
     }
 }

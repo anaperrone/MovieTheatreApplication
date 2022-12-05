@@ -36,6 +36,11 @@ VALUES 	('Black Panther', '2022-12-07', '7:15', 8, 'Golden Jubilee');
 INSERT INTO SHOWING 
 VALUES 	('Black Panther', '2022-12-08', '7:15', 8, 'Golden Jubilee');
 
+INSERT INTO SHOWING VALUES 
+	('Finding Nemo', '2022-12-05', '8:30', 1, 'Pink Panther'),
+    ('Puss in Boots', '2022-12-06', '11:00', 5, 'Golden Jubilee'),
+    ('Violent Night', '2022-12-07', '6:00', 2, 'Golden Jubilee');
+
 SELECT * FROM SHOWING;
 
 INSERT INTO SEATS (email, theaterName, roomNum, d, t, seatNum) VALUES 	

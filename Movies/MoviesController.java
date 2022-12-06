@@ -71,6 +71,10 @@ public class MoviesController {
         this.showTime = showTime;
     }
 
+    public Seats getSeats()
+    {
+        return this.seats;
+    }
 
     public ArrayList<Integer> getTickets() {
         ticketsNotAvailable = seats.getAvailableSeats(movie.getTitle(), location.getTheatreName(), date, showTime);

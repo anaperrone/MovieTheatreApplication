@@ -528,7 +528,7 @@ public class MainController implements ActionListener {
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
             for(int i = 0; i < selectedSeats.size(); i++) {
-                seats.bookSeat(selectedSeats.get(i), movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
+                movieController.getSeats().bookSeat(selectedSeats.get(i), movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
             }
 
             //if ordinary user put email into ordinary table

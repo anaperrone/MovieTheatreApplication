@@ -16,6 +16,7 @@ public class Ticket {
     private Location location;
     private int price = 8;
 
+    //initializes the ticket object with all necessary components
     public Ticket(int ticket, int price, int aud, Seats seat, Movie mov, Location loc) {
         this.ticketNum = ticket;
         this.price = price;
@@ -25,10 +26,12 @@ public class Ticket {
         this.location = loc;
     }
 
+    //returns ticket
     public Ticket getTicket() {
         return this;
     }
 
+    //sets ticket
     public void setTicket(int ticket, int aud, Seats seat, Movie mov, Location loc) {
         this.ticketNum = ticket;
         this.auditorium = aud;

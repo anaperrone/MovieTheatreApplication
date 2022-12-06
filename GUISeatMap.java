@@ -7,7 +7,11 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 
 About this Class: 
-    
+    Shows users a map of available and unavailable seats before choosing how many tickets to purchase
+    Available = Gray
+    Unavailable = Pink
+    Seats do not have any functionality (simply create a seat map)
+    The only button on this page is the back button which takes the user back to the movie selection page
 *
 */
 

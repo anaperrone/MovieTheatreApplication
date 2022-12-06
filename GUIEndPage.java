@@ -1,3 +1,17 @@
+/*
+* GUIEndPage.java
+*
+* ENSF 480 Term Project
+* Fall 2022
+* L01 Group 2
+* Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
+
+About this Class: 
+    Final page of GUI, which thanks user for their payment and notifies them that their receipt has been sent to their email
+    User can then click the "Back to Home Page" button to be redirected to the starting page
+*
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -7,23 +21,25 @@ public class GUIEndPage extends JPanel {
     private JPanel panel;
     private JLabel title;
     private JLabel subtitle;
-    private JButton backToMovies;
+    private JButton backToMovies; // --> Back to home page
 
-    private JLabel totalprice;
-    private JLabel movie;
-    private JLabel date;
-    private JLabel time;
-    private JLabel theatre;
-    private JLabel seatNumber;
-    private JLabel ticketNum;
+    // private JLabel totalprice;
+    // private JLabel movie;
+    // private JLabel date;
+    // private JLabel time;
+    // private JLabel theatre;
+    // private JLabel seatNumber;
+    // private JLabel ticketNum;
 
     public GUIEndPage() {
         panel = new JPanel();
 
+        //setting layout, background colour and constraints on grid
         panel.setLayout(new GridBagLayout());
         panel.setBackground(new Color(50, 168, 137));
         GridBagConstraints gbc = new GridBagConstraints();
 
+        //creating label for main title
         title = new JLabel("Thank you for your purchase!");
         title.setFont(new Font("Serif", Font.BOLD, 20));
         gbc.gridwidth = 7;
@@ -32,7 +48,8 @@ public class GUIEndPage extends JPanel {
         gbc.insets = new Insets(10,5,10,5);
         panel.add(title);
 
-        subtitle = new JLabel("A copy of your receipt has been sent to your email");
+        //creating label for subtitle
+        subtitle = new JLabel("Your receipt has been sent to your email");
         subtitle.setFont(new Font("Serif", Font.PLAIN, 15));
         gbc.gridwidth = 7;
         gbc.gridx = 0;
@@ -40,8 +57,7 @@ public class GUIEndPage extends JPanel {
         gbc.insets = new Insets(10,5,10,5);
         panel.add(subtitle);
 
-        //display ticket details?
-
+        //creating back button
         backToMovies = new JButton("Back to Home Page");
         gbc.gridwidth = 7;
         gbc.gridx = 0;
@@ -58,8 +74,8 @@ public class GUIEndPage extends JPanel {
         return this.backToMovies;
     }
 
-    public void showTicketDetails() {
+    // public void showTicketDetails() {
 
-    }
+    // }
 
 }

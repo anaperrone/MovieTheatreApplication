@@ -7,7 +7,11 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 
 About this Class: 
-   
+   Shows users the same seat map that was displayed in the map, but now allow users to select the seats they desire to book
+   When seat is selected it changes from gray to pink to indicate this is the seat the user has selected
+   The user is able to press the back button to return to the movie selection page, as well as proceed with their payment, however,
+   they are only able to proceed with their payment if they have selected the correct amount of seats (according to the ticket number 
+   they selected in the previous page). If they do not match this number, they will be prompted with an error message
 *
 */
 
@@ -18,10 +22,10 @@ import java.awt.*;
 public class GUISeatSelection extends JPanel {
     private MoviesController movieController;
     private JPanel panel;
-    private JButton back;
-    private JButton next;
-    private JLabel message;
-    private JLabel errorMessage;
+    private JButton back; // --> Back to movie page
+    private JButton next; // --> Proceed to payment page
+    private JLabel message; // Prompts users to select their seats 
+    private JLabel errorMessage; // Notifies user they did not choose the correct number of seats
     private JButton seat1;
     private JButton seat2;
     private JButton seat3;

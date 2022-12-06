@@ -118,4 +118,8 @@ public class MoviesController {
         return this.dates;
     }
 
+    public Seats getSeatS() {
+        return this.seats;
+    }
+
 }

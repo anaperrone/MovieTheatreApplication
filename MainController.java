@@ -37,7 +37,6 @@ public class MainController implements ActionListener {
 
     public MainController() {
         database = new DataBase(); //Open the database and pass it to other functions so that they can retrieve information
-        seats = new Seats(database); //
         registeredUser = new RegisteredUser(database);
         ordinaryUser = new OrdinaryUser(database);
         movieController = new MoviesController(database);
@@ -524,7 +523,7 @@ public class MainController implements ActionListener {
             JOptionPane.showMessageDialog(gui.getSignUp(), pay);
 
             for(int i = 0; i < selectedSeats.size(); i++) {
-                seats.bookSeat(selectedSeats.get(i), movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
+                movieController.getSeatS().bookSeat(selectedSeats.get(i), movieController.getMovie().getTitle(), movieController.getLocation().getTheatreName(), movieController.getDate(), movieController.getShow(), email);
             }
 
             //if ordinary user put email into ordinary table

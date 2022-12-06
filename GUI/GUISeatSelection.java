@@ -39,7 +39,7 @@ public class GUISeatSelection extends JPanel {
     private JButton seat8;
     private JButton seat9;
     private JButton seat10;
-    GridBagConstraints gbc = new GridBagConstraints();
+    private GridBagConstraints gbc = new GridBagConstraints();
 
     public GUISeatSelection() {
         panel = new JPanel();

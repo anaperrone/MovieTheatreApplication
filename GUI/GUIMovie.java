@@ -22,21 +22,20 @@ import java.time.*;
 public class GUIMovie extends JFrame {
     private JPanel panel;
     private JLabel label;
-
-    JComboBox<String> movie;
-    JComboBox<LocalDate> date;
-    JComboBox<String> theatre;
-    JComboBox<Integer> tickets;
+    private JComboBox<String> movie;
+    private JComboBox<LocalDate> date;
+    private JComboBox<String> theatre;
+    private JComboBox<Integer> tickets;
     private JComboBox<LocalTime> show;
-    String[] nullvalues = new String[3];
-    Integer[] nullvalues2 = new Integer[3];
-    LocalDate[]nullvalues3 = new LocalDate[3];
-    LocalTime[]nullvalues4 = new LocalTime[3];
+    private String[] nullvalues = new String[3];
+    private Integer[] nullvalues2 = new Integer[3];
+    private LocalDate[]nullvalues3 = new LocalDate[3];
+    private LocalTime[]nullvalues4 = new LocalTime[3];
     private JButton back;
     private JButton seat;
     private JButton next;
     private JButton submit;
-    GridBagConstraints gbc = new GridBagConstraints();
+    private GridBagConstraints gbc = new GridBagConstraints();
 
     public GUIMovie(ArrayList<String> movies, ArrayList<String> locations) {
 

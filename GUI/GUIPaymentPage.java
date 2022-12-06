@@ -32,8 +32,7 @@ public class GUIPaymentPage extends JPanel {
     private JTextField CVVField;
     private JButton back; // --> Goes back to seat selection
     private JButton pay; // --> Attempts to confirm payment when this button is pressed
-    GridBagConstraints gbc = new GridBagConstraints();
-
+    private GridBagConstraints gbc = new GridBagConstraints();
 
     public GUIPaymentPage() {
         panel = new JPanel();

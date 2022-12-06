@@ -144,6 +144,10 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to get the registration date for a registered user
+     * Returns the LocalDate object
+     */
     public LocalDate getRegistrationDate(String username)
     {
         try
@@ -155,6 +159,7 @@ public class DataBase {
             LocalDate signUp = LocalDate.now();
             while (results.next())
             {
+                //convert the sql date to LocalDate object
                 signUp = results.getObject("signupdate", LocalDate.class);
             }
 
@@ -166,15 +171,20 @@ public class DataBase {
             e.printStackTrace();
         }
 
-        return null;
+        return null; //failed
 
     }
 
+    /*
+     * public method to add a registered user to the database
+     */
     public void addRegisteredUser(String username, String password, int number, String streetname, String cardNumber, int cvv)
     {
         try
         {
+            //set the registered user's sign up date to the date it was created (now)
             LocalDate today = LocalDate.now();
+            //convert this day to sql date object
             java.sql.Date td = java.sql.Date.valueOf(today);
             String addQuery = "INSERT INTO REGISTERED_USER VALUES(?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
@@ -194,10 +204,14 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to add a validated card into the database
+     */
     public void addCard(String username, LocalDate expiry, String cardNumber, int cvv, String name)
     {
         try
         {
+            //convert LocalDate to sql date object
             java.sql.Date exp = java.sql.Date.valueOf(expiry);
             String addQuery = "INSERT INTO CARD VALUES(?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
@@ -215,6 +229,10 @@ public class DataBase {
         }
     }
 
+    /* 
+     * public method to validate the card, checking for any duplicates in the database
+     * Returns true if it is free to add to the database, false otherwise
+    */
     public boolean checkCard(int cvv, String cardNumber)
     {
         try
@@ -242,9 +260,13 @@ public class DataBase {
         {
             e.printStackTrace();
         }
-        return false;
+        return false; //failed
     }
 
+    /*
+     * public method to validate the address, checking for any duplicates in the database
+     * Returns true if it is free to add to the database, false otherwise
+     */
     public boolean validateAddress(String street, int number)
     {
         try
@@ -264,7 +286,7 @@ public class DataBase {
                 }
             }
 
-            //no card with this match was found, can add it to the database
+            //no address with the same street number and name was found, can add it to the database
             return true;
         }
 
@@ -272,9 +294,12 @@ public class DataBase {
         {
             e.printStackTrace();
         }
-        return false;
+        return false; //failed
     }
 
+    /*
+     * public method to add an address into the Adress table
+     */
     public void addAddress(String street, int num, String city, String country, String postalCode)
     {
         try
@@ -295,6 +320,9 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to set the registration date for a registered user. 
+     */
     public void setRegistrationDate(LocalDate newDate, String username){
         try
         {
@@ -309,9 +337,13 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to add an ordinary user to the database
+     */
     public void addOrdinaryUser(String email, LocalDate purchase){
         try
         {
+            //convert LocalDate to sql date object
             java.sql.Date purchDate = java.sql.Date.valueOf(purchase);
             String addQuery = "INSERT INTO ORDINARY_USER VALUES(?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
@@ -326,6 +358,9 @@ public class DataBase {
         }
     }
 
+    /*
+     * public method to book a seat, returns the proper message saying it booked or not
+     */
     public String bookSeat(int seatNumber, String movie, String theatre, LocalDate date, LocalTime time, String email){
         try{
             //convert LocalDate and Time to the sql equivalent
@@ -343,6 +378,7 @@ public class DataBase {
                 room = results.getInt("roomNum");
             } 
 
+            //from the roomNumber found above, reserve the seat with the correct date, time, theatre and add their email
             String addQuery = "INSERT INTO SEATS(email, theaterName, roomNum, d, t, seatNum) VALUES(?, ?, ?, ?, ?, ?);";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.setString(1, email);
@@ -354,6 +390,7 @@ public class DataBase {
             state.execute();
             
 
+            //get the generated ticket number from the inserted seat
             Statement st = this.connect.createStatement();
             String q = "SELECT ticketNum FROM SEATS WHERE email = '" + email + "' AND d = '" + newDate + "' AND t = '" + sqlTime + "' AND seatNum = " + seatNumber + ";";
             ResultSet r = st.executeQuery(q);
@@ -367,6 +404,7 @@ public class DataBase {
             } 
             
             results.close();
+            //send back successful message to user
             String message = "Successfully booked seat and ticket for: \nMovie: " + movie + "\nDate: " + date + "\nTime: " + time + "\nTheater: " + theatre + "\nSeat: " + seatNumber + "\nTicket Number: " + ticket;
             Email em = new Email();
             em.sendEmail(email, message, "Cinemama - Confirmation of Ticket Booking");
@@ -376,7 +414,7 @@ public class DataBase {
             e.printStackTrace();
         }
 
-        return null;
+        return "ERROR: Booking unsuccessful. Please try again";
     }
 
     /*
@@ -506,6 +544,7 @@ public class DataBase {
     public ArrayList<String> getMovies()
     {
         try{
+            //select all the titles from showing, disregarding any duplicates
             String query = "SELECT DISTINCT title FROM SHOWING;";
             PreparedStatement state = this.connect.prepareStatement(query);
             ResultSet results = state.executeQuery(query);
@@ -535,6 +574,7 @@ public class DataBase {
      */
     public ArrayList<String> getLocations(){
         try{
+            //get the locations from the database, disregarding any duplicates
             String query = "SELECT DISTINCT loc FROM SHOWING";
             PreparedStatement state = this.connect.prepareStatement(query);
             ResultSet results = state.executeQuery(query);
@@ -568,7 +608,7 @@ public class DataBase {
             state.setString(1, theatre);
             ResultSet results = state.executeQuery(query);
 
-           
+            //store all the individual elements of the theatre
             String loc = results.getString("theaterName");
             int num = results.getInt("buildNum");
             String street = results.getString("streetName");
@@ -590,6 +630,7 @@ public class DataBase {
      */
     public ArrayList<Integer> getSeats(String movie, String theatre, LocalDate date, LocalTime time){
         try{
+            //change the LocalDate objects into sql dates
             java.sql.Date sqlDate = java.sql.Date.valueOf(date);
             java.sql.Time sqlTime = java.sql.Time.valueOf(time);
             
@@ -606,6 +647,7 @@ public class DataBase {
                 roomNum.add(room);
             } 
             
+            //using the room number found previously, find the seats
             query = "SELECT seatNum FROM SEATS WHERE roomNum = " + room + " AND theaterName = '"+ theatre + "' AND d = '" + sqlDate + "' AND t = '" + sqlTime + "';";
             results = s.executeQuery(query);
 

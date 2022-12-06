@@ -11,6 +11,9 @@ About this Class:
 *
 */
 
+package GUI;
+import User.*;
+import Movies.*;
 
 import javax.swing.*;
 import java.awt.*;

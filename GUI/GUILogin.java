@@ -11,6 +11,10 @@ About this class:
     If the user decides to go back to home page their last login information will be cleared
 */
 
+package GUI;
+import User.*;
+import Movies.*;
+
 import javax.swing.*;
 import java.awt.*;
 

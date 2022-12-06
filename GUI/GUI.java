@@ -15,6 +15,11 @@ About this Class:
 *    Utilizes the MVC pattern in which GUI displays the view which the user can interact with and the main controller and GUI work with ActionListener to munipulate the view and change it 
 */
 
+package GUI;
+import User.*;
+import Movies.*;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;

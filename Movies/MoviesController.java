@@ -8,6 +8,10 @@
 *
 */
 
+package Movies;
+import User.*;
+import GUI.*;
+
 import java.time.*;
 import java.util.ArrayList; 
 

@@ -14,6 +14,10 @@ About this class:
 *
 */
 
+import User.*;
+import Movies.*;
+import GUI.*;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;

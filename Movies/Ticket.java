@@ -8,6 +8,10 @@
 *
 */
 
+package Movies;
+import User.*;
+import GUI.*;
+
 public class Ticket {
     private int ticketNum;
     private int auditorium;

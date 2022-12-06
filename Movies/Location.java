@@ -8,6 +8,10 @@
 *
 */
 
+package Movies;
+import User.*;
+import GUI.*;
+
 //Stores the specific theatre location that the user has selected
 public class Location {
     private String theatreName;

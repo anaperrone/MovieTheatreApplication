@@ -14,6 +14,10 @@ About this Class:
     Cancel Ticket -> Ticket Page
 */
 
+package GUI;
+import User.*;
+import Movies.*;
+
 import javax.swing.*;
 import java.awt.*;
 

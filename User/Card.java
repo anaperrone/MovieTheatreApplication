@@ -8,6 +8,10 @@
 *
 */
 
+package User;
+import Movies.*;
+import GUI.*;
+
 import java.util.regex.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;

@@ -7,6 +7,11 @@
 * Authors: Sobia Khan, Ana Clara Perrone, Maitry Rohit, Christina Wyllie
 *
 */
+
+package User;
+import Movies.*;
+import GUI.*;
+
 import java.util.*;
 import java.time.*;
 

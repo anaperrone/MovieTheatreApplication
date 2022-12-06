@@ -8,6 +8,10 @@
 *
 */
 
+package User;
+import Movies.*;
+import GUI.*;
+
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;

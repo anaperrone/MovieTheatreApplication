@@ -10,6 +10,10 @@ About this class:
     Takes in the users information for buying a ticket and uses those details to book a ticket
 */
 
+package GUI;
+import User.*;
+import Movies.*;
+
 import java.awt.*;
 import javax.swing.*;
 

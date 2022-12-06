@@ -12,6 +12,10 @@
  * public class Address which works with database table ADDRESS.
  */
 
+package User;
+import Movies.*;
+import GUI.*;
+
 public class Address {
     private String streetName;
     private int number;

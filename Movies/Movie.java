@@ -8,6 +8,9 @@
 *
 */
 
+package Movies;
+import User.*;
+import GUI.*;
 
 //Saves the current movie title that the user has selected in this class
 //Used for the purpose of saving the movie to show then on the reciept  

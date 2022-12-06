@@ -12,6 +12,10 @@ About this Class:
 *
 */
 
+package GUI;
+import User.*;
+import Movies.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -53,7 +57,7 @@ public class GUIEndPage extends JPanel {
         subtitle.setFont(new Font("Serif", Font.PLAIN, 15));
         gbc.gridwidth = 7;
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 6;
         gbc.insets = new Insets(10,5,10,5);
         panel.add(subtitle);
 

@@ -15,7 +15,7 @@ import GUI.*;
 import java.util.*;
 import java.time.*;
 
-public class OrdinaryUser { //should this be abstract? no objects of it.
+public class OrdinaryUser { 
     private String email;
     private LocalDate purchaseDate;
     private DataBase database;

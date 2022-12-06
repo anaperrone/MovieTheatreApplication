@@ -27,14 +27,6 @@ public class GUIEndPage extends JPanel {
     private JLabel subtitle;
     private JButton backToMovies; // --> Back to home page
 
-    // private JLabel totalprice;
-    // private JLabel movie;
-    // private JLabel date;
-    // private JLabel time;
-    // private JLabel theatre;
-    // private JLabel seatNumber;
-    // private JLabel ticketNum;
-
     public GUIEndPage() {
         panel = new JPanel();
 
@@ -77,9 +69,5 @@ public class GUIEndPage extends JPanel {
     public JButton getBackToMovies() {
         return this.backToMovies;
     }
-
-    // public void showTicketDetails() {
-
-    // }
 
 }

@@ -50,8 +50,6 @@ public class GUISignUp extends JPanel {
     private JButton back; // --> Takes you to homepage
     private JButton enter; // --> Attempts to verify login and then takes you to the login page
 
-
-
     public GUISignUp() {
         panel = new JPanel();
 

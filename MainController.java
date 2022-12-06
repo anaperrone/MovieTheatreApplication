@@ -117,20 +117,21 @@ public class MainController implements ActionListener {
     public void GUIloginHomePageButton(ActionEvent e) {
         //Moves from the homepage to any of the other login type pages 
         //Depending on what button you press you move to that login type page
+        
         if(e.getSource() == gui.getGuiLoginHomePage().getloginButton()) {
             gui.maincl.show(gui.mainPanel, "login");
         }
 
-        if(e.getSource() == gui.getGuiLoginHomePage().getRegButton()) {
+        else if(e.getSource() == gui.getGuiLoginHomePage().getRegButton()) {
             gui.maincl.show(gui.mainPanel, "signup");
             JOptionPane.showMessageDialog(gui.getSignUp(), "Remember your username must be in the format of an email or you will recieve no ticket confirmation.");
         }
 
-        if(e.getSource() == gui.getGuiLoginHomePage().getGuestButton()) {
+        else if(e.getSource() == gui.getGuiLoginHomePage().getGuestButton()) {
             gui.maincl.show(gui.mainPanel, "movie");
         }
 
-        if(e.getSource() == gui.getGuiLoginHomePage().getCancelButton()) {
+        else if(e.getSource() == gui.getGuiLoginHomePage().getCancelButton()) {
             gui.maincl.show(gui.mainPanel, "cancelTicket");
         }
     }

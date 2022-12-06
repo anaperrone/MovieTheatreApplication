@@ -54,7 +54,17 @@ public class RegisteredUser extends OrdinaryUser{
      */
     public boolean grantAccess(String username, String password)
     {
-        return d.grantAccess(username, password);
+        if(d.grantAccess(username, password))
+        {
+            this.username = username;
+            this.password = password;
+            annualFee();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void annualFee()
@@ -63,7 +73,7 @@ public class RegisteredUser extends OrdinaryUser{
         signUp = d.getRegistrationDate(username);   //Get the date the user signed up
         LocalDate year = LocalDate.now();           //Get today's date 
         LocalDate signup = signUp.plusYears(1);     //Add a year to their signUp date 
-        if (signup.compareTo(year) >= 0)            //If it has been a year or more since they signed up. prompt for payment 
+        if (year.compareTo(signup) >= 0)            //If it has been a year or more since they signed up. prompt for payment 
         {
             d.setRegistrationDate(signup, username);          //Set signup date to todays date 
             Email email = new Email();

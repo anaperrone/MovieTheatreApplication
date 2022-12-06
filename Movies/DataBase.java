@@ -300,7 +300,7 @@ public class DataBase {
     public void setRegistrationDate(LocalDate newDate, String username){
         try
         {
-            String addQuery = "UPDATE REGISTERED_USER SET signupdate = '" + newDate + "' WHERE username = '" + username +"';";
+            String addQuery = "UPDATE REGISTERED_USER SET signupdate = '" + newDate + "' WHERE email = '" + username +"';";
             PreparedStatement state = this.connect.prepareStatement(addQuery);
             state.execute();
         }
